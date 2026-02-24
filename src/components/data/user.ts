@@ -1,4 +1,4 @@
-import { User, HousePlus, Hammer, UserLock, UserX, CirclePlus, UserPlus, Clock } from "lucide-react";
+import { User, HousePlus, Hammer, Lock, UserX, CirclePlus, UserPlus, Clock } from "lucide-react";
 import type { UserList, UserTableList,ActivityAnalytics } from "../appShell/user/UserCard";
 import type { RegistrationList,VerificationList } from "../appShell/user/UserWidgets";
 
@@ -24,7 +24,7 @@ export const usersOverviewData: UserList[] = [
   {
     title: "Tenants",
     value: "1,240",
-    icon: UserLock,
+    icon: Lock,
     badgeText: "+12.5%",
   },
   {

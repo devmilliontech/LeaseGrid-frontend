@@ -106,7 +106,7 @@ export const topLandlordsData: TopLandlordsItem[] = [
     name: "Michael Garcia",
     rating: 4.7,
     properties: 90,
-    totalEarnings: 9500,
+    totalEarnings: 200000,
     month: "May",
   },
 ];
