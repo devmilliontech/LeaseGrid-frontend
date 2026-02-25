@@ -5,69 +5,6 @@ import React from "react";
 
 
 
-//------Users List Card------
-
-export interface UserList {
-     title: string;
-     value: string;
-     icon: LucideIcon;
-     badgeText?: string;
-}
-
-interface UsersListCardProps {
-     data: UserList[];
-}
-
-export const UsersListCard: React.FC<UsersListCardProps> = ({
-     data,
-}) => {
-
-     const getColors = (title: string) => {
-          switch (title) {
-               case "Total Users":
-                    return "text-blue-600 bg-blue-100";
-               case "Lanloards":
-                    return "text-orange-600 bg-orange-100";
-               case "Tradies":
-                    return "text-purple-600 bg-purple-100";
-               case "Tenants":
-                    return "text-emerald-600 bg-emerald-100";
-               case "Suspend":
-                    return "text-red-600 bg-red-100";
-               default:
-                    return "text-slate-600 bg-slate-100";
-          }
-     }
-     return (
-          <>
-               {data.map((user, index) => {
-                    const Icon = user?.icon;
-                    return (
-                         <div key={index} className="bg-white rounded-2xl border border-slate-100 shadow-sm 
-                         transition-all hover:shadow-md h-50 w-45"
-                         >
-                              <div className="flex flex-row justify-between items-center p-5">
-                                   <div className={`p-3 rounded-full ${getColors(user.title)}`}>
-                                        {Icon && <Icon className={`w-5 h-5 ${getColors(user.title)}`} />}
-                                   </div>
-                                   <span className={`text-xs font-bold  rounded-full px-2 py-1 
-                                        ${getColors(user.title)}`}>
-                                        {user.badgeText}
-                                   </span>
-                              </div>
-                              <div className="justify-items-center  ">
-                                   <p className="text-lg  font-bold text-slate-500">{user.title}</p>
-                              </div>
-                              <div className="justify-items-center">
-                                   <div className="p-2 text-3xl font-bold text-slate-800">{user.value}</div>
-
-                              </div>
-                         </div>
-                    );
-               })}
-          </>
-     );
-};
 
 
 //------Users Filter Card------
@@ -234,8 +171,8 @@ export const UserTable: React.FC<UserTableProps> = ({
                     return "bg-gray-200 text-gray-600";
           }
      }
-     const getProfileBorderColor=(status:string)=>{
-          switch(status){
+     const getProfileBorderColor = (status: string) => {
+          switch (status) {
                case "Verified":
                     return "border-green-200";
                case "Pending":
@@ -375,89 +312,3 @@ export const BulkActions: React.FC = () => {
      );
 }
 
-
-
-
-
-
-
-
-// User Activity Analytics
-
-export interface ActivityAnalytics {
-     value: number;
-     title: string;
-     subtitle: string;
-     badgeText: string;
-     icon?: LucideIcon;
-}
-
-export const ActivityAnalyticsCard: React.FC<{ data: ActivityAnalytics[] }> = ({ data }) => {
-     const getDivColor = (title: string) => {
-          switch (title) {
-               case "Active User":
-               case"Total Volume":
-                    return "bg-sky-50";
-               case "Avg. Session":
-               case "Success":
-                    return "bg-green-50";
-               case "New Logins":
-                    return "bg-purple-50";
-               case "Engagement":
-               case "Pending":
-                    return "bg-orange-50";
-               case "Failed":
-                    return "bg-red-50";
-               case "Platform Fees":
-                    return "bg-yellow-50";
-               default:
-                    return "bg-gray-50";
-          }
-     }
-
-     const getValueColor = (title: string) => {
-          switch (title) {
-               case "Active User":
-               case"Total Volume":
-                    return "text-sky-600 bg-sky-200";
-               case "Avg. Session":
-               case "Success":
-                    return "text-green-600 bg-green-200";
-               case "New Logins":
-                    return "text-purple-600 bg-purple-200";
-               case "Engagement":
-               case "Pending":
-                    return "text-orange-600 bg-orange-200";
-               case "Failed":
-                    return "text-red-600 bg-red-200";
-               case "Platform Fees":
-                    return "text-yellow-600 bg-yellow-200";
-               default:
-                    return "text-gray-600 bg-gray-200";
-          }
-     }
-     return (
-          <>
-               {data.map((item, index) => {
-                    const Icon = item.icon;
-                    return (
-                         <div key={index} className={`p-6 rounded-2xl ${getDivColor(item.title)} flex flex-col gap-4 border border-white/50 shadow-sm`}>
-                              <div className="flex justify-between items-start">
-                                   <div className={`p-3 rounded-full ${getValueColor(item.title)} bg-opacity-30`}>
-                                             {Icon && <Icon className="w-6 h-6" />}
-                                        </div>
-                                        <span className={`text-xs font-bold px-2 py-1 rounded-lg mt-1 ${getValueColor(item.title)}`}>
-                                             {item.badgeText}
-                                        </span>
-                                   </div>
-                                   <div>
-                                        <p className="text-sm font-bold text-slate-500 mt-1">{item.title}</p>
-                                        <p className="text-3xl font-bold text-slate-800">{item.value.toLocaleString()}</p>
-                                        <p className="text-xs text-slate-400 font-sm">{item.subtitle}</p>
-                                   </div>
-                              </div>
-                         );
-                    })}
-          </>
-     );
-}

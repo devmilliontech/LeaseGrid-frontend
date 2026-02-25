@@ -1,9 +1,9 @@
-import type {ActivityAnalytics} from "../appShell/user/UserCard";
+import type {CardProps} from "../appShell/Cards";
 import { CircleCheck, CircleDollarSign, CircleX, Clock, Wallet } from "lucide-react";
 
 
 
-export const paymentData:ActivityAnalytics[]=[
+export const paymentData:CardProps[]=[
      {
           title:"Total Volume",
           value:120,
@@ -60,7 +60,7 @@ const today = new Date();
 const startDate = new Date();
 startDate.setDate(today.getDate() - 30);
 
-console.log(`${formatDate(startDate)} - ${formatDate(today)}`);
+
 for(let i=0;i<30;i++){
      getDate.push(formatDate(startDate));
      startDate.setDate(startDate.getDate() + 1);

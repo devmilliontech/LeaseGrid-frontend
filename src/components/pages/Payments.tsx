@@ -1,6 +1,6 @@
 import React from "react";
 import { paymentData } from "../data/PaymentDAta";
-import { ActivityAnalyticsCard } from "../appShell/user/UserCard";
+import { StatusCard } from "../appShell/Cards";
 import PieChartWithCustomizedLabel from "../appShell/payments/PaymentsCharts";
 import { RentChart } from "../appShell/payments/PaymentsCharts.tsx";
 import { paymentTrendData } from "../data/PaymentDAta";
@@ -12,7 +12,7 @@ const Payments: React.FC = () => {
                <div className="p-2 space-y-6 max-w-[1600px] mx-auto">
                     {/* Payment First Row Card */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 m-1">
-                         <ActivityAnalyticsCard data={paymentData} />
+                         <StatusCard data={paymentData} />
                     </div>
 
                     {/* Payment Second Row Card */}

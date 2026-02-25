@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Home,
   Clock,
   AlertTriangle,
-  Flag,
-  Ticket,
   UserX,
   Receipt,
   OctagonAlert,
 } from "lucide-react";
 import { JobsChart, RentChart } from "../appShell/dashboard/DashboardCharts";
-import { StatCard, QuickActionCard, ComplianceOverviewCard } from "../appShell/dashboard/DashboardCard";
+import { QuickActionCard } from "../appShell/dashboard/DashboardQuckAction.tsx";
 import { SupportChart } from "../appShell/dashboard/DashboardCharts";
 import {
   RecentActivity,
@@ -24,6 +21,9 @@ import { topPerformingTradiesData } from "../data/topPerformingTradiesData";
 import { topLandlordsData } from "../data/topPerformingLandlordsData";
 import { recentActivityData } from "../data/recentActivityData";
 import { systemAlertsData } from "../data/systemAlertsData"
+import { PaymentOverView } from "../appShell/dashboard/PaymentOverView";
+import { StatusCard } from "../appShell/Cards";
+import { DashboardCardData, ComplianceOverviewCard } from "../data/dashboard.ts";
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -104,46 +104,7 @@ const Dashboard: React.FC = () => {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        <StatCard
-          title="Active Listings"
-          value="1000"
-          subtext="342 new this week"
-          icon={Home}
-          badgeText="+12.5%"
-          path=""
-        />
-        <StatCard
-          title="Pending Jobs"
-          value="34"
-          subtext="156 awaiting assignment"
-          icon={Clock}
-          badgeText="+8.2%"
-          path="/jobs"
-        />
-        <StatCard
-          title="Overdue Rent"
-          value="$10.5K"
-          subtext="23 accounts affected"
-          icon={AlertTriangle}
-          badgeText="-5.3%"
-          path="/payments"
-        />
-        <StatCard
-          title="Flagged Accounts"
-          value="30"
-          subtext="Requires review"
-          icon={Flag}
-          badgeText="12 new"
-          path="/users"
-        />
-        <StatCard
-          title="Support Tickets"
-          value="200"
-          subtext="89 open tickets"
-          icon={Ticket}
-          badgeText="+3.8%"
-          path="/support"
-        />
+        <StatusCard data={DashboardCardData} />
       </div>
 
       {/* Charts Section */}
@@ -250,9 +211,8 @@ const Dashboard: React.FC = () => {
 
       {/* Compliance Overview */}
       <div className="bg-white  p-2  rounded-2xl">
-        <div className="flex justify-between items-center mb-6">
-          <div className="ml-20">
-            <div className="flex justify-between items-center">
+        <div className="">
+            <div className="flex justify-between items-center mb-2 ">
               <div>
                 <h3 className="text-2xl font-bold p-1 text-slate-800">Compliance Overview</h3>
                 <p className="text-sm p-1 font-semibold text-slate-500">Document verification and user compliance status</p>
@@ -266,33 +226,9 @@ const Dashboard: React.FC = () => {
                 </button>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 justify-center ">
-              <ComplianceOverviewCard
-                value={12}
-                title="Urgent"
-                description="Expiring in 7 days"
-                icon={AlertTriangle}
-              />
-              <ComplianceOverviewCard
-                value={12}
-                title="Warning"
-                description="Expiring in 7 days"
-                icon={OctagonAlert}
-              />
-              <ComplianceOverviewCard
-                value={45}
-                title="Pending"
-                description="Expiring in 7 days"
-                icon={Clock}
-              />
-              <ComplianceOverviewCard
-                value={45}
-                title="Compliant"
-                description="Expiring in 7 days"
-                icon={Clock}
-              />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 justify-between flex flex-row p-5">
+              <StatusCard data={ComplianceOverviewCard} />
             </div>
-          </div>
         </div>
       </div>
 
@@ -320,7 +256,21 @@ const Dashboard: React.FC = () => {
           <div className="overflow-y-auto h-[720px]">
             <TopLandlords data={topLandlordsData} />
           </div>
+        </div>
+      </div>
 
+      {/* Payment Overview */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4  lg:min-h-[420px] ">
+        <div className="bg-white p-4 rounded-2xl ">
+          <div className="flex justify-between items-center ">
+            <div className="mt-7 ml-7">
+              <h3 className="text-lg font-bold text-slate-800">Payment Overview</h3>
+              <p className="text-sm text-slate-500">Transaction volume and platform fees</p>
+            </div>
+          </div>
+          <div className="overflow-y-auto h-[720px]">
+            <PaymentOverView />
+          </div>
         </div>
       </div>
 

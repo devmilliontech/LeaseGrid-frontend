@@ -1,35 +1,36 @@
-import { User, HousePlus, Hammer, Lock, UserX, CirclePlus, UserPlus, Clock } from "lucide-react";
-import type { UserList, UserTableList,ActivityAnalytics } from "../appShell/user/UserCard";
+import { User, HousePlus, Hammer, Lock, UserX, CirclePlus, UserPlus, Clock, Users,Clock8 } from "lucide-react";
+import type { UserTableList,ActivityAnalytics } from "../appShell/user/UserCard";
 import type { RegistrationList,VerificationList } from "../appShell/user/UserWidgets";
+import type { CardProps } from "../appShell/Cards";
 
-export const usersOverviewData: UserList[] = [
+export const usersOverviewData: CardProps[] = [
   {
     title: "Total Users",
-    value: "1,585",
-    icon: User,
+    value: 1585,
+    icon: Users,
     badgeText: "+5.2%",
   },
   {
     title: "Lanloards",
-    value: "285",
+    value: 285,
     icon: HousePlus,
     badgeText: "+8.1%",
   },
   {
     title: "Tradies",
-    value: "20",
+    value: 20,
     icon: Hammer,
     badgeText: "+8.1%",
   },
   {
     title: "Tenants",
-    value: "1,240",
+    value: 1240,
     icon: Lock,
     badgeText: "+12.5%",
   },
   {
     title: "Suspend",
-    value: "40",
+    value: 40,
     icon: UserX,
     badgeText: "+8.1%",
   },
@@ -180,7 +181,7 @@ export const verificationQueueTableData: VerificationList[] = [
 
 // activity analytics data
 
-export const activityAnalyticsData: ActivityAnalytics[] = [
+export const activityAnalyticsData: CardProps[] = [
   {
     title: "Active User",
     value: 1585,
@@ -193,7 +194,7 @@ export const activityAnalyticsData: ActivityAnalytics[] = [
     value: 285,
     badgeText: "+8.1%",
     subtitle:"Per user session time",
-    icon:Clock,
+    icon:Clock8,
   },
   {
     title: "New Logins",
