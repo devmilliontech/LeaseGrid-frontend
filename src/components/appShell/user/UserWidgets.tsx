@@ -145,8 +145,8 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
                               </div>
                               <div className="flex flex-row justify-between items-center p-2 w-full gap-2">
                                    <span 
-                                        className="bg-green-700 hover:bg-green-900 text-white w-full text-sm 
-                                             font-semibold rounded-lg cursor-pointer  flex flex-row items-center 
+                                        className="bg-green-700 hover:bg-green-900 text-white w-full text-sm py-1
+                                             font-medium rounded-lg cursor-pointer  flex flex-row items-center 
                                              justify-center gap-2"
                                              onClick={() => {}}
                                    >    
@@ -154,8 +154,8 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
                                         Approve
                                    </span>
                                    <span 
-                                        className="bg-red-700 hover:bg-red-900 text-white w-full text-sm 
-                                             font-semibold rounded-lg cursor-pointer flex flex-row items-center 
+                                        className="bg-red-700 hover:bg-red-900 text-white w-full text-sm py-1 
+                                             font-medium rounded-lg cursor-pointer flex flex-row items-center 
                                              justify-center gap-2"
                                              onClick={() => {}}
                                    >    
@@ -191,9 +191,9 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
                               </div>
                               <div className="flex flex-row justify-between items-center p-2 w-full gap-2">
                                    <span className="bg-slate-700 hover:bg-slate-900 text-white w-full rounded-lg cursor-pointer
-                                        flex flex-row items-center justify-center text-sm fon"
+                                        flex flex-row items-center justify-center text-sm py-1 font-medium"
                                    >
-                                        <EyeIcon size={22} className=" mr-2 "/>
+                                        <EyeIcon size={18} className=" mr-2 "/>
                                         Review
                                    </span>
                               </div>

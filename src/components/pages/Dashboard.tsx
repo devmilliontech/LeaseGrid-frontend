@@ -12,11 +12,14 @@ import { topPerformingTradiesData } from "../data/topPerformingTradiesData";
 import { topLandlordsData } from "../data/topPerformingLandlordsData";
 import { recentActivityData } from "../data/recentActivityData";
 import { systemAlertsData } from "../data/systemAlertsData"
-import { PaymentOverView } from "../appShell/dashboard/PaymentOverView";
 import { StatusCard } from "../appShell/Cards";
 import { DashboardCardData, ComplianceOverviewCard, QuickActionsCard } from "../data/dashboard.ts";
 import { paymentData, paymentWidgetsData } from "../data/PaymentDAta.ts";
 import { PaymentWidgets } from "../appShell/payments/PaymentWidgets.tsx";
+import { DisputesProps } from "../appShell/disputes/WidgetsCard.tsx";
+import { disputesData } from "../data/disputesDAta.ts";
+import { ReviewWidgets } from "../appShell/reviews/Reviewidgets.tsx";
+import { reviewsData } from "../data/reviewsData.ts";
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -239,8 +242,17 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
+        
 
-
+        {/* Last Div Component */}
+        <div className="p-1 rounded-2xl lg:min-h-[420px] grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="bg-white rounded-2xl ">
+              <DisputesProps data={disputesData} />
+            </div>
+            <div className="bg-white rounded-2xl">
+              <ReviewWidgets data={reviewsData} />
+            </div>
+        </div>
       </div>
     </>
   );

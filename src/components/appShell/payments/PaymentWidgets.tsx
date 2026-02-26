@@ -1,4 +1,4 @@
-import { ActivityIcon, UserIcon } from "lucide-react";
+import { UserIcon } from "lucide-react";
 
 export interface PaymentWidgetsDataProps {
     transactionId: string;
@@ -50,6 +50,7 @@ export const PaymentWidgets: React.FC<PaymentWidgetsProps> = ({ data }) => {
                               <p className="text-lg font-semibold text-slate-600 w-full text-center">Amount</p>
                               <p className="text-lg font-semibold text-slate-600 w-full text-center">Status</p>
                               <p className="text-lg font-semibold text-slate-600 w-full text-center">Date</p>
+                              <p className="text-lg font-semibold text-slate-600 w-full text-center">Action</p>
                          </div>
             {data.map((item, index) => {
                 return (
@@ -78,9 +79,16 @@ export const PaymentWidgets: React.FC<PaymentWidgetsProps> = ({ data }) => {
                                    {item.status}
                               </span>
                          </div>
-                        <div className="flex flex-row items-center w-full text-center">
+                         <div className="flex flex-row items-center w-full text-center">
                               <p className="text-xs text-gray-500 w-full text-center">{item.date}</p>
-                        </div>
+                         </div>
+                         <div className="flex flex-row items-center w-full text-center">
+                              <p className="text-md text-teal-500 font-semibold w-full text-center cursor-pointer
+                                   hover:text-teal-800"
+                              >
+                                   View
+                              </p>
+                         </div>    
                     </div>
                 );
             })}

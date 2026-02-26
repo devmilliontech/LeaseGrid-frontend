@@ -21,7 +21,9 @@ import {
     CircleCheck,
     CircleX,
     CircleDollarSign,
-    Receipt
+    Receipt,
+    FolderOpen,
+    MessageSquareWarning
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -65,6 +67,7 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case User:
             case Users:
             case Home:
+            case FolderOpen:
                 return "text-sky-600 bg-sky-200";
             case Clock:
             case Clock8:
@@ -82,6 +85,7 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case OctagonAlert:
             case Hammer:
             case CirclePlus:
+            case MessageSquareWarning:
                 return "text-orange-600 bg-orange-200";
             case UserPlus:
             case HousePlus:
