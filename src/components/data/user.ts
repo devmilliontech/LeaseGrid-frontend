@@ -1,5 +1,5 @@
 import { User, HousePlus, Hammer, Lock, UserX, CirclePlus, UserPlus, Clock, Users,Clock8 } from "lucide-react";
-import type { UserTableList,ActivityAnalytics } from "../appShell/user/UserCard";
+import type { UserTableList } from "../appShell/user/UserCard";
 import type { RegistrationList,VerificationList } from "../appShell/user/UserWidgets";
 import type { CardProps } from "../appShell/Cards";
 
@@ -9,30 +9,35 @@ export const usersOverviewData: CardProps[] = [
     value: 1585,
     icon: Users,
     badgeText: "+5.2%",
+    subtitle: "Last 30 days",
   },
   {
     title: "Lanloards",
     value: 285,
     icon: HousePlus,
     badgeText: "+8.1%",
+    subtitle: "Last 30 days",
   },
   {
     title: "Tradies",
     value: 20,
     icon: Hammer,
     badgeText: "+8.1%",
+    subtitle: "Last 30 days",
   },
   {
     title: "Tenants",
     value: 1240,
     icon: Lock,
     badgeText: "+12.5%",
+    subtitle: "Last 30 days",
   },
   {
     title: "Suspend",
     value: 40,
     icon: UserX,
     badgeText: "+8.1%",
+    subtitle: "Last 30 days",
   },
 ];
 
