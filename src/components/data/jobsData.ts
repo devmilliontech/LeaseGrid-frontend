@@ -1,31 +1,11 @@
 import type {CardProps} from "../appShell/Cards";
 import { 
-    Home,
     Clock,
-    AlertTriangle,
-    Flag,
-    Ticket,
-    OctagonAlert,
-    Lock,
-    type LucideIcon,
-    User,
-    Users,
-    UserPlus,
-    HousePlus,
-    Hammer,
-    UserX,
-    CirclePlus,
-    Clock8,
-    Timer,
-    NotebookPen,
-    Wallet,
     CircleCheck,
     CircleX,
     CircleDollarSign,
-    Receipt,
     FolderOpen,
-    MessageSquare,
-    MessageSquareWarning
+    MessageSquareWarning,
 } from "lucide-react";
 
 
