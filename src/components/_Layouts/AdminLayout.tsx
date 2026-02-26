@@ -23,7 +23,6 @@ const AdminLayout: React.FC = () => {
   };
 
   const pageSubtitles: Record<string, string> = {
-    "/dashboard": "Overview",
     "/users": "Manage all users, roles, and verification status",
     "/jobs": "Track and manage service jobs.",
     "/payments": "Manage all payments and transactions.",
