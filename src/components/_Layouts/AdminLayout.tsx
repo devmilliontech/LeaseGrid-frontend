@@ -44,7 +44,7 @@ const AdminLayout: React.FC = () => {
   return (
     <div className="flex h-screen w-full overflow-hidden">
       <Sidebar />
-      <main className="flex-1 bg-gray-300 overflow-y-auto">
+      <main className="flex-1 bg-slate-50 overflow-y-auto">
         <HeaderNavigation title={title} subtitle={subtitle}/>
         <Outlet />
       </main>

@@ -1,5 +1,17 @@
 import type { CardProps } from "../appShell/Cards";
-import { Home, Clock, AlertTriangle, Flag, Ticket, OctagonAlert, Clock8, Timer, NotebookPen } from "lucide-react";
+import { 
+     Home,
+     Clock, 
+     AlertTriangle, 
+     Flag, 
+     Ticket, 
+     OctagonAlert, 
+     Clock8,
+     NotebookPen,
+     UserX,
+     Receipt,
+     Timer,  
+} from "lucide-react";
 
 
 
@@ -73,3 +85,29 @@ export const ComplianceOverviewCard: CardProps[] = [
           describstion:"Expiring in 7 days"
      },
 ];  
+
+
+// Quick Actions Data
+export const QuickActionsCard: CardProps[] = [
+     {
+          title: "Review Flagged Disputes",
+          subtitle: "3 disputes require immediate attention",
+          icon: AlertTriangle,
+          buttonText: "Review",
+          path: "/disputes",
+     },
+     {
+       title: "Suspend User Account",
+          subtitle: "Manage user suspensions and restrictions",
+          icon: UserX,
+          buttonText: "Manage Users",
+          path: "/users",
+     },
+     {
+        title: "Issue Refund",
+          subtitle: "Process refunds and payment adjustments",
+          icon: Receipt,
+          buttonText: "Process Refund",
+          path: "/payments",
+     },
+];   

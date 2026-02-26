@@ -19,13 +19,14 @@ const Sidebar: React.FC = () => {
   return (
     <aside className="w-64 h-screen bg-white flex flex-col sticky top-0 max-h-full">
       {/* Logo */}
-      <div className="px-6 py-5 border-b border-slate-700 shrink-0">
+      <div className="px-6 py-5 border-b border-slate-100 shrink-0">
         
         <h2 className="text-xl font-bold tracking-wide text-black">Admin</h2>
       </div>
 
       {/* Navigation */}
-      <nav className="flex flex-col  px-4 py-6 space-y-2  overflow-y-auto">
+      <nav className="flex flex-col  px-4 py-6 space-y-2  overflow-y-auto scrollbar-hide"
+      >
         <SidebarItem label="Dashboard" to="/dashboard" bgColor="bg-blue-200"  iconColor="text-blue-500" icon={LayoutDashboard}/>
         <SidebarItem label="Users" to="/users" bgColor="bg-green-200" iconColor="text-green-500" icon={User}/>
         <SidebarItem label="Jobs" to="/jobs" bgColor="bg-cyan-200" iconColor="text-cyan-600" icon={BriefcaseBusiness}/>
@@ -40,7 +41,7 @@ const Sidebar: React.FC = () => {
 
       {/* Footer (optional) */}
       {/* Profile */}
-      <div className="flex items-center gap-3  mb-5 pt-5 border-t border-slate-600  shadow-inner">
+      <div className="flex items-center gap-3  mb-5 pt-5 border-t border-slate-100  shadow-inner">
           <img
               src="https://i.pravatar.cc/40"
               alt="Profile"

@@ -1,6 +1,6 @@
 import type {CardProps} from "../appShell/Cards";
 import { CircleCheck, CircleDollarSign, CircleX, Clock, Wallet } from "lucide-react";
-
+import type{ PaymentWidgetsDataProps } from "../appShell/payments/PaymentWidgets";
 
 
 export const paymentData:CardProps[]=[
@@ -100,3 +100,28 @@ export const paymentTrendData = [
      { name: `${getDate[29]}`, value: 100},  
 
   ];
+
+
+
+
+export const paymentWidgetsData:PaymentWidgetsDataProps[]=[
+     {
+          transactionId:"123456789",
+          name:"John Doe",
+          type:"Payment",
+          amount:10000,
+          status:"Success",
+          date:"2022-01-01",
+          path:"/images/payment.png",
+          avatar:"https://i.pravatar.cc/40",
+     },
+     {
+          transactionId:"123456789",
+          name:"John Doe",
+          type:"Payment",
+          amount:100,
+          status:"Pending",
+          date:"2022-01-01",
+          path:"/images/payment.png",
+     },
+]
