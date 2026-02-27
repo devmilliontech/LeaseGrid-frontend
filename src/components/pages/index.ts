@@ -11,20 +11,25 @@ import logs from "./logs";
 // import Listings from "./Listings";
 // import Accounts from "./Accounts";
 import Disputes from "./Disputes";
-
+import LoginPage from "./authPages/LoginPage";
+import SignupPage from "./authPages/SignupPage";
+import LogoutPage from "./authPages/logouPage";
 
 export default {
-    Compliance,
-    Dashboard,
-    Jobs,
-    Payments,
-    Reviews,
-    Settings,
-    Support,
-    Users,
-    logs,
-    // Rent,
-    // Listings,
-    // Accounts,
-    Disputes,
+  Compliance,
+  Dashboard,
+  Jobs,
+  Payments,
+  Reviews,
+  Settings,
+  Support,
+  Users,
+  logs,
+  // Rent,
+  // Listings,
+  // Accounts,
+  Disputes,
+  LoginPage,
+  SignupPage,
+  LogoutPage,
 };

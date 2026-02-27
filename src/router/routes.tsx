@@ -2,11 +2,24 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import AdminLayout from "../components/_Layouts/AdminLayout.tsx";
 import { default as pages } from "../components/pages/index";
+import ProtectedRoute from "../components/auth/ProtectedRoute.tsx";
 
 const routes = createBrowserRouter([
   {
+    path: "/login",
+    element: <pages.LoginPage />
+  },
+  {
+    path: "/signup",
+    element: <pages.SignupPage />
+  },
+  {
+    path: "/logout",
+    element: <pages.LogoutPage />
+  },
+  {
     path: "/",
-    element: <AdminLayout />,
+    element: <ProtectedRoute><AdminLayout /></ProtectedRoute>,
     children: [
       {
         index: true,
@@ -52,18 +65,18 @@ const routes = createBrowserRouter([
         path: "settings",
         element: <pages.Settings />
       },
-    //   {
-    //     path: "rent",
-    //     element: <pages.Rent />
-    //   },
-    //   {
-    //     path: "listings",
-    //     element: <pages.Listings />
-    //   },
-    //   {
-    //     path: "accounts",
-    //     element: <pages.Accounts />
-    //   },
+      //   {
+      //     path: "rent",
+      //     element: <pages.Rent />
+      //   },
+      //   {
+      //     path: "listings",
+      //     element: <pages.Listings />
+      //   },
+      //   {
+      //     path: "accounts",
+      //     element: <pages.Accounts />
+      //   },
     ]
   }
 ]);

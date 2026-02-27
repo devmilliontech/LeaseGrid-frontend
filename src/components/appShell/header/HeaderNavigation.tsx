@@ -1,5 +1,14 @@
+import { useEffect, useState } from "react";
 
 export default function HeaderNavigation({ title ,subtitle }: { title: string ,subtitle?: string }) {
+     const [username,setUserName] = useState('');
+     const user = localStorage.getItem('user') as string;
+     const userObj = JSON.parse(user);
+     useEffect(()=>{
+       if(user){
+         setUserName(userObj.name.toUpperCase());
+       }
+     },[])
      return (
           <div className="h-17 sticky top-0 z-10 w-full
                     border-b border-slate-100 
@@ -76,7 +85,7 @@ export default function HeaderNavigation({ title ,subtitle }: { title: string ,s
                               className="w-9 h-9 rounded-full object-cover"
                          />
                          <span className="text-sm font-medium text-slate-700">
-                              John Doe
+                              {username?.split(' ')[0] || "jhon doe"}
                          </span>
                     </div>
                </div>
