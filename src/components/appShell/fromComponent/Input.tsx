@@ -4,7 +4,7 @@ interface inputProps{
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     className?: string;
-    error?: string;
+    error?: string | string[];
     required?: boolean;
 }
 

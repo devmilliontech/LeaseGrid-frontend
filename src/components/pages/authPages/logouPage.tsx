@@ -6,6 +6,7 @@ function LogoutPage() {
 
     useEffect(() => {
         const timer = setTimeout(() => {
+            localStorage.setItem('isAuthenticated', 'false');
             navigate('/login');
         }, 1500);
         return () => clearTimeout(timer);

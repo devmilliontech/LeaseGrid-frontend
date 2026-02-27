@@ -15,6 +15,8 @@ function LoginPage() {
   const [error, setError] = useState({
     email: '',
     password: '',
+    checkemail: '',
+    checkpassword: '',
   });
 
   const user = localStorage.getItem('user') as string;
@@ -26,20 +28,26 @@ function LoginPage() {
   },[])
 
   const handleLogin = () => {
-    if(formData.email === userObj?.email && formData.password === userObj?.password && userObj?.role === 'admin'){
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('user', JSON.stringify({
+    if(
+        formData.email === userObj?.email && 
+        formData.password === userObj?.password && 
+        userObj?.role === 'admin'
+      ){
+        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('user', JSON.stringify({
                                       name:formData.name,
                                       email:formData.email,
                                       password:formData.password,
                                       role:'admin'
                                     }));
-      navigate('/dashboard');
+        navigate('/dashboard');
     }else{
 
       setError({
         email: !formData.email ? 'Email is required' : '',
         password: !formData.password ? 'Password is required' : '',
+        checkemail:formData.email !== userObj?.email ? 'No User Found' : '',
+        checkpassword:formData.password !== userObj?.password ? 'Enter valid password' : '',
       });
     }
     console.log(error);
@@ -56,14 +64,15 @@ function LoginPage() {
             type="text"  
             value={formData.email} 
             onChange={(e)=>setFormData({...formData,email:e.target.value})}
-            error={error.email}
+            error={[error.email,error.checkemail]}
+            
           />
           <Input 
             placeholder="Password" 
             type="password"  
             value={formData.password} 
             onChange={(e)=>setFormData({...formData,password:e.target.value})}
-            error={error.password}
+            error={[error.password,error.checkpassword]}
           />
           <Button label="Login" onClick={handleLogin} />
         </div>
