@@ -1,13 +1,22 @@
-import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar.tsx";
 import HeaderNavigation from "../appShell/header/HeaderNavigation.tsx";
 
 const AdminLayout: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const verify = localStorage.getItem('isAuthenticated');
+    const user = localStorage.getItem('user');
+    if (verify !== 'true' || !user) {
+      navigate('/login', { replace: true });
+    }
+  }, [location, navigate])
 
   const pageTitles: Record<string, string> = {
-    "/dashboard": "Dashboard Overview", 
+    "/dashboard": "Dashboard Overview",
     "/users": "Users Management",
     "/jobs": "Jobs Management",
     "/payments": "Payments Management",
@@ -17,9 +26,6 @@ const AdminLayout: React.FC = () => {
     "/support": "Support Management",
     "/compliance": "Compliance Management",
     "/settings": "Settings",
-    // "/rent": "Rent Management",
-    // "/listings": "Listings Management",
-    // "/accounts": "Accounts Management",
   };
 
   const pageSubtitles: Record<string, string> = {
@@ -32,9 +38,7 @@ const AdminLayout: React.FC = () => {
     "/support": "Manage all support tickets and requests.",
     "/compliance": "Manage all compliance and regulatory requirements.",
     "/settings": "Manage all settings and preferences.",
-    // "/rent": "Rent Management",
-    // "/listings": "Listings Management",
-    // "/accounts": "Accounts Management",
+
   };
 
   const title = pageTitles[location.pathname];
@@ -44,7 +48,7 @@ const AdminLayout: React.FC = () => {
     <div className="flex h-screen w-full overflow-hidden">
       <Sidebar />
       <main className="flex-1 bg-slate-50 overflow-y-auto">
-        <HeaderNavigation title={title} subtitle={subtitle}/>
+        <HeaderNavigation title={title} subtitle={subtitle} />
         <Outlet />
       </main>
     </div>
