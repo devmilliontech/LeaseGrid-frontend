@@ -3,15 +3,16 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import AdminLayout from "../components/_Layouts/AdminLayout.tsx";
 import { default as pages } from "../components/pages/index";
 import ProtectedRoute from "../components/auth/ProtectedRoute.tsx";
+import GuestRoute from "../components/auth/GuestRoute.tsx";
 
 const routes = createBrowserRouter([
   {
     path: "/login",
-    element: <pages.LoginPage />
+    element: <GuestRoute><pages.LoginPage /></GuestRoute>
   },
   {
     path: "/signup",
-    element: <pages.SignupPage />
+    element: <GuestRoute><pages.SignupPage /></GuestRoute>
   },
   {
     path: "/logout",
