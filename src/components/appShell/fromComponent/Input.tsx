@@ -1,11 +1,12 @@
 interface inputProps{
-    placeholder: string;
-    type: string;
-    value?: string;
+    placeholder?: string;
+    type?: string;
+    value?: string | number;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     className?: string;
     error?: string | string[];
     required?: boolean;
+    label?: string;
 }
 
 export const Input : React.FC<inputProps> = ({
@@ -15,10 +16,12 @@ export const Input : React.FC<inputProps> = ({
         onChange,
         className,
         error,
-        required
+        required,
+        label
     }:inputProps) => {
     return (
         <div>
+            <label className="text-sm font-semibold text-slate-700">{label}</label>
             <input 
                 type={type} 
                 placeholder={placeholder} 

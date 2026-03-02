@@ -1,7 +1,8 @@
 import { UserIcon, CalendarDaysIcon, Clock, HousePlus, Mail, UserRoundX, RefreshCwOff, File, BriefcaseBusiness, CircleCheck, UserX } from "lucide-react";
 import { Search, SlidersHorizontal, ArrowDownWideNarrow, LayoutGrid, Info, X } from "lucide-react";
-import React from "react";
-
+import React, { useState } from "react";
+import Modal from "../Modal";
+import { Input } from "../fromComponent/Input";
 
 
 
@@ -108,6 +109,15 @@ interface UserTableProps {
 export const UserTable: React.FC<UserTableProps> = ({
      data,
 }) => {
+     const [isOpen, setIsOpen] = useState(false);
+     const [name, setName] = useState("");
+     const [selectedUser, setSelectedUser] = useState<UserTableList | null>(null);
+
+     const handleViewProfile = (data: UserTableList) => {
+          setSelectedUser(data);
+          setName(data.name);
+          setIsOpen(true);
+     };
      const getStatusColor = (status: string) => {
           switch (status) {
                case "Verified":
@@ -241,6 +251,7 @@ export const UserTable: React.FC<UserTableProps> = ({
                               </div>
                               <div className=" flex flex-row justify-between items-center gap-2 m-4">
                                    <button
+                                        onClick={() => handleViewProfile(user)}
                                         className="text-xs font-medium bg-teal-500  text-white 
                                              hover:text-teal-800 transition-colors cursor-pointer 
                                              rounded-lg hover:bg-teal-600 px-4 py-2"
@@ -266,6 +277,87 @@ export const UserTable: React.FC<UserTableProps> = ({
                     );
                })}
 
+               {isOpen && selectedUser && (
+                    <Modal
+                         isOpen={isOpen}
+                         onClose={() => setIsOpen(false)}
+                    >
+                         <div className="flex flex-col gap-4 h-full">
+                              <div className="flex flex-row gap-5 items-center">
+                                   <div className={`w-20 h-20 rounded-full  
+                                          flex items-center justify-center
+                                          border-3 ${getProfileBorderColor(selectedUser.status)}`}
+                                   >
+                                        {selectedUser.avatar ? <img src={selectedUser.avatar} alt=""
+                                             className="rounded-full w-full 
+                                             h-full " />
+                                             : <UserIcon
+                                                  className="w-full h-full p-2 rounded-full bg-gray-200" />
+                                        }
+                                   </div>
+                                   <div className="flex flex-col">
+                                        <div>
+                                             <p className="text-2xl font-bold text-black">{selectedUser.name}</p>
+                                        </div>
+                                        <div>
+                                             <p className="text-sm font-bold text-slate-500">{selectedUser.email}</p>
+                                        </div>
+                                   </div>
+                              </div>
+                              <div className="flex flex-col gap-2 overflow-y-auto">
+                                   <Input
+                                        label="Join"
+                                        value={selectedUser.join}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { }}
+                                   />
+                                   <Input
+                                        label="Last Seen"
+                                        value={selectedUser.lastSeen}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { }}
+                                   />
+                                   <Input
+                                        label="Total Properties"
+                                        value={selectedUser.TotalProperties}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { }}
+                                   />
+                                   <Input
+                                        label="Total Jobs Completed"
+                                        value={selectedUser.totalJobsCompleted}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { }}
+                                   />
+                                   <p>{selectedUser.documentsStatus}</p>
+                                   <p>{selectedUser.status}</p>
+                                   <p>{selectedUser.type}</p>
+                                   <p>{selectedUser.avatar}</p>
+                              </div>
+                              <div className="flex items-center justify-between flex-row gap-5 shadow-t">
+                                   <div className="flex flex-row-start gap-4">
+                                        <button 
+                                             className="flex flex-row items-center gap-2 bg-red-200 
+                                             text-red-500 px-3 py-1 rounded-2xl cursor-pointer 
+                                             hover:bg-red-500 hover:text-white transition-colors"
+                                        >
+                                        <UserRoundX
+                                             className="w-9 h-9 text-red-500 cursor-pointer 
+                                             rounded-2xl px-2 py-2 bg-red-200"
+                                        />Suspend User
+                                   </button>
+                                        <button
+                                        className="text-xs bg-slate-200 font-medium  
+                                             hover:bg-slate-400 transition-colors cursor-pointer 
+                                             rounded-2xl px-4 py-2 flex flex-row items-center gap-2"
+                                   >
+                                        <Mail className="w-5 h-5 text-slate-800" /> 
+                                   </button>
+                                   </div>
+                                   <div className="flex flex-row-start gap-4">
+                                        <button className="bg-slate-200 text-slate-800 px-4 py-2 rounded-xl cursor-pointer">Cancel</button>
+                                        <button className="bg-teal-600 text-white px-4 py-2 rounded-xl cursor-pointer">Save</button>
+                                   </div>
+                              </div>
+                         </div>
+                    </Modal>
+               )}
           </>
      );
 };
@@ -306,6 +398,7 @@ export const BulkActions: React.FC = () => {
                          >
                               <UserX className="w-5 h-5" />Suspend Selected
                          </button>
+                         
                     </div>
                </div>
           </div>
