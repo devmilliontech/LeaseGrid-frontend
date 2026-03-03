@@ -1,3 +1,4 @@
+import { Bell } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function HeaderNavigation({ title ,subtitle }: { title: string ,subtitle?: string }) {
@@ -59,24 +60,11 @@ export default function HeaderNavigation({ title ,subtitle }: { title: string ,s
 
                     {/* Notification */}
                     <button className="relative text-slate-600 hover:text-slate-900 cursor-pointer" >
-                         <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="w-6 h-6 "
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                         >
-                              <path
-                                   strokeLinecap="round"
-                                   strokeLinejoin="round"
-                                   strokeWidth={2}
-                                   d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5"
-                              />
-                         </svg>
+                         <Bell className="w-6 h-6 " />
                          {/* Notification dot */}
                          <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                     </button>
-                    <div className="text-4xl font-light text-slate-200 flex  iteams-center">|</div>
+                    <div className="text-5xl font-light text-slate-100 flex  iteams-center pb-3">|</div>
                     {/* Profile */}
                     <div className="flex items-center gap-3 mr-5 cursor-pointer">
                          <img
