@@ -1,4 +1,7 @@
 import { UserIcon, EyeIcon, CircleCheck, CircleX } from "lucide-react";
+import { Button } from "../fromComponent/button";
+import { useState } from "react";
+import Modal from "../Modal";
 
 export interface RegistrationList {
      avatar?: string;
@@ -51,7 +54,12 @@ export const RegistrationTable: React.FC<RegistrationListProps> = ({ data }) => 
           <div className="flex flex-col gap-5 h-full w-full  bg-white rounded-lg">
                <div className="flex flex-row justify-between items-center p-2">
                     <h4 className="text-lg font-bold">Recent Registrations</h4>
-                    <button className="bg-teal-500 text-white px-6 py-1 rounded-lg cursor-pointer">View All</button>
+                    <Button
+                         label="View All"
+                         onClick={() => { }}
+                         color="primary"
+                         className="px-5 py-2"
+                    />
                </div>
                {data.map((item, index) => {
                     return (
@@ -110,8 +118,14 @@ interface VerificationListProps {
 }
 
 export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }) => {
+     const [selectedUser,setSelectedUser]=useState<VerificationList|null>(null);
+     const [isOpen,setIsOpen]=useState(false);
 
      const pendingCount = data.filter((item) => item.status === "Pending").length;
+     const handleReview = (data:VerificationList)=>{
+          setSelectedUser(data);
+          setIsOpen(true);
+     }
      
 
      const getRegistrationType = (data: VerificationList) => {
@@ -192,6 +206,7 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
                               <div className="flex flex-row justify-between items-center p-2 w-full gap-2">
                                    <span className="bg-slate-700 hover:bg-slate-900 text-white w-full rounded-lg cursor-pointer
                                         flex flex-row items-center justify-center text-sm py-1 font-medium"
+                                        onClick={()=>handleReview(data)}
                                    >
                                         <EyeIcon size={18} className=" mr-2 "/>
                                         Review
@@ -202,6 +217,7 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
           }
      }    
      return (
+          <>
           <div className="flex flex-col gap-5 h-full w-full  bg-white rounded-lg">
                <div className="flex flex-row justify-between items-center p-2">
                     <h4 className="text-lg font-bold">Verification Queue</h4>
@@ -218,5 +234,38 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
                     );
                })}
           </div>
+          {isOpen && selectedUser && (
+               <Modal
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    title="Review User"
+                    description="Review user details and documents"
+               >
+                   <div className="flex flex-col gap-5">
+                    <div>
+                         <div className="flex flex-row gap-5">
+                              <div className="rounded-full px-4 ">
+                                   {selectedUser?.avatar ? <img src={selectedUser.avatar} alt=""
+                                        className="border-1 border-green-400 rounded-full w-full 
+                                                       h-full " />
+                                        : <UserIcon
+                                             className="w-full h-full p-2 rounded-full bg-gray-200" />
+                                   }
+                              </div>
+                              <div>
+                                   <p className="font-bold text-md ">{selectedUser?.name}</p>
+                                   <p className="text-xs text-slate-600">{selectedUser?.role}. Awaiting ID verification</p>
+                              </div>
+                         </div>
+                         <div className="px-4 mt-2">
+                              <p className="text-sm font-semibold">Documents</p>
+                              <p className="text-xs text-slate-600">{selectedUser?.documentsNumber} documents uploaded.</p>
+                         </div>
+                    </div>
+                   </div>
+               </Modal>
+          )}
+          </>
+
      );
 };   

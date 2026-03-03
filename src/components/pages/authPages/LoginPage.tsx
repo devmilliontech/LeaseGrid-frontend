@@ -1,18 +1,19 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../../appShell/fromComponent/Input';
 import { Button } from '../../appShell/fromComponent/button';
+import Loader from '../../common/Loader';
 
 
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: ''
-  }); 
+  });
   const [error, setError] = useState({
     email: '',
     password: '',
@@ -22,34 +23,37 @@ function LoginPage() {
 
   const user = localStorage.getItem('user') as string;
   const userObj = JSON.parse(user);
-  useEffect(()=>{
-    if(user){
-     setFormData({name:userObj.name,email:userObj.email,password:userObj.password})
+  useEffect(() => {
+    if (user) {
+      setFormData({ name: userObj.name, email: userObj.email, password: userObj.password })
     }
-  },[])
+  }, [])
 
   const handleLogin = () => {
-    setLoading(true);
-    if(
-        formData.email === userObj?.email && 
-        formData.password === userObj?.password && 
-        userObj?.role === 'admin'
-      ){
-        localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('user', JSON.stringify({
-                                      name:formData.name,
-                                      email:formData.email,
-                                      password:formData.password,
-                                      role:'admin'
-                                    }));
+    setOpen(true)
+    if (
+      formData.email === userObj?.email &&
+      formData.password === userObj?.password &&
+      userObj?.role === 'admin'
+    ) {
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('user', JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        role: 'admin'
+      }));
+      setTimeout(() => {
         navigate('/dashboard');
-    }else{
-
+        setOpen(false)
+      }, 1500);
+    } else {
+      setOpen(false)
       setError({
         email: !formData.email ? 'Email is required' : '',
         password: !formData.password ? 'Password is required' : '',
-        checkemail:formData.email !== userObj?.email ? 'No User Found' : '',
-        checkpassword:formData.password !== userObj?.password ? 'Enter valid password' : '',
+        checkemail: formData.email !== userObj?.email ? 'No User Found' : '',
+        checkpassword: formData.password !== userObj?.password ? 'Enter valid password' : '',
       });
     }
     console.log(error);
@@ -60,32 +64,38 @@ function LoginPage() {
       <div className="p-8 bg-white shadow-md rounded-md w-full max-w-sm">
         <h1 className="text-2xl font-bold mb-6 text-center text-slate-800">Welcome to App</h1>
         <p className="mb-6 text-slate-600 text-center">Click login below to access your dashboard.</p>
-        <div className="space-y-4"> 
-          <Input 
-            placeholder="Email" 
-            type="text"  
-            value={formData.email} 
-            onChange={(e)=>setFormData({...formData,email:e.target.value})}
-            error={[error.email,error.checkemail]}
+        <div className="space-y-4">
+          <Input
+            placeholder="Email"
+            type="text"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            error={[error.email, error.checkemail]}
             className="border-slate-200"
           />
-          <Input 
-            placeholder="Password" 
-            type="password"  
-            value={formData.password} 
-            onChange={(e)=>setFormData({...formData,password:e.target.value})}
-            error={[error.password,error.checkpassword]}
+          <Input
+            placeholder="Password"
+            type="password"
+            value={formData.password}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            error={[error.password, error.checkpassword]}
             className="border-slate-200"
           />
-          <Button label="Login" onClick={handleLogin} />
+          <Button 
+            label="Login" 
+            onClick={handleLogin} 
+            color="primary" 
+            className="w-full px-3 py-3"
+          />
+          <Loader open={open} onClose={() => setOpen(false)} />
         </div>
         <div>
-          <p>Don't have an account? 
-              <span onClick={()=>navigate('/signup')}
-                className="text-blue-500  cursor-pointer hover:text-blue-800 px-1 text-md font-semibold"
-              >
-                Signup
-              </span>
+          <p>Don't have an account?
+            <span onClick={() => navigate('/signup')}
+              className="text-blue-500  cursor-pointer hover:text-blue-800 px-1 text-md font-semibold"
+            >
+              Signup
+            </span>
           </p>
         </div>
       </div>

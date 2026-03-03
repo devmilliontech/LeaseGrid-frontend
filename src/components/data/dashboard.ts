@@ -95,6 +95,7 @@ export const QuickActionsCard: CardProps[] = [
           icon: AlertTriangle,
           buttonText: "Review",
           path: "/disputes",
+          value: 3,
      },
      {
        title: "Suspend User Account",
@@ -102,6 +103,7 @@ export const QuickActionsCard: CardProps[] = [
           icon: UserX,
           buttonText: "Manage Users",
           path: "/users",
+          value: 30,
      },
      {
         title: "Issue Refund",
@@ -109,5 +111,6 @@ export const QuickActionsCard: CardProps[] = [
           icon: Receipt,
           buttonText: "Process Refund",
           path: "/payments",
+          value: 20000,
      },
 ];   

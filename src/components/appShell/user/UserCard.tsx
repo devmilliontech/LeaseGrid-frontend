@@ -7,6 +7,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import IconButton from "@mui/material/IconButton";
+import { Button } from "../fromComponent/button";
 
 
 
@@ -76,7 +77,7 @@ export const UsersFilterCard: React.FC = () => {
                          </div>
                          <div className="flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium border border-blue-100">
                               Joined: Last 30 days
-                              <Info className="w-4 h-4 text-blue-400" />
+                              <X className="w-4 h-4 text-blue-400 cursor-pointer hover:text-blue-900" />
                          </div>
                     </div>
                     <button className="text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors ml-auto cursor-pointer">
@@ -178,11 +179,11 @@ export const UserTable: React.FC<UserTableProps> = ({
      const getTypeColor = (type: string) => {
           switch (type) {
                case "Landlord":
-                    return "bg-blue-200 text-blue-600";
+                    return "bg-blue-100 text-blue-600";
                case "Tenant":
-                    return "bg-purple-200 text-purple-600";
+                    return "bg-purple-100 text-purple-600";
                case "Tradie":
-                    return "bg-orange-200 text-orange-600";
+                    return "bg-orange-100 text-orange-600";
                default:
                     return "bg-gray-200 text-gray-600";
           }
@@ -190,11 +191,11 @@ export const UserTable: React.FC<UserTableProps> = ({
      const getProfileBorderColor = (status: string) => {
           switch (status) {
                case "Verified":
-                    return "border-green-200";
+                    return "border-green-100";
                case "Pending":
-                    return "border-yellow-200";
+                    return "border-yellow-100";
                case "Suspend":
-                    return "border-red-200";
+                    return "border-red-100";
                default:
                     return "border-gray-200";
           }
@@ -233,8 +234,8 @@ export const UserTable: React.FC<UserTableProps> = ({
           <>
                {data.map((user, index) => {
                     return (
-                         <div key={index} className="bg-white rounded-3xl border border-slate-100 
-                               transition-all hover:shadow-lg  h-74  shadow-slate-500"
+                         <div key={index} className="bg-white rounded-xl border border-slate-100 
+                               transition-all hover:shadow-md  h-74  shadow-slate-400"
                          >
                               <div className="flex flex-row justify-between m-4">
                                    <div className={`w-15 h-15 rounded-full  
@@ -286,15 +287,13 @@ export const UserTable: React.FC<UserTableProps> = ({
                               </div>
                               <div className=" flex flex-row justify-between items-center ">
                                    <Tooltip title="View Profile">
-                                        <IconButton>
-                                             <button
-                                                  onClick={() => handleViewProfile(user)}
-                                                  className="text-xs font-medium bg-teal-500  text-white 
-                                                       hover:text-teal-800 transition-colors cursor-pointer 
-                                                       rounded-lg hover:bg-teal-600 px-4 py-2"
-                                             >
-                                                  View Profile
-                                             </button>
+                                        <IconButton onClick={() => handleViewProfile(user)}>
+                                             <Button
+                                                  label="View Profile"
+                                                  onClick={() => { }}
+                                                  color="primary"
+                                                  className="px-3 py-2"
+                                             />
                                         </IconButton>
                                    </Tooltip>
                                    <Tooltip title="Send Email">
@@ -369,19 +368,21 @@ export const UserTable: React.FC<UserTableProps> = ({
                               {
                                    activePage == 0 && (
 
-                                        <div className="flex flex-col gap-2 overflow-y-auto px-3">
+                                        <div className="flex flex-col gap-2 overflow-y-auto px-3 roundered-b-xl scrollbar-hide">
                                              <div className="flex flex-row justify-between gap-2 ">
                                                   <Input
                                                        label="Role"
                                                        value={selectedUser.type}
                                                        disabled
-                                                       className="bg-blue-50 text-blue-800 font-bold w-full py-5 px-5"
+                                                       className={`font-bold w-full py-5 
+                                                       px-5 ${getTypeColor(selectedUser.type)}`}
                                                   />
                                                   <Input
                                                        label="Verification Status"
                                                        value={selectedUser.status}
                                                        disabled
-                                                       className="bg-green-50 text-green-800 font-bold w-full py-5 px-5"
+                                                       className={`font-bold w-full py-5 
+                                                       px-5 ${getStatusColor(selectedUser.status)}`}
                                                   />
                                              </div>
 
@@ -428,57 +429,11 @@ export const UserTable: React.FC<UserTableProps> = ({
                               {
                                    activePage == 1 && (
 
-                                        <div className="flex flex-col gap-2 overflow-y-auto px-3">
-                                             <div className="flex flex-row justify-between gap-2">
-                                                  <Input
-                                                       label="Role"
-                                                       value={selectedUser.type}
-                                                       disabled
-                                                       className="bg-blue-50 text-blue-800 font-bold w-full py-5 px-5"
-                                                  />
-                                                  <Input
-                                                       label="Verification Status"
-                                                       value={selectedUser.status}
-                                                       disabled
-                                                       className="bg-green-50 text-green-800 font-bold w-full py-5 px-5"
-                                                  />
+                                        <div className="flex flex-col gap-2 overflow-y-auto px-3 scrollbar-hide">
+                                             <div className="flex justify-center">
+                                                  <h1 className="text-lg font-bold">Waiting For Load Activity</h1>
                                              </div>
-
-                                             <Input
-                                                  label="Account Created"
-                                                  value={selectedUser.join}
-                                                  className="border-slate-200"
-                                                  disabled
-                                             />
-                                             <Input
-                                                  label="Last Seen"
-                                                  value={selectedUser.lastSeen}
-                                                  className="border-slate-200"
-                                                  disabled
-                                             />
-                                             {getRoleBasedInput(selectedUser.type)}
-                                             <Input
-                                                  label="Total Revenue"
-                                                  value={200000}
-                                                  className="border-slate-200"
-                                                  disabled
-                                             />
-                                             <div>
-                                                  <div className="flex flex-row gap-4 items-center">
-                                                       <p>Account Status</p>
-                                                       <span
-                                                            className={`text-xs font-extrabold px-4 py-1 flex items-center 
-                                                  justify-center rounded-full
-                                                  ${getStatusColor(selectedUser.status)}
-                                             `}
-                                                       >{selectedUser.status}</span>
-                                                  </div>
-                                                  <div>
-                                                       <FormControlLabel control={<Checkbox defaultChecked />} label="Active" />
-                                                       <FormControlLabel control={<Checkbox />} label="Email Verified" />
-                                                       <FormControlLabel control={<Checkbox />} label="Phone Verified" />
-                                                  </div>
-                                             </div>
+   
                                         </div>
 
 
@@ -486,29 +441,26 @@ export const UserTable: React.FC<UserTableProps> = ({
                               }
                               {
                                    activePage == 2 && ( 
-                                        <div className="flex flex-col gap-2 overflow-y-auto px-3">
-                                             <div className="flex flex-row justify-between gap-2">
-                                             
+                                        <div className="flex flex-col gap-2 overflow-y-auto px-3 scrollbar-hide">
+                                             <div className="flex justify-center">
+                                                  <h1 className="text-lg font-bold">Waiting For Load Documents</h1>
                                              </div>
-                                             
                                         </div>
                                    )
                               }
                               {
                                    activePage == 3 && ( 
-                                        <div className="flex flex-col gap-2 overflow-y-auto px-3">
-                                             <div className="flex flex-row justify-between gap-2">
-                                             
+                                        <div className="flex flex-col gap-2 overflow-y-auto px-3 scrollbar-hide">
+                                             <div className="flex justify-center">
+                                                  <h1 className="text-lg font-bold">Waiting For Load History</h1>
                                              </div>
-                                             
                                         </div>
                                    )
                               }
                               {/* Bottom Section */}
                               <div 
-                                   className="flex items-center justify-between flex-row gap-5 shadow-t 
-                                   border-t border-slate-200 absolute bottom-0 bg-slate-50 px-2"
-                                   style={{width:"100%"}}
+                                   className="flex items-center justify-between flex-row gap-5 border-t-slate-200
+                                   border-t w-full absolute bottom-0 bg-slate-50 px-4 rounded-b-xl py-2"
                               >
                                    <div className="flex flex-row-start gap-4">
                                         <Tooltip title="Suspend" >

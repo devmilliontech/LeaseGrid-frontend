@@ -13,7 +13,6 @@ import logs from "./logs";
 import Disputes from "./Disputes";
 import LoginPage from "./authPages/LoginPage";
 import SignupPage from "./authPages/SignupPage";
-import LogoutPage from "./authPages/LogoutPage";
 
 export default {
   Compliance,
@@ -31,5 +30,4 @@ export default {
   Disputes,
   LoginPage,
   SignupPage,
-  LogoutPage,
 };

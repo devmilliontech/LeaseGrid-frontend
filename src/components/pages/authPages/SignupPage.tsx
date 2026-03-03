@@ -74,7 +74,10 @@ function SignupPage() {
           />
           <Button
             label="Signup"
-            onClick={handleSignup} />
+            onClick={handleSignup}
+            color="primary"
+            className="w-full px-3 py-3"
+          />
         </div>
         <div>
           <p>Already have an account?

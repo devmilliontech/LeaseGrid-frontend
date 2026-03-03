@@ -14,10 +14,7 @@ const routes = createBrowserRouter([
     path: "/signup",
     element: <GuestRoute><pages.SignupPage /></GuestRoute>
   },
-  {
-    path: "/logout",
-    element: <pages.LogoutPage />
-  },
+
   {
     path: "/",
     element: <ProtectedRoute><AdminLayout /></ProtectedRoute>,

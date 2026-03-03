@@ -20,6 +20,7 @@ import { DisputesProps } from "../appShell/disputes/WidgetsCard.tsx";
 import { disputesData } from "../data/disputesDAta.ts";
 import { ReviewWidgets } from "../appShell/reviews/Reviewidgets.tsx";
 import { reviewsData } from "../data/reviewsData.ts";
+import { Button } from "../appShell/fromComponent/button.tsx";
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -184,13 +185,13 @@ const Dashboard: React.FC = () => {
                 <h3 className="text-2xl font-bold p-1 text-slate-800">Compliance Overview</h3>
                 <p className="text-sm p-1 font-semibold text-slate-500">Document verification and user compliance status</p>
               </div>
-              <div>
-                <button
-                  className="bg-teal-500 text-white px-8 py-3 rounded-full cursor-pointer font-bold"
+              <div className="px-6">
+                <Button
+                  className="w-full px-6 py-2"
                   onClick={() => navigate('/compliance')}
-                >
-                  Review All
-                </button>
+                  label="Review All"
+                  color="primary"
+                />
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 justify-between flex flex-row p-5">

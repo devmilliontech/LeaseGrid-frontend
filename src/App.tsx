@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import LoginPage from "./components/pages/authPages/LoginPage";
 import SignupPage from "./components/pages/authPages/SignupPage";
-import LogoutPage from "./components/pages/authPages/LogoutPage";
 import { ThreeDot } from "react-loading-indicators";
 function App() {
   const [loading, setLoading] = useState(true);
@@ -19,7 +18,7 @@ function App() {
         loading ? <div className="flex items-center justify-center h-screen"><ThreeDot variant="bounce" color="#32cd32" size="medium" text="" textColor="" /></div> :
           location.pathname === "/" ? <LoginPage /> :
             location.pathname === "/signup" ? <SignupPage /> :
-              location.pathname === "/logout" ? <LogoutPage /> : <Outlet />
+              <Outlet />
       }
     </div>
   );

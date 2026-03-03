@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { millify } from "millify";
+import { Button } from "./fromComponent/button";
 
 
 export interface CardProps {
@@ -46,18 +47,18 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
     const getDivColor = (icon: LucideIcon) => {
         switch (icon) {
             case User:
-                return "bg-sky-100";
+                return "bg-sky-50";
             case UserPlus:
             case NotebookPen:
-                return "bg-green-100";
+                return "bg-green-50";
             case CirclePlus:
-                return "bg-orange-100";
+                return "bg-orange-50";
             case OctagonAlert:
-                return "bg-amber-100";
+                return "bg-amber-50";
             case Clock8:
-                return "bg-yellow-100";
+                return "bg-yellow-50";
             case Timer:
-                return "bg-red-100";
+                return "bg-red-50";
             default:
                 return "bg-white";
         }
@@ -69,35 +70,36 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case Users:
             case Home:
             case FolderOpen:
-                return "text-sky-600 bg-sky-200";
+                return "text-sky-600 bg-sky-100";
             case Clock:
             case Clock8:
-                return "text-yellow-600 bg-yellow-200";
+                return "text-yellow-600 bg-yellow-100";
             case AlertTriangle:
             case UserX:
             case Timer:
             case CircleX:
-                return "text-red-600 bg-red-200";
+                return "text-red-600 bg-red-100";
             case Flag:
-                return "text-teal-600 bg-teal-200";
+                return "text-teal-600 bg-teal-100";
             case Ticket:
             case Lock:
-                return "text-purple-600 bg-purple-200";
-            case OctagonAlert:
+                return "text-purple-600 bg-purple-100";
             case Hammer:
             case CirclePlus:
             case MessageSquareWarning:
-                return "text-orange-600 bg-orange-200";
+                return "text-orange-600 bg-orange-100";
             case UserPlus:
             case HousePlus:
             case NotebookPen:
             case CircleCheck:
             case Receipt:
-                return "text-green-600 bg-green-200";
+                return "text-green-600 bg-green-100";
             case Wallet:
-                return "text-cyan-600 bg-cyan-200";
+                return "text-cyan-600 bg-cyan-100";
             case CircleDollarSign:
-                return "text-violet-600 bg-violet-200";
+                return "text-violet-600 bg-violet-100";
+            case OctagonAlert:
+                return "text-amber-600 bg-amber-100";
             default:
                 return "text-black bg-white";
         }
@@ -108,7 +110,7 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case "Urgent":
                 return "text-red-600";
             case "Warning":
-                return "text-orange-600";
+                return "text-amber-600";
             case "Pending":
                 return "text-yellow-600";
             case "Compliant":
@@ -129,8 +131,8 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
                     }
                     >
                         <div className="flex justify-between items-start">
-                            <div className={`p-3 rounded-full ${getValueColor(item.icon)} bg-opacity-30`}>
-                                {Icon && <Icon className="w-6 h-6" />}
+                            <div className={`p-2 rounded-full ${getValueColor(item.icon)} bg-opacity-30`}>
+                                {Icon && <Icon className="w-5 h-5" />}
                             </div>
                             {item.badgeText && <span className={`text-xs font-bold px-2 py-1 rounded-lg mt-1 
                                             ${getValueColor(item.icon)}
@@ -143,19 +145,18 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
                             <p className="text-sm font-bold text-slate-600 mt-1">{item.title}</p>
                             <p className="text-3xl font-bold text-slate-800">{millify(item.value || 0)}</p>
                             <p className="text-xs text-slate-400 font-sm">{item.subtitle}</p>
-                            <p className={`text-xl font-medium ${getDesColor(item.badgeText)}`}>
+                            <p className={`text-sm font-medium ${getDesColor(item.badgeText)}`}>
                                 {item.describstion}
                             </p>
                         </div>
                         <div>
-                            {item.buttonText && <button className={`text-sm font-medium text-white 
-                                        hover:text-teal-600 
-                                        cursor-pointer bg-teal-400 bg-opacity-10 
-                                        rounded-lg w-full py-2`}
+                            {item.buttonText && 
+                                <Button className={`w-full py-2`}
                                     onClick={()=>item.path && navigate(item.path)}
-                            >
-                                {item.buttonText}
-                            </button>}
+                                    label={item.buttonText}
+                                    color="primary"
+                                />
+                            }
                         </div>
                     </div>
                 );

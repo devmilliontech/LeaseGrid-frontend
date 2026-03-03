@@ -20,7 +20,7 @@ const Users: React.FC = () => {
           <UsersFilterCard />
         </div>
         {/* Users Table Card */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  min-h-[420px] max-h-[1250px] overflow-y-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-155 min-h-[420px] max-h-[1250px] overflow-y-auto">
           <UserTable data={usersTableData} />
         </div>
         {/* Bulk Actions */}
