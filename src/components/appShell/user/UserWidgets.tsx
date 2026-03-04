@@ -1,7 +1,10 @@
-import { UserIcon, EyeIcon, CircleCheck, CircleX } from "lucide-react";
+import { UserIcon, EyeIcon, CircleCheck, CircleX,X } from "lucide-react";
 import { Button } from "../fromComponent/button";
 import { useState } from "react";
-import Modal from "@mui/material/Modal";
+import Dialog from "@mui/material/Dialog";
+import Box from "@mui/material/Box";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
 
 export interface RegistrationList {
      avatar?: string;
@@ -38,8 +41,8 @@ export const RegistrationTable: React.FC<RegistrationListProps> = ({ data }) => 
                     return "border-gray-200 bg-gray-50";
           }
      };
-     const getProfileBorderColor=(status:string)=>{
-          switch(status){
+     const getProfileBorderColor = (status: string) => {
+          switch (status) {
                case "Verified":
                     return "border-green-400";
                case "Pending":
@@ -73,7 +76,7 @@ export const RegistrationTable: React.FC<RegistrationListProps> = ({ data }) => 
                                              h-15 border-1 ${getProfileBorderColor(item.status)}`} />
                                         : <UserIcon
                                              className={`rounded-full w-15 p-2
-                                             h-15 border-1 ${getProfileBorderColor(item.status)}`}/>
+                                             h-15 border-1 ${getProfileBorderColor(item.status)}`} />
                                    }
                               </div>
                               <div className="flex flex-col  ">
@@ -118,15 +121,15 @@ interface VerificationListProps {
 }
 
 export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }) => {
-     const [selectedUser,setSelectedUser]=useState<VerificationList|null>(null);
-     const [isOpen,setIsOpen]=useState(false);
+     const [selectedUser, setSelectedUser] = useState<VerificationList | null>(null);
+     const [isOpen, setIsOpen] = useState(false);
 
      const pendingCount = data.filter((item) => item.status === "Pending").length;
-     const handleReview = (data:VerificationList)=>{
+     const handleReview = (data: VerificationList) => {
           setSelectedUser(data);
           setIsOpen(true);
      }
-     
+
 
      const getRegistrationType = (data: VerificationList) => {
           switch (data.status) {
@@ -158,22 +161,22 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
                                    <p className="text-xs font-semibold text-slate-500">submitted {data.submitTime}</p>
                               </div>
                               <div className="flex flex-row justify-between items-center p-2 w-full gap-2">
-                                   <span 
+                                   <span
                                         className="bg-green-700 hover:bg-green-900 text-white w-full text-sm py-1
                                              font-medium rounded-lg cursor-pointer  flex flex-row items-center 
                                              justify-center gap-2"
-                                             onClick={() => {}}
-                                   >    
-                                        <CircleCheck size={18}/>
+                                        onClick={() => { }}
+                                   >
+                                        <CircleCheck size={18} />
                                         Approve
                                    </span>
-                                   <span 
+                                   <span
                                         className="bg-red-700 hover:bg-red-900 text-white w-full text-sm py-1 
                                              font-medium rounded-lg cursor-pointer flex flex-row items-center 
                                              justify-center gap-2"
-                                             onClick={() => {}}
-                                   >    
-                                        <CircleX size={18}/>
+                                        onClick={() => { }}
+                                   >
+                                        <CircleX size={18} />
                                         Reject
                                    </span>
                               </div>
@@ -206,63 +209,92 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
                               <div className="flex flex-row justify-between items-center p-2 w-full gap-2">
                                    <span className="bg-slate-700 hover:bg-slate-900 text-white w-full rounded-lg cursor-pointer
                                         flex flex-row items-center justify-center text-sm py-1 font-medium"
-                                        onClick={()=>handleReview(data)}
+                                        onClick={() => handleReview(data)}
                                    >
-                                        <EyeIcon size={18} className=" mr-2 "/>
+                                        <EyeIcon size={18} className=" mr-2 " />
                                         Review
                                    </span>
                               </div>
                          </div>
                     );
           }
-     }    
+     }
      return (
           <>
-          <div className="flex flex-col gap-5 h-full w-full  bg-white rounded-lg">
-               <div className="flex flex-row justify-between items-center p-2">
-                    <h4 className="text-lg font-bold">Verification Queue</h4>
-                    {pendingCount > 0 ? <span className={`px-4  py-1 rounded-full cursor-pointer bg-yellow-100 text-yellow-600`}>{pendingCount} pending</span> : <span className={`px-4  py-1 rounded-full cursor-pointer`}></span>}
-               </div>
-               {data.map((item, index) => {
-                    return (
-                         <div key={index}
-                              className={``}
-                         >
-                              {getRegistrationType(item)}
-                         </div>
-
-                    );
-               })}
-          </div>
-          {isOpen && selectedUser && (
-               <Modal
-                    open={isOpen}
-                    onClose={() => setIsOpen(false)}
-               >
-                   <div className="flex flex-col gap-5">
-                    <div>
-                         <div className="flex flex-row gap-5">
-                              <div className="rounded-full px-4 ">
-                                   {selectedUser?.avatar ? <img src={selectedUser.avatar} alt=""
-                                        className="border-1 border-green-400 rounded-full w-full 
-                                                       h-full " />
-                                        : <UserIcon
-                                             className="w-full h-full p-2 rounded-full bg-gray-200" />
-                                   }
-                              </div>
-                              <div>
-                                   <p className="font-bold text-md ">{selectedUser?.name}</p>
-                                   <p className="text-xs text-slate-600">{selectedUser?.role}. Awaiting ID verification</p>
-                              </div>
-                         </div>
-                         <div className="px-4 mt-2">
-                              <p className="text-sm font-semibold">Documents</p>
-                              <p className="text-xs text-slate-600">{selectedUser?.documentsNumber} documents uploaded.</p>
-                         </div>
+               <div className="flex flex-col gap-5 h-full w-full  bg-white rounded-lg">
+                    <div className="flex flex-row justify-between items-center p-2">
+                         <h4 className="text-lg font-bold">Verification Queue</h4>
+                         {pendingCount > 0 ? <span className={`px-4  py-1 rounded-full cursor-pointer bg-yellow-100 text-yellow-600`}>{pendingCount} pending</span> : <span className={`px-4  py-1 rounded-full cursor-pointer`}></span>}
                     </div>
-                   </div>
-               </Modal>
-          )}
+                    {data.map((item, index) => {
+                         return (
+                              <div key={index}
+                                   className={``}
+                              >
+                                   {getRegistrationType(item)}
+                              </div>
+
+                         );
+                    })}
+               </div>
+               {isOpen && selectedUser && (
+                    <Dialog
+                         open={isOpen}
+                         onClose={() => setIsOpen(false)}
+                         PaperProps={{
+                              sx: {
+                                   borderRadius: 4,
+                              },
+                         }}
+                    >
+                         <Box
+                              sx={{
+                                   width: "1200px",
+                                   height: "750px",
+                                   maxWidth: "100%",
+                                   maxHeight: "100%",
+                                   overflow: "hidden",
+                                   borderRadius: "20px",
+                              }}
+                         >
+                              <div className="flex flex-col gap-5 h-full">
+
+                                   <div className="flex items-center justify-between border-b border-slate-200 py-4 pl-5">
+                                        <div className=" px-5">
+                                             <h2 className="text-xl font-bold text-slate-700">Job Details</h2>
+                                        </div>
+                                        <div className="px-5">
+                                             <Tooltip title="Close">
+                                                  <IconButton onClick={() => {setIsOpen(false) }}>
+                                                       <X className="text-gray-500 hover:text-gray-700 cursor-pointer w-5 h-5" />
+                                                  </IconButton>
+                                             </Tooltip>
+                                        </div>
+                                   </div>
+                                   <div className="flex flex-row gap-5 px-10">
+                                        <div className="rounded-full ">
+                                             {selectedUser?.avatar ? <img src={selectedUser.avatar} alt=""
+                                                  className="border-1 border-green-400 rounded-full w-full 
+                                                       h-full " />
+                                                  : <UserIcon
+                                                       className="w-full h-full p-2 rounded-full bg-gray-200" />
+                                             }
+                                        </div>
+                                        <div>
+                                             <p className="font-bold text-md ">{selectedUser?.name}</p>
+                                             <p className="text-xs text-slate-600">{selectedUser?.role}. Awaiting ID verification</p>
+                                        </div>
+                                   </div>
+                                   <div className="px-10 mt-2 ">
+                                        <p className="text-sm font-semibold">Documents</p>
+                                        <p className="text-xs text-slate-600">{selectedUser?.documentsNumber} documents uploaded.</p>
+                                   </div>
+
+                              </div>
+                         </Box>
+
+                    </Dialog>
+               )}
           </>
 
      );

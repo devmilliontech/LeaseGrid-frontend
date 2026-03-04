@@ -324,6 +324,11 @@ export const UserTable: React.FC<UserTableProps> = ({
                     <Dialog
                          open={isOpen}
                          onClose={() => setIsOpen(false)}
+                         PaperProps={{
+                              sx: {
+                                   borderRadius: 4,
+                              },
+                         }}
                     >   
                          <Box 
                               sx={{

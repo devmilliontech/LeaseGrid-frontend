@@ -214,7 +214,13 @@ export const UserListCard: React.FC<ListCardProps> = ({ data }) => {
             </div>
             {open && selectedItems && (
 
-                <Dialog open={open} onClose={() => setOpen(false)}>
+                <Dialog open={open} onClose={() => setOpen(false)} 
+                    PaperProps={{
+                        sx: {
+                            borderRadius: 4,
+                        },
+                    }}
+                >
                     <Box 
                         sx={{
                             maxWidth: "100%",
