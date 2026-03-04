@@ -6,7 +6,10 @@ import {
     CircleDollarSign,
     FolderOpen,
     MessageSquareWarning,
+    TriangleAlert,
+    ClockCheck
 } from "lucide-react";
+import type { UserListCardProps } from "../appShell/ListCard";
 
 
 
@@ -54,3 +57,142 @@ export const jobsData: CardProps[] = [
         badgeText: "$12,000",
     }
 ]
+
+
+
+export const listCardData:UserListCardProps[] = [
+    {
+        title: "Emergency Plumbing Repair",
+        description: "Burst pipe in main bathroom causing water damage. Immediate attention required to prevent further damage to property.",
+        location: "123 Main St, Anytown, USA",
+        postDate: "2022-01-01",
+        time: "2 hours ago",
+        icon: TriangleAlert,
+        badgeText: "Urgent",
+        status: "Urgent Priority",
+        // tradie: {
+        //     name: "Michel Anderson",
+        //     avatar: "https://i.pravatar.cc/40",
+        //     type: "Carpenter",
+        //     jobsCompleted: 200,
+        //     status: "Tradie Status",
+        //     distance: 20,
+        // },
+        budget: 2000,
+        jobRequest: {
+            name: "Emma Watson",
+            avatar: "https://i.pravatar.cc/40",
+            properties: 20,
+            email: "emma.watson@example.com",
+            phone: "1234567890",
+            role:"Landlord",
+        },
+    },
+    {
+        title: "Emergency Plumbing Repair",
+        description: "Burst pipe in main bathroom causing water damage. Immediate attention required to prevent further damage to property.",
+        location: "123 Main St, Anytown, USA",
+        postDate: "2022-01-01",
+        time: "2 hours ago",
+        icon: Clock,
+        badgeText: "In Progress",
+        status: "in_progress",
+        tradie: {
+            name: "Michel Anderson",
+            avatar: "https://i.pravatar.cc/40",
+            type: "Plumber",
+            jobsCompleted: 200,
+            status: "Tradie Status",
+            distance: 20,
+        },
+        budget: 2000,
+        jobRequest: {
+            name: "Emma Watson",
+            avatar: "https://i.pravatar.cc/40",
+            email: "emma.watson@example.com",
+            properties: 10,
+            phone: "1234567890",
+            role:"Property Owner",
+        },
+    },
+    {
+        title: "Electrical Panel Upgrade",
+        description: "Complete electrical panel replacement and circuit breaker upgrade for older property.",
+        location: "123 Main St, Anytown, USA",
+        postDate: "2022-01-01",
+        time: "2 hours ago",
+        icon: CircleCheck,
+        badgeText: "Completed",
+        status: "completed",
+        tradie: {
+            name: "Michel Anderson",
+            avatar: "https://i.pravatar.cc/40",
+            type: "Electrician",
+            jobsCompleted: 200,
+            status: "Tradie Status",
+            distance: 20,
+        },
+        budget: 2000,
+        jobRequest: {
+            name: "Emma Watson",
+            avatar: "https://i.pravatar.cc/40",
+            properties: 20,
+            email: "emma.watson@example.com",
+            phone: "1234567890",
+            role:"Home Owner",
+        },
+    },
+    {
+        title: "HVAC System Maintenance",
+        description: "Annual HVAC system inspection and maintenance for commercial property.",
+        location: "123 Main St, Anytown, USA",
+        postDate: "2022-01-01",
+        time: "2 hours ago",
+        icon: ClockCheck,
+        badgeText: "Scheduled",
+        status: "Scheduled",
+        tradie: {
+            name: "Michel Anderson",
+            avatar: "https://i.pravatar.cc/40",
+            type: "Electrician",
+            jobsCompleted: 200,
+            status: "Tradie Status",
+            distance: 20,
+        },
+        budget: 2000,
+        jobRequest: {
+            name: "Emma Watson",
+            avatar: "https://i.pravatar.cc/40",
+            properties: 20,
+            email: "emma.watson@example.com",
+            phone: "1234567890",
+            role:"Property Manager",
+        },
+    },
+     {
+        title: "Roof Leak Inspection",
+        description: "Client disputes quality of work and is requesting refund for incomplete repairs.",
+        location: "123 Main St, Anytown, USA",
+        postDate: "2022-01-01",
+        time: "2 hours ago",
+        icon: TriangleAlert,
+        badgeText: "Disputed",
+        status: "Disputed",
+        tradie: {
+            name: "Michel Anderson",
+            avatar: "https://i.pravatar.cc/40",
+            type: "Roofer",
+            jobsCompleted: 200,
+            status: "Tradie Status",
+            distance: 20,
+        },
+        budget: 2000,
+        jobRequest: {
+            name: "Emma Watson",
+            avatar: "https://i.pravatar.cc/40",
+            email: "emma.watson@example.com",
+            phone: "1234567890",
+            role:"Tenant",
+        },
+    },
+];

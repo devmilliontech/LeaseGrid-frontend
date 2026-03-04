@@ -3,15 +3,17 @@ interface buttonProps{
     onClick: () => void;
     className?: string;
     color?: "primary" | "secondary" | "success" | "danger" | "warning" | "info";
+    variant?:"outlined";
 }
 
-export const Button : React.FC<buttonProps> = ({ label, onClick, className, color }: buttonProps) => {
+export const Button: React.FC<buttonProps> = ({ label, onClick, className, color, variant }: buttonProps) => {
     return (
         <div>
             <button
                 onClick={onClick}
                 className={`
                     ${className}
+                    ${variant === "outlined" ? "border-2 border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white" : ""}
                     rounded-xl text-sm flex justify-center font-semibold cursor-pointer 
                     ${color === "primary" ? "bg-teal-500 text-white hover:bg-teal-600" : ""}  
                     ${color === "secondary" ? "bg-slate-400 text-white hover:bg-slate-500" : ""}  
