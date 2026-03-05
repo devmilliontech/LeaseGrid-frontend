@@ -2,17 +2,23 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-export default function LinearWithValueLabel({value}: {value: number}) {
+export default function ProgressBar({value,height}: {value: number,height?:number}) {
 
     const getColor = (value: number) => {
-        if (value < 20) {
-            return '#e44c1eff';
-        } else if (value < 60) {
-            return '#fdee16ff';
-        } else if(value < 100) {
-            return '#12a0e2ff';
+        if (value <= 10) {
+            return '#797777fd';
+        } else if (value <= 20) {
+            return '#730fe6ff';
+        } else if(value <= 30) {
+            return '#1f4bdbff';
+        }else if(value <= 45) {
+            return '#137a69ff';
+        }else if(value <= 65) {
+            return '#057f8fff';
+        }else if(value <= 85) {
+            return '#36df9eff';
         }else{
-            return '#1cee09';
+            return '#21cc4cff';
         }
     }
   return (
@@ -20,7 +26,7 @@ export default function LinearWithValueLabel({value}: {value: number}) {
       <Box sx={{ width: '100%', mr: 1 }}>
         <LinearProgress variant="determinate" value={value}  
             sx={{
-                height:8,
+                height:height?height:8,
                 borderRadius:2,
                 backgroundColor: '#eee',
                 '& .MuiLinearProgress-bar': {

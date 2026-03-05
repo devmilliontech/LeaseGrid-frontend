@@ -9,6 +9,7 @@ export const topPerformingTradiesData: TopPerformingTradiesItem[] = [
     totalEarnings: 20000,
     type: "Electrician ",
     avatar: "https://i.pravatar.cc/40",
+    status: "Available",
   },
   {
  
@@ -18,6 +19,7 @@ export const topPerformingTradiesData: TopPerformingTradiesItem[] = [
     totalEarnings: 10500,
     type: "Plumber ",
     avatar: "https://i.pravatar.cc/40",
+    status: "Available",
   },
   {
  
@@ -27,6 +29,7 @@ export const topPerformingTradiesData: TopPerformingTradiesItem[] = [
     totalEarnings: 11500,
     type: "Painter ",
     avatar: "https://i.pravatar.cc/40",
+    status: "Available",
   },
   {
     name: "Chris Martinez",
@@ -34,6 +37,7 @@ export const topPerformingTradiesData: TopPerformingTradiesItem[] = [
     jobsCompleted: 130,
     totalEarnings: 15500,
     type: "HVAC Specialist ",
+    status: "Unavailable",
   },
   {
     name: "Michael Garcia",
@@ -41,6 +45,7 @@ export const topPerformingTradiesData: TopPerformingTradiesItem[] = [
     jobsCompleted: 90,
     totalEarnings: 9500,
     type: "Carpenter ",
+    status: "Unavailable",
   },
 
 ];

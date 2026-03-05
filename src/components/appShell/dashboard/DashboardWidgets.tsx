@@ -219,6 +219,7 @@ export interface TopPerformingTradiesItem {
      totalEarnings: number;
      avatar?: string;
      type?: string;
+     status?: string;
 
 }
 

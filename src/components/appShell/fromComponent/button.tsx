@@ -3,7 +3,7 @@ interface buttonProps{
     onClick: () => void;
     className?: string;
     color?: "primary" | "secondary" | "success" | "danger" | "warning" | "info";
-    variant?:"outlined";
+    variant?:"outlined" | "danger";
 }
 
 export const Button: React.FC<buttonProps> = ({ label, onClick, className, color, variant }: buttonProps) => {
@@ -14,6 +14,7 @@ export const Button: React.FC<buttonProps> = ({ label, onClick, className, color
                 className={`
                     ${className}
                     ${variant === "outlined" ? "border-2 border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white" : ""}
+                    ${variant === "danger" ? "border-2 border-red-500 text-red-500 hover:bg-red-200 hover:text-red-500" : ""}
                     text-sm flex justify-center font-semibold cursor-pointer 
                     ${color === "primary" ? "bg-teal-500 text-white hover:bg-teal-600" : ""}  
                     ${color === "secondary" ? "bg-slate-400 text-white hover:bg-slate-500" : ""}  

@@ -38,7 +38,7 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
           setAnchorEl(null);
      }
 
-     const handelClickNotification =()=>{
+     const handelClickNotification = () => {
           setOpen(false);
           setAnchorEl(null);
           navigate("/jobs");
@@ -132,37 +132,39 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
                                    horizontal: "right",
                               }}
                               PaperProps={{
-                                 sx:{
-                                   borderRadius:2,
-                                   maxHeight:"150",
-                                   overflowY:"auto",
-                                   scrollbarWidth:"none",
-                                   "&::-webkit-scrollbar": {
-                                     display: "none",
-                                   },
-                                 }
+                                   sx: {
+                                        borderRadius: 2,
+                                        maxHeight: "150",
+                                        overflowY: "auto",
+                                        scrollbarWidth: "none",
+                                        "&::-webkit-scrollbar": {
+                                             display: "none",
+                                        },
+                                   }
                               }}
                          >
-                              <div className="p-4 w-80 max-h-150 overflow-y-auto scrollbar-hide ">
-                                   <h2 className="text-lg font-semibold mb-3">Notifications</h2>
+                              <div className="w-85 max-h-150 overflow-y-auto scrollbar-hide ">
+                                   <h2 className="text-lg font-semibold mb-3 border-b border-slate-100 p-4 w-full">Notifications</h2>
 
                                    {notifiacation && notifiacation.length > 0 ? (
-                                        notifiacation.map((notification,key) => (
-                                             <div
-                                                  onClick={()=>handelClickNotification()}
-                                                  key={key}
-                                                  className={`${getNotificationColor(notification)} flex 
-                                                   flex-col rounded-2xl p-3 mb-2 cursor-pointer `}
-                                             >
-                                                  <p className="text-xs font-semibold text-slate-700">
-                                                       {notification.title}
-                                                  </p>
-                                                  <p className="text-xs text-slate-500">
-                                                       {notification.description}
-                                                  </p>
-                                                  <p className="text-xs text-slate-400 ml-auto mt-2">
-                                                       {notification.time}
-                                                  </p>
+                                        notifiacation.map((notification, key) => (
+                                             <div className="px-4">
+                                                  <div
+                                                       onClick={() => handelClickNotification()}
+                                                       key={key}
+                                                       className={`${getNotificationColor(notification)} flex 
+                                                   flex-col rounded-2xl p-3 mb-2 cursor-pointer w-full h-20`}
+                                                  >
+                                                       <p className="text-xs font-semibold text-slate-700">
+                                                            {notification.title}
+                                                       </p>
+                                                       <p className="text-xs text-slate-500">
+                                                            {notification.description}
+                                                       </p>
+                                                       <p className="text-xs text-slate-400 ml-auto mt-2">
+                                                            {notification.time}
+                                                       </p>
+                                                  </div>
                                              </div>
                                         ))
                                    ) : (
