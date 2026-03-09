@@ -25,7 +25,10 @@ import {
     FolderOpen,
     MessageSquareWarning,
     Tickets,
-    TicketPlus
+    TicketPlus,
+    TicketCheck,
+    MessageSquare,
+    TicketX
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { millify } from "millify";
@@ -53,6 +56,7 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
                 return "bg-sky-50";
             case UserPlus:
             case NotebookPen:
+            case MessageSquare:
                 return "bg-green-50";
             case CirclePlus:
             case TicketPlus:
@@ -62,7 +66,10 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case Clock8:
                 return "bg-yellow-50";
             case Timer:
+            case TicketX:
                 return "bg-red-50";
+            case TicketCheck:
+                return "bg-teal-50";
             default:
                 return "bg-white";
         }
@@ -83,8 +90,10 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case UserX:
             case Timer:
             case CircleX:
+            case TicketX:
                 return "text-red-600 bg-red-100";
             case Flag:
+            case TicketCheck:
                 return "text-teal-600 bg-teal-100";
             case Ticket:
             case Lock:
@@ -99,13 +108,13 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case NotebookPen:
             case CircleCheck:
             case Receipt:
+            case MessageSquare:
                 return "text-green-600 bg-green-100";
             case Wallet:
                 return "text-cyan-600 bg-cyan-100";
             case CircleDollarSign:
                 return "text-violet-600 bg-violet-100";
             case OctagonAlert:
-            
                 return "text-amber-600 bg-amber-100";
             default:
                 return "text-black bg-white";

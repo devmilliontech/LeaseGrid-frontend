@@ -441,7 +441,8 @@ export const UserListCard: React.FC<ListCardProps> = ({ data }) => {
                                                     label="Contact Client"
                                                     className="w-full py-4 rounded-full " />
                                                 <Button
-                                                    variant="danger"
+                                                    variant="outlined"
+                                                    color="danger"
                                                     onClick={() => { setOpen(false),setOpenAssignTradie(false)}}
                                                     label="Cancel Job"
                                                     className="w-full py-4 rounded-full " />

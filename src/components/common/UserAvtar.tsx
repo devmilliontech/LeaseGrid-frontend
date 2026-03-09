@@ -1,6 +1,6 @@
 import { UserIcon } from "lucide-react"
 
-export const UserAvatar=({img,className}: {img:string,className:string} )=>{
+export const UserAvatar=({img,className}: {img?:string,className?:string} )=>{
 
     return(
         <div className={`rounded-full  flex items-center justify-center ${className}`}

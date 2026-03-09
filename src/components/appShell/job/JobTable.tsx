@@ -43,26 +43,6 @@ export const JobTable:React.FC<{data:JobTableProps[]}>=({data})=>{
         }
     }
 
-    const getRatingColor=(rating:number)=>{
-       
-           if(rating >=5){
-                return "bg-red-500 text-red-600";
-            }
-           if(rating >= 4){
-                return "bg-yellow-50 text-yellow-600";
-            }
-           if(rating >= 3){
-                return "bg-yellow-50 text-yellow-600";
-            }
-           if(rating >= 2){
-                return "bg-yellow-50 text-yellow-600";
-            }
-           if(rating >= 1){
-                return "bg-yellow-50 text-yellow-600";
-            }
-          
-
-    }
     return(
         <>
             <div className="flex flex-col">
