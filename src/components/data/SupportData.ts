@@ -1,6 +1,32 @@
-import { MessageSquare, Clock8, TicketCheck, TicketPlus, Tickets, TicketX } from "lucide-react";
+import { MessageSquare, Clock8, TicketCheck, TicketPlus, Tickets, Wallet, User, Cog, NotebookPen, Lightbulb } from "lucide-react";
 import type {CardProps} from "../appShell/Cards";
 import type { TicketProps } from "../appShell/support/ListView";
+import type { agentData } from "../appShell/support/AgentCard";
+import type { categoryData } from "../appShell/support/CategoryCard";
+
+
+export const AgentData:agentData[] = [
+     {
+          name:"John Doe",
+          avatar:"https://i.pravatar.cc/40",
+          role:"Senior Support",
+          totalResolved:12
+     },
+     {
+          name:"John Doe",
+          avatar:"https://i.pravatar.cc/40",
+          role:"Support",
+          totalResolved:12
+     },
+     {
+          name:"John Doe",
+          avatar:"https://i.pravatar.cc/40",
+          role:"Support",
+          totalResolved:12
+     },
+    
+]
+
 
 export const SupportData:CardProps[] = [
      {  
@@ -102,3 +128,32 @@ export const TicketData:TicketProps[] = [
           ticketRequestor:{name:"Sarah Johnson",avatar:"https://i.pravatar.cc/40"},
      },
 ];
+
+
+export const CategoryData:categoryData[] = [
+     {
+          title:"Payment Issues",
+          icon:Wallet,
+          total:12
+     },
+     {
+          title:"Account Related",
+          icon:User,
+          total:12
+     },
+     {
+          title:"Technical",
+          icon:Cog,
+          total:12
+     },
+     {
+          title:"General Inquiry",
+          icon:NotebookPen,
+          total:12
+     },
+     {
+          title:"Feature Request",
+          icon:Lightbulb,
+          total:12
+     },
+]

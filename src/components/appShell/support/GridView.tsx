@@ -1,7 +1,8 @@
 import { header, subSubject } from "../../common/style";
 import type { TicketProps } from "./ListView";
-import { Dot, TicketPlus, Clock, PauseCircle, CheckCircle2, MoreHorizontal } from "lucide-react";
+import { Dot, TicketPlus, Clock, PauseCircle, CheckCircle2, CircleCheck, } from "lucide-react";
 import { UserAvatar } from "../../common/UserAvtar";
+import ProgressBar from "../../common/ProgressBar";
 
 export interface ListViewProps {
     data: TicketProps[];
@@ -24,9 +25,14 @@ export const GridView: React.FC<ListViewProps> = ({ data }) => {
                 return "text-gray-700 bg-gray-100";
         }
     }
+    const getRemainingPercent = (hoursLeft: number) => {
+        const total = 24
+        const remaining = total - hoursLeft
+        return (remaining / total) * 100
+    }
 
-    const getStatus=(status:string)=>{
-        switch(status){
+    const getStatus = (status: string) => {
+        switch (status) {
             case "New":
                 return "text-orange-600 bg-orange-100"
             case "In Progress":
@@ -40,7 +46,7 @@ export const GridView: React.FC<ListViewProps> = ({ data }) => {
         }
     }
 
-    const row=("flex flex-row justify-between items-center");
+    const row = ("flex flex-row justify-between items-center");
 
     const columns = [
         { id: "New", label: "New", dotColor: "text-orange-500", iconColor: "text-orange-500", iconBg: "bg-orange-100", Icon: TicketPlus },
@@ -55,13 +61,13 @@ export const GridView: React.FC<ListViewProps> = ({ data }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full ">
             {columns.map((col) => {
                 const columnTickets = data.filter((item) => item.ticket.status === col.id);
-                
+
                 return (
-                    <div key={col.id} 
-                        className="flex flex-col gap-4 bg-white rounded-2xl py-5 px-4 h-[70vh] "
+                    <div key={col.id}
+                        className="flex flex-col gap-4 bg-white rounded-2xl py-5 px-4 h-[60vh] md:h-[70vh] lg:h-[calc(100vh-12rem)]"
                     >
                         {/* Column Header */}
-                        <div  className={row}>
+                        <div className={row}>
                             <div className="flex flex-row items-center">
                                 <Dot className={`w-8 h-8 ${col.dotColor} -ml-2`} />
                                 <h1 className={`${header} text-slate-800`}>{col.label}</h1>
@@ -78,6 +84,7 @@ export const GridView: React.FC<ListViewProps> = ({ data }) => {
                         <div className="flex flex-col gap-4 overflow-y-auto scrollbar-hide">
                             {columnTickets.map((item) => {
                                 const ticket = item.ticket;
+                                const percent = getRemainingPercent(ticket.sla ?? 0)
                                 return (
                                     <div key={ticket.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 hover:shadow-md transition-shadow">
                                         <div className={`${row} mb-3`}>
@@ -86,39 +93,64 @@ export const GridView: React.FC<ListViewProps> = ({ data }) => {
                                             </p>
                                             <p className="text-xs font-semibold text-slate-700">#TKT-{ticket.id}</p>
                                         </div>
-                                        
+
                                         <div className="flex flex-col gap-1 mb-4">
                                             <p className="font-semibold text-slate-800 text-sm line-clamp-1">{ticket.subject}</p>
                                             <p className={`${subSubject} text-xs line-clamp-2`}>{ticket.subSubject}</p>
                                         </div>
 
-                                        <div className=" py-4">
-                                            <div className={row}>
-                                                <div className={`${row} gap-2`}>
-                                                    <UserAvatar img={item.ticketRequestor?.avatar} className="w-7 h-7" />
-                                                    <p className={`${subSubject}`}>{item.ticketRequestor?.name}</p>
-                                                </div>
-                                                <div className="flex items-center gap-1.5 bg-slate-50 px-2 py-1 rounded-md">
+
+                                        <div className={`${row}  py-4`}>
+                                            <div className={`${row} gap-2 w-full`}>
+                                                <UserAvatar img={item.ticketRequestor?.avatar} className="w-9 h-7" />
+                                                <p className={`${subSubject}`}>{item.ticketRequestor?.name}</p>
+                                            </div>
+                                            <div className="flex items-center gap-1.5 px-2 py-1 rounded-md w-full justify-end">
+                                                {ticket.status === "Resolved" ?
+                                                    <CircleCheck className="w-3.5 h-3.5 text-green-400" />
+                                                    :
                                                     <Clock className="w-3.5 h-3.5 text-slate-400" />
-                                                    <p className="text-[11px] font-semibold text-slate-600">{ticket.CreatedOn} ago</p>
-                                                </div>
+                                                }
+                                                <p className="text-xs font-semibold text-slate-400">{ticket.CreatedOn} ago</p>
                                             </div>
                                         </div>
 
-                                        <div className={`${row} pt-3 border-t border-slate-100`}>
-                                            <div className="flex -space-x-2">
+
+                                        <div className={`${row} py-4 w-full border-t border-slate-100 `}>
+                                            <div className="flex gap-2 w-full">
                                                 {item.ticketAssignee ? (
-                                                    <div title={`Assignee: ${item.ticketAssignee.name}`}>
+                                                    <div className={`${row} gap-2`}>
                                                         <UserAvatar img={item.ticketAssignee.avatar} className="w-7 h-7 border-2 border-white rounded-full bg-slate-200" />
+                                                        <p className={`${subSubject}`}>{item.ticketAssignee?.name}</p>
                                                     </div>
                                                 ) : (
                                                     null
                                                 )}
                                             </div>
-                                            <div className="flex items-center gap-1.5 bg-slate-50 px-2 py-1 rounded-md">
-                                                <Clock className="w-3.5 h-3.5 text-slate-400" />
-                                                <p className="text-[11px] font-semibold text-slate-600">{ticket.sla}h</p>
-                                            </div>
+                                            {ticket.status === "In Progress" ?
+                                                <div className={`${row} flex-row w-full`}>
+                                                    <div className=' w-full'>
+                                                        <ProgressBar value={percent} />
+                                                    </div>
+                                                </div>
+                                                :
+                                                null
+                                            }
+                                            {ticket.status === "Waiting" ?
+                                                <div className={`${row} w-full justify-end `}>
+                                                    <p className="text-xs font-semibold text-yellow-700 rounded-full bg-yellow-100 px-3 py-2">Awaiting</p>
+                                                </div> : null
+                                            }
+                                            {ticket.status === "Resolved" ?
+                                                <div className={`flex flex-row gap-1.5 w-full py-2 justify-end`}>
+                                                    <div className="flex flex-row gap-1 justify-center items-center">
+                                                        <Clock className="w-3.5 h-3.5 text-slate-400" />
+                                                        <p className="text-xs font-semibold text-slate-400">{ticket.sla}h</p>
+                                                    </div>
+
+                                                    <p className="text-xs font-semibold text-slate-400"> resolution</p>
+                                                </div> : null
+                                            }
                                         </div>
                                     </div>
                                 );

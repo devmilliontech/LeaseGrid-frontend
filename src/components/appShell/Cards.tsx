@@ -28,7 +28,12 @@ import {
     TicketPlus,
     TicketCheck,
     MessageSquare,
-    TicketX
+    TicketX,
+    MessageSquarePlus,
+    MessageSquareDiff,
+    MessageSquareHeart,
+    Star,
+    StarHalf
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { millify } from "millify";
@@ -36,7 +41,7 @@ import { Button } from "../common/fromComponent/button";
 
 
 export interface CardProps {
-    value?: number;
+    value?: number |string;
     title?: string;
     subtitle?: string;
     badgeText?: string;
@@ -82,6 +87,8 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case Home:
             case FolderOpen:
             case Tickets:
+            case MessageSquareDiff:
+            case Star:
                 return "text-sky-600 bg-sky-100";
             case Clock:
             case Clock8:
@@ -91,6 +98,7 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case Timer:
             case CircleX:
             case TicketX:
+            case MessageSquarePlus:
                 return "text-red-600 bg-red-100";
             case Flag:
             case TicketCheck:
@@ -113,6 +121,8 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case Wallet:
                 return "text-cyan-600 bg-cyan-100";
             case CircleDollarSign:
+            case MessageSquareHeart:
+            case StarHalf:
                 return "text-violet-600 bg-violet-100";
             case OctagonAlert:
                 return "text-amber-600 bg-amber-100";
@@ -159,7 +169,8 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
                         </div>
                         <div>
                             <p className="text-sm font-bold text-slate-600 mt-1">{item.title}</p>
-                            <p className="text-3xl font-bold text-slate-800">{millify(item.value || 0)}</p>
+                            {/* <p className="text-3xl font-bold text-slate-800">{millify(item.value || 0)}</p> */}
+                            <p className="text-3xl font-bold text-slate-800">{item.value}</p> 
                             <p className="text-xs text-slate-400 font-sm">{item.subtitle}</p>
                             <p className={`text-sm font-medium ${getDesColor(item.badgeText)}`}>
                                 {item.describstion}

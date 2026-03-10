@@ -1,4 +1,4 @@
-import { CircleCheck } from 'lucide-react';
+import { ArrowBigLeft, ArrowBigRight, CircleCheck } from 'lucide-react';
 import ProgressBar from '../../common/ProgressBar';
 import { subject, subSubject } from '../../common/style';
 import { UserAvatar } from '../../common/UserAvtar'
@@ -152,8 +152,20 @@ export const ListView: React.FC<ListViewProps> = ({ data }) => {
                         <p> </p>
                     </div>
                     <div className='flex gap-2'>
-                        <Button variant='contained' label='Previous' onClick={() => { }} className='rounded-lg' />
-                        <Button variant='contained' label='Next' onClick={() => { }} className='rounded-lg' />
+                        <Button 
+                            variant='contained' 
+                            label='Previous' 
+                            onClick={() => { }} 
+                            className='rounded-lg px-4 py-2'
+                            icon={ArrowBigLeft} 
+                        />
+                        <Button 
+                            variant='contained' 
+                            label='Next' 
+                            onClick={() => { }} 
+                            className='rounded-lg px-4 py-2 flex flex-row-reverse gap-2'
+                            icon={ArrowBigRight} 
+                        />
                     </div>
                 </div>
             </div>

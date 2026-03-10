@@ -1,69 +1,84 @@
-# LeaseGrid Frontend
+# LeaseGrid Frontend (Admin Panel)
 
-This is the frontend repository for LeaseGrid, built with React, Vite, TypeScript, and Tailwind CSS. It features a modern, accessible UI powered by Radix UI primitives and Lucide icons, with data visualization using Recharts.
+This is the central frontend administration dashboard for **LeaseGrid**. It provides a modern, responsive, and robust UI for administrators to manage the complete LeaseGrid prop-tech and services ecosystem. 
 
-## 🚀 Tech Stack
+Built with React, Vite, TypeScript, and Tailwind CSS, it features a highly modular structure tailored to handle users (Tenants, Landlords, Tradies), job ticketing, payments, disputes, and compliance monitoring.
+
+## 🚀 Key Features
+
+- **Dashboard**: Real-time overview of system health, active alerts, recent user activity updates, top landlords, and performing tradies.
+- **User Management**: Filter, search, verify, suspend, and view comprehensive profiles across Tenants, Landlords, and Tradies.
+- **Job Management**: End-to-end tracking of service jobs, budgets, scheduling, and tradie assignments with real-time status flows.
+- **Payments**: Track transactions, status overrides, and platform revenue generation.
+- **Disputes & Reviews**: Centralized dispute resolution, flagged review moderation, and ticket management using dual Grid/List views.
+- **Support & Compliance**: Tooling to ensure platform security, verify identification documents securely, and manage incoming support threads.
+
+## �️ Tech Stack
 
 - **Framework:** [React 19](https://react.dev/)
 - **Build Tool:** [Vite](https://vitejs.dev/)
 - **Language:** TypeScript
+- **State Management:** [Zustand](https://github.com/pmndrs/zustand)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **UI Components:** [Radix UI](https://www.radix-ui.com/)
+- **UI Components:** [MUI (Material UI)](https://mui.com/) & [Radix UI](https://www.radix-ui.com/)
 - **Icons:** [Lucide React](https://lucide.dev/)
 - **Routing:** [React Router](https://reactrouter.com/)
 - **Charts:** [Recharts](https://recharts.org/)
 
 ## 📦 Prerequisites
 
-Make sure you have [Node.js](https://nodejs.org/) (v18+ recommended) installed.
+Ensure you have [Node.js](https://nodejs.org/) (v18+ recommended) and `npm` installed.
 
-## 🛠️ Installation
+## ⚙️ Installation
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/devmilliontech/LeaseGrid-frontend.git
    ```
 
-2. Navigate to the project directory:
+2. Navigate into the directory:
    ```bash
    cd LeaseGrid-frontend
    ```
 
-3. Install the dependencies:
+3. Install all dependencies:
    ```bash
    npm install
    ```
 
-## 💻 Running Locally
+## 💻 Development
 
-To start the development server:
+Start the Vite development server:
 
 ```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`.
+The application will be accessible at `http://localhost:5173`.
 
-## 🏗️ Building for Production
+## 🏗️ Production Build
 
-To create an optimized production build:
+To structure an optimized production build:
 
 ```bash
 npm run build
 ```
 
-To preview the production build locally:
+Preview the minified production version locally before deployment:
 
 ```bash
 npm run preview
 ```
 
-## 📂 Project Structure
+## 📂 Architecture Overview
 
-- `src/` - Application source code.
-  - `components/` - Reusable UI components.
-  - `data/` - Local data models and mock data.
-- `public/` - Static assets.
+The codebase focuses heavily on standalone app shells with separated responsibilities:
+
+- `src/components/appShell/` - Isolated feature modules such as `dashboard`, `user`, `job`, `payments`, `reviews`, and `support`.
+- `src/components/common/` - Reusable primitives like standard Inputs, customizable Buttons, standard styling functions (`style.tsx`), Avatars, and Loaders.
+- `src/components/sidebar/` - The main application control interface.
+- `src/store/` - Global Zustand stores (e.g., authentication flow).
+- `src/data/` - Mock data definitions driving standard tables.
 
 ## 📄 License
 
