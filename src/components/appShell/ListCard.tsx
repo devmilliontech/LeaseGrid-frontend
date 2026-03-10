@@ -1,6 +1,6 @@
 import Checkbox from "@mui/material/Checkbox";
-import { CalendarDays, Clock, House, Mail, MapPin, Phone, UserIcon, CircleAlert, X, type LucideIcon, BriefcaseBusiness,} from "lucide-react";
-import { Button } from "./fromComponent/button";
+import { CalendarDays, Clock, House, Mail, MapPin, Phone, UserIcon, CircleAlert, X, type LucideIcon, BriefcaseBusiness, } from "lucide-react";
+import { Button } from "../common/fromComponent/button";
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
@@ -72,13 +72,13 @@ export const UserListCard: React.FC<ListCardProps> = ({ data }) => {
     const getButton = (item: UserListCardProps, status: string, Icon: LucideIcon) => {
         switch (status) {
             case "Urgent Priority":
-                return <Button label="Assign Tradie" onClick={() => { handelClick(item, Icon) }} color="primary" className="px-10 py-3 rounded-xl" />;
+                return <Button variant="contained" label="Assign Tradie" onClick={() => { handelClick(item, Icon) }} className="px-10 py-3 rounded-xl" />;
             case "in_progress":
                 return <Button variant="outlined" label="View Details" onClick={() => { handelClick(item, Icon) }} className="px-10 py-3 rounded-xl" />;
             case "completed":
                 return <Button variant="outlined" label="View Details" onClick={() => { handelClick(item, Icon) }} className="px-10 py-3 rounded-xl" />;
             case "Disputed":
-                return <Button color="danger" label="View Details" onClick={() => { handelClick(item, Icon) }} className="px-10 py-3 rounded-xl" />;
+                return <Button color="danger" variant="outlined" label="View Details" onClick={() => { handelClick(item, Icon) }} className="px-10 py-3 rounded-xl" />;
             case "Scheduled":
                 return <Button variant="outlined" label="View Details" onClick={() => { handelClick(item, Icon) }} className="px-10 py-3 rounded-xl" />
             default:
@@ -114,7 +114,7 @@ export const UserListCard: React.FC<ListCardProps> = ({ data }) => {
         }
     }
 
-    const getTradieDivColor=(status?:string)=>{
+    const getTradieDivColor = (status?: string) => {
         switch (status) {
             case "Available":
                 return "hover:bg-teal-50 hover:shadow-md cursor-pointer hover:border-teal-200 border";
@@ -125,7 +125,7 @@ export const UserListCard: React.FC<ListCardProps> = ({ data }) => {
         }
     }
 
-    const getTradieBadgeColor=(status?:string)=>{
+    const getTradieBadgeColor = (status?: string) => {
         switch (status) {
             case "Available":
                 return "text-green-600 bg-green-100";
@@ -136,7 +136,7 @@ export const UserListCard: React.FC<ListCardProps> = ({ data }) => {
         }
     }
 
-    const getTradieTextColor=(status?:string)=>{
+    const getTradieTextColor = (status?: string) => {
         switch (status) {
             case "Available":
                 return " text-slate-500  ";
@@ -381,69 +381,69 @@ export const UserListCard: React.FC<ListCardProps> = ({ data }) => {
                                                 </div>
                                             </div>
                                             <div>
-                                                
+
                                                 {openAssignTradie && (
                                                     <>
-                                                    <h6 className="text-sm font-semibold text-slate-800 pb-5">Suggested Tradies</h6>
-                                                    <div className="flex flex-col gap-4 pb-5 " >
-                                                        {tradie?.map((item, key) => (   
-                                                            <div
-                                                                key={key}
-                                                                className={`flex flex-col gap-2 border border-slate-200 rounded-xl py-4 px-4 justify-between w-full 
+                                                        <h6 className="text-sm font-semibold text-slate-800 pb-5">Suggested Tradies</h6>
+                                                        <div className="flex flex-col gap-4 pb-5 " >
+                                                            {tradie?.map((item, key) => (
+                                                                <div
+                                                                    key={key}
+                                                                    className={`flex flex-col gap-2 border border-slate-200 rounded-xl py-4 px-4 justify-between w-full 
                                                                     ${getTradieDivColor(item.status)}
                                                                 `}
-                                                            >
-                                                                <div className="flex flex-row">
-                                                                    <div className="flex-row flex items-center gap-4 w-full">
-                                                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 border-teal-200`}>
-                                                                        {item.avatar ? <img src={item.avatar} alt=""
-                                                                            className="rounded-full w-full h-full " />
-                                                                            : <UserIcon
-                                                                                className="w-full h-full p-2 rounded-full bg-gray-200" />
-                                                                        }
-                                                                    </div>
-                                                                    <div>
-                                                                        <p className="text-sm font-semibold text-slate-800">{item.name}</p>
-                                                                        <div className="flex flex-row items-center gap-2">
-                                                                            <p className="text-sm font-medium text-slate-500 ">{item.type} .</p>
-                                                                            <p className="text-sm font-medium text-slate-500">{item.rating} rating</p>
+                                                                >
+                                                                    <div className="flex flex-row">
+                                                                        <div className="flex-row flex items-center gap-4 w-full">
+                                                                            <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 border-teal-200`}>
+                                                                                {item.avatar ? <img src={item.avatar} alt=""
+                                                                                    className="rounded-full w-full h-full " />
+                                                                                    : <UserIcon
+                                                                                        className="w-full h-full p-2 rounded-full bg-gray-200" />
+                                                                                }
+                                                                            </div>
+                                                                            <div>
+                                                                                <p className="text-sm font-semibold text-slate-800">{item.name}</p>
+                                                                                <div className="flex flex-row items-center gap-2">
+                                                                                    <p className="text-sm font-medium text-slate-500 ">{item.type} .</p>
+                                                                                    <p className="text-sm font-medium text-slate-500">{item.rating} rating</p>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div className="flex flex-col items-center gap-2">
+                                                                            <span className={`px-2 py-1 text-xs font-semibold ${getTradieBadgeColor(item.status)} rounded-full `}>{item.status}</span>
+                                                                            {item.status === "Available" ? (
+                                                                                <p className="text-teal-600 text-xs font-semibold">Assign</p>
+                                                                            ) : <p className="text-slate-600 text-xs font-semibold">Busy</p>}
                                                                         </div>
                                                                     </div>
-        
-                                                                    </div>
-                                                                    <div className="flex flex-col items-center gap-2">
-                                                                        <span className={`px-2 py-1 text-xs font-semibold ${getTradieBadgeColor(item.status)} rounded-full `}>{item.status}</span>
-                                                                        {item.status === "Available" ? (
-                                                                            <p className="text-teal-600 text-xs font-semibold">Assign</p>
-                                                                        ) : <p className="text-slate-600 text-xs font-semibold">Busy</p>}
+                                                                    <div className="flex flex-row items-center gap-2 justify-between">
+                                                                        <span className="flex flex-row items-center gap-2">
+                                                                            <BriefcaseBusiness className={`w-4 h-4 ${getTradieTextColor(item.status)}`} />
+                                                                            <p className={`text-xs font-medium ${getTradieTextColor(item.status)} `}>{item.jobsCompleted} Jobs</p>
+                                                                        </span>
+                                                                        <span className="flex flex-row items-center gap-2 w-1/2">
+                                                                            <MapPin className={`w-4 h-4 ${getTradieTextColor(item.status)}`} />
+                                                                            <p className={`text-xs font-medium ${getTradieTextColor(item.status)} `}>3.8 km away</p>
+                                                                        </span>
                                                                     </div>
                                                                 </div>
-                                                                <div className="flex flex-row items-center gap-2 justify-between">
-                                                                    <span className="flex flex-row items-center gap-2">
-                                                                        <BriefcaseBusiness className={`w-4 h-4 ${getTradieTextColor(item.status)}`} />
-                                                                        <p className={`text-xs font-medium ${getTradieTextColor(item.status)} `}>{item.jobsCompleted} Jobs</p>
-                                                                    </span>
-                                                                    <span className="flex flex-row items-center gap-2 w-1/2">
-                                                                        <MapPin className={`w-4 h-4 ${getTradieTextColor(item.status)}`} />
-                                                                        <p className={`text-xs font-medium ${getTradieTextColor(item.status)} `}>3.8 km away</p>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
+                                                            ))}
+                                                        </div>
                                                     </>
                                                 )}
                                             </div>
                                             <div className="flex flex-col gap-2 w-full  pb-10">
                                                 <Button
                                                     color="primary"
-                                                    onClick={() => {}}
+                                                    onClick={() => { }}
                                                     label="Contact Client"
                                                     className="w-full py-4 rounded-full " />
                                                 <Button
                                                     variant="outlined"
                                                     color="danger"
-                                                    onClick={() => { setOpen(false),setOpenAssignTradie(false)}}
+                                                    onClick={() => { setOpen(false), setOpenAssignTradie(false) }}
                                                     label="Cancel Job"
                                                     className="w-full py-4 rounded-full " />
                                             </div>
@@ -473,8 +473,7 @@ export const UserListCard: React.FC<ListCardProps> = ({ data }) => {
                                                                 label="Cancel"
                                                                 onClick={() => { }}
                                                                 color="danger"
-                                                                className="px-4
-                                                         py-2 rounded-full"
+                                                                className="px-4 py-2 rounded-full "
                                                             />
                                                         }
                                                     </div>

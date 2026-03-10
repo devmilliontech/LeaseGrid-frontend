@@ -4,12 +4,13 @@ import { StatusCard } from "../appShell/Cards";
 import PieChartWithCustomizedLabel from "../appShell/payments/PaymentsCharts";
 import { RentChart } from "../appShell/payments/PaymentsCharts.tsx";
 import { paymentTrendData } from "../data/PaymentDAta";
+import { header1, subHeader } from "../common/style";
 
 
 const Payments: React.FC = () => {
      return (
           <>
-               <div className="p-2 space-y-6 max-w-[1600px] mx-auto">
+               <div className="px-2 py-2space-y-6 max-w-[1600px] mx-auto">
                     {/* Payment First Row Card */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 m-1">
                          <StatusCard data={paymentData} />
@@ -20,17 +21,17 @@ const Payments: React.FC = () => {
                     >
                          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
                               <div className="flex flex-col mb-6 m-2">
-                                   <p className="text-2xl font-bold text-black">Transaction Volume Trend</p>
-                                   <p className="text-sm text-slate-500">Last 30 days performance</p>
+                                   <p className={header1}>Transaction Volume Trend</p>
+                                   <p className={subHeader}>Last 30 days performance</p>
                               </div>
                               <div className="flex-1 min-h-0 max-h-full">
-                                   <RentChart data={paymentTrendData } />
+                                   <RentChart data={paymentTrendData} />
                               </div>
                          </div>
                          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
                               <div className="flex flex-col mb-6 m-2">
-                                   <p className="text-2xl font-bold text-black">Payment Status Distribution</p>
-                                   <p className="text-sm text-slate-500">Current month breakdown</p>
+                                   <p className={header1}>Payment Status Distribution</p>
+                                   <p className={subHeader}>Current month breakdown</p>
                               </div>
                               <div className="flex-1 min-h-0 max-h-full">
                                    <PieChartWithCustomizedLabel />

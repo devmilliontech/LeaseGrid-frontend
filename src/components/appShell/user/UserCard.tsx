@@ -1,14 +1,15 @@
 import { UserIcon, CalendarDaysIcon, Clock, HousePlus, Mail, UserRoundX, RefreshCwOff, File, BriefcaseBusiness, CircleCheck, UserX, Save } from "lucide-react";
 import { Search, SlidersHorizontal, ArrowDownWideNarrow, LayoutGrid, X } from "lucide-react";
 import React, { useState } from "react";
-import { Input } from "../fromComponent/Input";
+import { Input } from "../../common/fromComponent/Input";
 import Tooltip from '@mui/material/Tooltip';
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import IconButton from "@mui/material/IconButton";
-import { Button } from "../fromComponent/button";
+import { Button } from "../../common/fromComponent/button";
 import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
+import { header1, subHeader } from "../../common/style";
 
 
 
@@ -36,31 +37,34 @@ export const UsersFilterCard: React.FC = () => {
 
                     <div className="flex items-center gap-3">
                          {/* Filter Button */}
-                         <button className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 
-                              text-slate-700 px-4 py-3 rounded-2xl font-medium transition-colors cursor-pointer group">
+                         <Button
+                              onClick={() => { }}
+                              className="!bg-slate-100 hover:!bg-slate-200 !text-slate-700 px-4 py-3 !rounded-2xl group flex-row gap-2"
+                         >
                               <SlidersHorizontal className="w-4 h-4 text-slate-500 group-hover:text-slate-700" />
                               <span>Filters</span>
                               <span className="bg-teal-600 text-white text-[10px] w-5 h-5 flex items-center 
                                    justify-center rounded-full ml-1">3</span>
-                         </button>
+                         </Button>
 
                          {/* Sort Button */}
-                         <button className="flex flex-col items-center justify-center bg-slate-100 
-                              hover:bg-slate-200 text-slate-700 px-6 py-2 rounded-2xl font-medium 
-                              transition-colors cursor-pointer min-w-[120px] text-center">
+                         <Button
+                              onClick={() => { }}
+                              className="!bg-slate-100 hover:!bg-slate-200 !text-slate-700 px-6 py-2 !rounded-2xl min-w-[120px] text-center flex-col !gap-0"
+                         >
                               <div className="flex items-center gap-2">
                                    <ArrowDownWideNarrow className="w-4 h-4 text-slate-500" />
                                    <span className="text-xs text-slate-500">Sort by:</span>
                               </div>
                               <span className="text-sm">Last Seen</span>
-                         </button>
+                         </Button>
 
                          {/* View Toggle */}
                          <div className="flex items-center gap-2 text-sm text-slate-500 ml-2">
                               <span>View:</span>
-                              <button className="p-2 bg-teal-600 text-white rounded-xl shadow-lg shadow-teal-500/20 cursor-pointer">
+                              <Button onClick={() => { }} color="primary" className="!p-2 shadow-lg shadow-teal-500/20 !rounded-xl">
                                    <LayoutGrid className="w-5 h-5" />
-                              </button>
+                              </Button>
                          </div>
                     </div>
                </div>
@@ -82,9 +86,11 @@ export const UsersFilterCard: React.FC = () => {
                               <X className="w-4 h-4 text-blue-400 cursor-pointer hover:text-blue-900" />
                          </div>
                     </div>
-                    <button className="text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors ml-auto cursor-pointer">
-                         Clear All
-                    </button>
+                    <Button
+                         onClick={() => { }}
+                         className="!bg-transparent !border-0 !text-slate-400 hover:!text-slate-600 ml-auto !p-0"
+                         label="Clear All"
+                    />
                </div>
           </div>
      );
@@ -209,7 +215,7 @@ export const UserTable: React.FC<UserTableProps> = ({
                               label="Total Properties"
                               value={selectedUser?.TotalProperties || ""}
                               className="border-slate-200"
-                              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {e.target.value }}
+                              onChange={(e: React.ChangeEvent<HTMLInputElement>) => { e.target.value }}
                          />
                     );
 
@@ -327,14 +333,14 @@ export const UserTable: React.FC<UserTableProps> = ({
                                    borderRadius: 4,
                               },
                          }}
-                    >   
-                         <Box 
+                    >
+                         <Box
                               sx={{
                                    maxWidth: "100%",
                                    maxHeight: "100%",
                                    overflow: "hidden",
-                                   borderRadius: "16px",       
-                              }}    
+                                   borderRadius: "16px",
+                              }}
                          >
                               <div className="flex flex-col gap-4 mt-5 h-135 relative  bg-white w-150">
                                    <div className="flex flex-row gap-5 items-center px-4">
@@ -362,15 +368,11 @@ export const UserTable: React.FC<UserTableProps> = ({
                                         {navPage.map((page, index) => {
                                              return (
                                                   <div key={index} >
-                                                       <button
+                                                       <Button
                                                             onClick={() => setActivePage(index)}
-                                                            className={`text-sm font-medium text-slate-600 
-                                                            cursor-pointer p-5 hover:text-teal-600 
-                                                            ${activePage === index ? "text-teal-600 border-b-2 border-teal-600 pb-3" : "pb-3"}
-                                                            `}
-                                                       >
-                                                            {page}
-                                                       </button>
+                                                            className={`!bg-transparent !border-0 !text-slate-600 !p-5 hover:!text-teal-600 ${activePage === index ? "!text-teal-600 !border-b-2 !border-solid !border-b-teal-600 !pb-3 !rounded-none" : "!pb-3"}`}
+                                                            label={page}
+                                                       />
                                                   </div>
                                              )
                                         })}
@@ -443,14 +445,14 @@ export const UserTable: React.FC<UserTableProps> = ({
                                                   <div className="flex justify-center">
                                                        <h1 className="text-lg font-bold">Waiting For Load Activity</h1>
                                                   </div>
-     
+
                                              </div>
 
 
                                         )
                                    }
                                    {
-                                        activePage == 2 && ( 
+                                        activePage == 2 && (
                                              <div className="flex flex-col gap-2 overflow-y-auto px-3 scrollbar-hide px-4">
                                                   <div className="flex justify-center">
                                                        <h1 className="text-lg font-bold">Waiting For Load Documents</h1>
@@ -459,7 +461,7 @@ export const UserTable: React.FC<UserTableProps> = ({
                                         )
                                    }
                                    {
-                                        activePage == 3 && ( 
+                                        activePage == 3 && (
                                              <div className="flex flex-col gap-2 overflow-y-auto px-3 scrollbar-hide px-4">
                                                   <div className="flex justify-center">
                                                        <h1 className="text-lg font-bold">Waiting For Load History</h1>
@@ -468,7 +470,7 @@ export const UserTable: React.FC<UserTableProps> = ({
                                         )
                                    }
                                    {/* Bottom Section */}
-                                   <div 
+                                   <div
                                         className="flex items-center justify-between flex-row gap-5 border-t-slate-200
                                         border-t w-full absolute bottom-0 bg-slate-50 px-2 rounded-b-xl py-2"
                                    >
@@ -528,33 +530,36 @@ export const BulkActions: React.FC = () => {
                className="bg-white  rounded-3xl border border-slate-100 h-40 flex flex-row justify-between items-center "
           >
                <div className=" p-6">
-                    <p className="text-xl font-bold text-black">Bulk Actions</p>
-                    <p className="text-sm font-sm text-slate-500">Select users to perform bulk actions</p>
+                    <p className={header1}>Bulk Actions</p>
+                    <p className={subHeader}>Select users to perform bulk actions</p>
                </div>
                <div className=" p-6 flex flex-row gap-8">
                     <div>
-                         <button
-                              className={`text-green-800 font-semibold text-md px-6 py-2 rounded-full bg-green-200
-                                   hover:bg-green-300 transition-colors cursor-pointer flex flex-row gap-2 items-center`}
-                         >
-                              <CircleCheck className="w-5 h-5" />Verify Selected
-                         </button>
+                         <Button
+                              onClick={() => { }}
+                              color="success"
+                              className="px-6 py-2 !rounded-full text-md gap-2"
+                              icon={CircleCheck}
+                              label="Verify Selected"
+                         />
                     </div>
                     <div>
-                         <button
-                              className={`text-orange-800 font-semibold text-md px-6 py-2 rounded-full bg-orange-200
-                                   hover:bg-orange-300 transition-colors cursor-pointer flex flex-row gap-2 items-center`}
-                         >
-                              <Mail className="w-5 h-5" />Send Massage
-                         </button>
+                         <Button
+                              onClick={() => { }}
+                              color="warning"
+                              className="px-6 py-2 !rounded-full text-md gap-2"
+                              icon={Mail}
+                              label="Send Message"
+                         />
                     </div>
                     <div>
-                         <button
-                              className={`text-red-700 font-semibold text-md px-6 py-2 rounded-full bg-red-200
-                                   hover:bg-red-300 transition-colors cursor-pointer flex flex-row gap-2 items-center`}
-                         >
-                              <UserX className="w-5 h-5" />Suspend Selected
-                         </button>
+                         <Button
+                              onClick={() => { }}
+                              color="danger"
+                              className="px-6 py-2 !rounded-full text-md gap-2"
+                              icon={UserX}
+                              label="Suspend Selected"
+                         />
 
                     </div>
                </div>

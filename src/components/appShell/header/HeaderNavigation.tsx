@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { notificationData, type Notification } from "../../data/notifiacation";
 import { useAuthStore } from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../common/fromComponent/button";
+import { header1 } from "../../common/style";
 
 export default function HeaderNavigation({ title, subtitle }: { title: string, subtitle?: string }) {
      const [username, setUserName] = useState('');
@@ -60,7 +62,7 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
           >
                {/* Left: Title */}
                <div className="flex flex-col">
-                    <h1 className="text-2xl font-bold text-slate-800">
+                    <h1 className={header1}>
                          {title}
                     </h1>
                     {subtitle && (
@@ -101,8 +103,9 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
 
 
                     {/* Notification */}
-                    <button className="relative text-slate-600 hover:text-slate-900 cursor-pointer"
-                         onClick={handleNotificationClick}
+                    <Button
+                         className="!bg-transparent !p-0 !border-0 relative !text-slate-600 hover:!text-slate-900"
+                         onClick={handleNotificationClick as any}
                     >
                          <Bell className="w-6 h-6" />
                          {/* Notification dot */}
@@ -113,10 +116,8 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
                               >
                                    {notificationCount}
                               </span>
-                         ) : (
-                              null
-                         )}
-                    </button>
+                         ) : null}
+                    </Button>
 
                     {open && (
                          <Popover

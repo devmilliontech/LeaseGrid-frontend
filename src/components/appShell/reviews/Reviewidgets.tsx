@@ -1,5 +1,7 @@
 import { UserIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "../../common/fromComponent/button";
+import { header } from "../../common/style";
 
 
 export interface ReviewPropsData {
@@ -52,16 +54,18 @@ export const ReviewWidgets: React.FC<ReviewProps> = ({ data }) => {
                         <p className="text-sm text-slate-600">{reviewMessage}</p>
                     </div>
                     <div className="flex flex-row justify-between gap-5 mt-2">
-                        <button className="bg-green-600 cursor-pointer hover:bg-green-800
-                             text-white text-sm font-medium w-full py-2 rounded-2xl"
-                        >
-                            Approve
-                        </button>
-                        <button className="bg-red-600 cursor-pointer hover:bg-red-800
-                            text-white text-sm font-medium w-full py-2 rounded-2xl"
-                        >
-                            Reject
-                        </button>
+                        <Button
+                            onClick={() => { }}
+                            color="success"
+                            className="w-full py-2 !rounded-2xl"
+                            label="Approve"
+                        />
+                        <Button
+                            onClick={() => { }}
+                            color="danger"
+                            className="w-full py-2 !rounded-2xl"
+                            label="Reject"
+                        />
                     </div>
                 </div>
             )
@@ -92,7 +96,7 @@ export const ReviewWidgets: React.FC<ReviewProps> = ({ data }) => {
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
             <div className="flex flex-row justify-between items-center mb-6 p-4 ">
                 <div className="flex flex-row items-center">
-                    <h2 className="text-lg font-bold text-slate-800">Active Disputes</h2>
+                    <h2 className={header}>Active Disputes</h2>
                 </div>
                 <div className="flex flex-row items-center">
                     {totalFlagg &&

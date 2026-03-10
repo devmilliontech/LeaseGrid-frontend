@@ -1,4 +1,5 @@
 import { UserIcon } from "lucide-react";
+import { subject } from "../../common/style";
 
 export interface PaymentWidgetsDataProps {
     transactionId: string;
@@ -41,20 +42,30 @@ export const PaymentWidgets: React.FC<PaymentWidgetsProps> = ({ data }) => {
                     return "border-white";
           }
      }
+
+     const headerLiost=[
+          "Transaction ID",
+          "User",
+          "Type",
+          "Amount",
+          "Status",
+          "Date",
+          "Action"
+     ]
+
+     const rowlist="flex w-full justify-center items-center"
     return (
         <>
-        <div className="flex flex-row items-center justify-between shadow-md p-5 mt-5 rounded-2xl w-full">
-                              <p className="text-lg font-semibold text-slate-600 w-full ">Transaction ID</p>
-                              <p className="text-lg font-semibold text-slate-600 w-full text-center">User</p>
-                              <p className="text-lg font-semibold text-slate-600 w-full text-center">Type</p>
-                              <p className="text-lg font-semibold text-slate-600 w-full text-center">Amount</p>
-                              <p className="text-lg font-semibold text-slate-600 w-full text-center">Status</p>
-                              <p className="text-lg font-semibold text-slate-600 w-full text-center">Date</p>
-                              <p className="text-lg font-semibold text-slate-600 w-full text-center">Action</p>
+        <div className="flex flex-row items-center justify-between  py-5 mt-5 w-full border-b border-slate-300">
+                              {headerLiost.map((item, index) => {
+                                   return (
+                                        <p key={index} className={`${rowlist} ${subject}`}>{item}</p>
+                                   );
+                              })}
                          </div>
             {data.map((item, index) => {
                 return (
-                    <div key={index} className="p-6 rounded-2xl flex flex-row  justify-between border border-slate-100">
+                    <div key={index} className="p-6 rounded-2xl flex flex-row  justify-between border border-slate-100 hover:bg-slate-50">
                          <div className="flex flex-row gap-2 items-center w-full text-center">
                               <p className="text-sm font-semibold text-teal-400">#{item.transactionId}</p>
                          </div>

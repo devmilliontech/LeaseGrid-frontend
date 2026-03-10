@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import {Calendar, Pin} from "lucide-react"
+import { Calendar, Pin } from "lucide-react"
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../common/fromComponent/button";
+import { header } from "../../common/style";
 
 export interface DisputesPropsData {
     jobId: number;
@@ -21,13 +23,13 @@ export const DisputesProps: React.FC<DisputesProps> = ({ data }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const totalStatus = data.filter((item) => item.status ).length;
+        const totalStatus = data.filter((item) => item.status).length;
         setTotalStatus(totalStatus);
     }, [data]);
 
 
-    const getDivColor=(status:string)=>{
-        switch(status){
+    const getDivColor = (status: string) => {
+        switch (status) {
             case "High Risk":
                 return "bg-rose-100 border-rose-200";
             case "Medium Risk":
@@ -37,8 +39,8 @@ export const DisputesProps: React.FC<DisputesProps> = ({ data }) => {
         }
     }
 
-    const getStatusColor=(status:string)=>{
-        switch(status){
+    const getStatusColor = (status: string) => {
+        switch (status) {
             case "High Risk":
                 return "text-rose-600 bg-rose-300";
             case "Medium Risk":
@@ -48,25 +50,22 @@ export const DisputesProps: React.FC<DisputesProps> = ({ data }) => {
         }
     }
 
-    const getButtonColor=(status:string)=>{
-        switch(status){
-            case "High Risk":
-                return "text-white bg-red-600 hover:bg-red-800 cursor-pointer ";
-            case "Medium Risk":
-                return "text-white bg-orange-600 hover:bg-orange-800 cursor-pointer";
-            default:
-                return "text-white bg-gray-600 hover:bg-gray-800 cursor-pointer";
+    const getButtonColor = (status: string) => {
+        switch (status) {
+            case "High Risk": return "danger";
+            case "Medium Risk": return "warning";
+            default: return "secondary";
         }
-    }
+    };
 
     return (
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
             <div className="flex flex-row justify-between items-center mb-6 p-4 ">
                 <div className="flex flex-row items-center">
-                    <h2 className="text-lg font-bold text-slate-800">Active Disputes</h2>
+                    <h2 className={header}>Active Disputes</h2>
                 </div>
                 <div className="flex flex-row items-center">
-                    {totalStatus && 
+                    {totalStatus &&
                         <span className="text-xs font-bold text-rose-600 px-5 
                             py-2 bg-rose-200 rounded-full"
                         >
@@ -88,7 +87,7 @@ export const DisputesProps: React.FC<DisputesProps> = ({ data }) => {
                                     <p className="text-sm text-slate-600">Between {item.formName} & {item.toName}</p>
                                 </div>
                             </div>
-                            <div>  
+                            <div>
                                 <span className={`text-xs font-bold px-6 
                                     py-2 rounded-full ${getStatusColor(item.status)}`}>
                                     {item.status}
@@ -106,14 +105,12 @@ export const DisputesProps: React.FC<DisputesProps> = ({ data }) => {
                             </div>
                         </div>
                         <div className="mt-2 p-2">
-                            <button className={`text-sm font-medium  
-                                        rounded-2xl w-full py-2 ${getButtonColor(item.status)}
-                                        cursor-pointer 
-                                    `}
+                            <Button
+                                className="w-full py-2 !rounded-2xl"
                                 onClick={() => navigate(`/disputes`)}
-                            >
-                                Review Dispute
-                            </button>
+                                color={getButtonColor(item.status) as any}
+                                label="Review Dispute"
+                            />
                         </div>
                     </div>
                 ))}

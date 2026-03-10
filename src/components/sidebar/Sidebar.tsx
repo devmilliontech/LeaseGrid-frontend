@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import Loader from "../common/Loader";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../appShell/fromComponent/button";
+import { Button } from "../common/fromComponent/button";
 
 
 
@@ -86,7 +86,8 @@ const Sidebar: React.FC = () => {
           label="Logout"
           onClick={handleLogout}
           color="danger"
-          className="px-3 py-1 rounded-xl"
+          variant="outlined"
+          className="px-3 py-1 rounded-xl mr-10"
         />
 
         <Loader open={open} onClose={() => setOpen(false)} />

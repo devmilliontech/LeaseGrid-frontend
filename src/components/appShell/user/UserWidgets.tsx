@@ -1,10 +1,13 @@
-import { UserIcon, EyeIcon, CircleCheck, CircleX,X } from "lucide-react";
-import { Button } from "../fromComponent/button";
+import { UserIcon, EyeIcon, CircleCheck, CircleX, X } from "lucide-react";
+import { Button } from "../../common/fromComponent/button";
 import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
+import { header } from "../../common/style";
+import { UserAvatar } from "../../common/UserAvtar";
+
 
 export interface RegistrationList {
      avatar?: string;
@@ -56,7 +59,7 @@ export const RegistrationTable: React.FC<RegistrationListProps> = ({ data }) => 
      return (
           <div className="flex flex-col gap-5 h-full w-full  bg-white rounded-lg">
                <div className="flex flex-row justify-between items-center p-2">
-                    <h4 className="text-lg font-bold">Recent Registrations</h4>
+                    <h4 className={header}>Recent Registrations</h4>
                     <Button
                          label="View All"
                          onClick={() => { }}
@@ -223,7 +226,7 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
           <>
                <div className="flex flex-col gap-5 h-full w-full  bg-white rounded-lg">
                     <div className="flex flex-row justify-between items-center p-2">
-                         <h4 className="text-lg font-bold">Verification Queue</h4>
+                         <h4 className={header}>Verification Queue</h4>
                          {pendingCount > 0 ? <span className={`px-4  py-1 rounded-full cursor-pointer bg-yellow-100 text-yellow-600`}>{pendingCount} pending</span> : <span className={`px-4  py-1 rounded-full cursor-pointer`}></span>}
                     </div>
                     {data.map((item, index) => {
@@ -265,7 +268,7 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
                                         </div>
                                         <div className="px-5">
                                              <Tooltip title="Close">
-                                                  <IconButton onClick={() => {setIsOpen(false) }}>
+                                                  <IconButton onClick={() => { setIsOpen(false) }}>
                                                        <X className="text-gray-500 hover:text-gray-700 cursor-pointer w-5 h-5" />
                                                   </IconButton>
                                              </Tooltip>
@@ -273,12 +276,8 @@ export const VerificationQueueTable: React.FC<VerificationListProps> = ({ data }
                                    </div>
                                    <div className="flex flex-row gap-5 px-10">
                                         <div className="rounded-full ">
-                                             {selectedUser?.avatar ? <img src={selectedUser.avatar} alt=""
-                                                  className="border-1 border-green-400 rounded-full w-full 
-                                                       h-full " />
-                                                  : <UserIcon
-                                                       className="w-full h-full p-2 rounded-full bg-gray-200" />
-                                             }
+                                             <UserAvatar img={selectedUser.avatar} className="w-10 h-10 border-green-300 border" />
+                                             
                                         </div>
                                         <div>
                                              <p className="font-bold text-md ">{selectedUser?.name}</p>

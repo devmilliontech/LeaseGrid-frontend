@@ -13,6 +13,8 @@ import {
      Angry
 } from 'lucide-react';
 import Rating from '@mui/material/Rating';
+import { Button } from '../../common/fromComponent/button';
+import { header, subHeader } from '../../common/style';
 
 // Types for Recent Activity
 export interface ActivityItem {
@@ -81,32 +83,6 @@ const StatusBadge = ({ status }: { status: ActivityItem['status'] }) => {
      );
 };
 
-const AlertIcon = ({ severity }: { severity: AlertSeverity }) => {
-     switch (severity) {
-          case 'critical': return <Angry className="w-5 h-5 text-rose-500" />;
-          case 'warning': return <AlertTriangle className="w-5 h-5 text-orange-500" />;
-          case 'info': return <Info className="w-5 h-5 text-blue-500" />;
-          case 'success': return <CheckCircle className="w-5 h-5 text-emerald-500" />;
-     }
-};
-
-const AlertStyles = (severity: AlertSeverity) => {
-     switch (severity) {
-          case 'critical': return 'bg-rose-100 border-rose-200';
-          case 'warning': return 'bg-orange-100 border-orange-200';
-          case 'info': return 'bg-blue-100 border-blue-200';
-          case 'success': return 'bg-emerald-100 border-emerald-200';
-     }
-};
-
-const AlertTextStyles = (severity: AlertSeverity) => {
-     switch (severity) {
-          case 'critical': return 'text-rose-700';
-          case 'warning': return 'text-orange-700';
-          case 'info': return 'text-blue-700';
-          case 'success': return 'text-emerald-700';
-     }
-};
 
 
 // --- Main Exported Components ---
@@ -116,16 +92,14 @@ export const RecentActivity: React.FC<RecentActivityProps> = ({ data, onViewAll 
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
                <div className="flex justify-between items-center mb-6">
                     <div>
-                         <h3 className="text-lg font-bold text-slate-800">Recent User Activity</h3>
-                         {/* <p className="text-sm text-slate-500">Real-time updates</p> */}
+                         <h3 className={header}>Recent User Activity</h3>
+                        <p className={subHeader}>Real-time updates</p>
                     </div>
-                    <button
-                         onClick={onViewAll}
-                         className="text-sm font-medium text-teal-600 hover:text-teal-700 
-                         hover:underline cursor-pointer"
-                    >
-                         View All
-                    </button>
+                    <Button
+                         onClick={onViewAll || (() => { })}
+                         className="!bg-transparent !border-0 !p-0 !text-sm !font-medium !text-teal-600 hover:!text-teal-700 hover:!underline"
+                         label="View All"
+                    />
                </div>
 
                <div className="flex-1 overflow-y-auto pr-2 space-y-4 ">
@@ -161,14 +135,44 @@ export const RecentActivity: React.FC<RecentActivityProps> = ({ data, onViewAll 
      );
 };
 
+
+const AlertIcon = ({ severity }: { severity: AlertSeverity }) => {
+     switch (severity) {
+          case 'critical': return <Angry className="w-5 h-5 text-rose-500" />;
+          case 'warning': return <AlertTriangle className="w-5 h-5 text-orange-500" />;
+          case 'info': return <Info className="w-5 h-5 text-blue-500" />;
+          case 'success': return <CheckCircle className="w-5 h-5 text-emerald-500" />;
+     }
+};
+
+const AlertStyles = (severity: AlertSeverity) => {
+     switch (severity) {
+          case 'critical': return 'bg-rose-100 border-rose-200';
+          case 'warning': return 'bg-orange-100 border-orange-200';
+          case 'info': return 'bg-blue-100 border-blue-200';
+          case 'success': return 'bg-emerald-100 border-emerald-200';
+     }
+};
+
+const AlertTextStyles = (severity: AlertSeverity) => {
+     switch (severity) {
+          case 'critical': return '!text-rose-500';
+          case 'warning': return '!text-orange-500';
+          case 'info': return '!text-blue-500';
+          case 'success': return '!text-emerald-500';
+     }
+};
+
+
 // System Alerts
 export const SystemAlerts: React.FC<SystemAlertsProps> = ({ data }) => {
+
      return (
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
                <div className="flex justify-between items-center mb-6">
                     <div>
-                         <h3 className="text-lg font-bold text-slate-800">System Alerts</h3>
-                         <p className="text-sm text-slate-500">System health & notifications</p>
+                         <h3 className={header}>System Alerts</h3>
+                         <p className={subHeader}>System health & notifications</p>
                     </div>
                </div>
 
@@ -191,14 +195,14 @@ export const SystemAlerts: React.FC<SystemAlertsProps> = ({ data }) => {
                                              {alert.description}
                                         </p>
                                         {alert.actionText && (
-                                             <button className={`mt-2 text-xs 
-                                                  font-semibold flex items-center gap-1 
-                                                  hover:underline cursor-pointer 
-                                                  ${AlertTextStyles(alert.severity)}`}
+                                             <Button
+                                                  onClick={() => { }}
+                                                  className={`!bg-transparent !border-0 !p-0 mt-2 !text-xs !font-semibold flex items-center gap-1 
+                                                            hover:!underline ${AlertTextStyles(alert.severity)}
+                                                            `}
                                              >
-                                                  {alert.actionText} <ArrowRight
-                                                       className="w-3 h-3" />
-                                             </button>
+                                                  {alert.actionText} <ArrowRight className="w-3 h-3" />
+                                             </Button>
                                         )}
                                    </div>
                               </div>

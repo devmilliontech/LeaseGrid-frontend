@@ -1,5 +1,12 @@
-node_modules
-package-lock.json
-package.json
-tsconfig.app.json
-tsconfig.node.json
+# Node.js template includes:
+node_modules/
+npm-debug.log*
+.env
+.env.test
+.parcel-cache
+.next
+.nuxt
+dist
+.vscode-test
+.yarn/cache
+# See full template at: https://github.com/github/gitignore/blob/main/Node.gitignore

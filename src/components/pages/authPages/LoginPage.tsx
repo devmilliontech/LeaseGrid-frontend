@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Input } from '../../appShell/fromComponent/Input';
-import { Button } from '../../appShell/fromComponent/button';
+import { Input } from '../../common/fromComponent/Input';
+import { Button } from '../../common/fromComponent/button';
 import Loader from '../../common/Loader';
 
 
@@ -81,10 +81,10 @@ function LoginPage() {
             error={[error.password, error.checkpassword]}
             className="border-slate-200"
           />
-          <Button 
-            label="Login" 
-            onClick={handleLogin} 
-            color="primary" 
+          <Button
+            label="Login"
+            onClick={handleLogin}
+            color="primary"
             className="w-full px-3 py-3 rounded-xl"
           />
           <Loader open={open} onClose={() => setOpen(false)} />

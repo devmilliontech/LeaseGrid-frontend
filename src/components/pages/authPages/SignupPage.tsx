@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Input } from '../../appShell/fromComponent/Input';
-import { Button } from '../../appShell/fromComponent/button';
+import { Input } from '../../common/fromComponent/Input';
+import { Button } from '../../common/fromComponent/button';
 import { useAuthStore } from '../../store/useAuthStore';
 
 

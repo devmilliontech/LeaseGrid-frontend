@@ -32,7 +32,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { millify } from "millify";
-import { Button } from "./fromComponent/button";
+import { Button } from "../common/fromComponent/button";
 
 
 export interface CardProps {
@@ -48,7 +48,7 @@ export interface CardProps {
 
 export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const getDivColor = (icon: LucideIcon) => {
         switch (icon) {
             case User:
@@ -166,12 +166,12 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
                             </p>
                         </div>
                         <div>
-                            {item.buttonText && 
+                            {item.buttonText &&
                                 <Button className={`w-full py-2 rounded-xl`}
-                                    onClick={()=>item.path && navigate(item.path)}
+                                    onClick={() => item.path && navigate(item.path)}
                                     label={item.buttonText}
                                     color="primary"
-                                    
+
                                 />
                             }
                         </div>

@@ -20,7 +20,8 @@ import { DisputesProps } from "../appShell/disputes/WidgetsCard.tsx";
 import { disputesData } from "../data/disputesDAta.ts";
 import { ReviewWidgets } from "../appShell/reviews/Reviewidgets.tsx";
 import { reviewsData } from "../data/reviewsData.ts";
-import { Button } from "../appShell/fromComponent/button.tsx";
+import { Button } from "../common/fromComponent/button.tsx";
+import { header, header1, subHeader } from "../common/style.tsx";
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -97,7 +98,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <div className="p-2 space-y-6 max-w-[1600px] mx-auto">
+      <div className="px-2 space-y-6 max-w-[1600px] mx-auto py-2">
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -110,8 +111,8 @@ const Dashboard: React.FC = () => {
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h3 className="text-lg font-bold text-slate-800">Jobs by Status</h3>
-                <p className="text-sm text-slate-500">Current month breakdown</p>
+                <h3 className={header}>Jobs by Status</h3>
+                <p className={subHeader}>Current month breakdown</p>
               </div>
             </div>
             <div className="flex-1 min-h-0">
@@ -123,8 +124,8 @@ const Dashboard: React.FC = () => {
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h3 className="text-lg font-bold text-slate-800">Rent Collection Trend</h3>
-                <p className="text-sm text-slate-500">Last 12 months</p>
+                <h3 className={header}>Rent Collection Trend</h3>
+                <p className={subHeader}>Last 12 months</p>
               </div>
             </div>
             <div className="flex-1 min-h-0 max-h-full">
@@ -137,21 +138,19 @@ const Dashboard: React.FC = () => {
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-96 flex flex-col">
           <div className="flex justify-between items-start mb-6">
             <div>
-              <h3 className="text-lg font-bold text-slate-800">Support Load Distribution</h3>
-              <p className="text-sm text-slate-500">Daily ticket volume over time</p>
+              <h3 className={header}>Support Load Distribution</h3>
+              <p className={subHeader}>Daily ticket volume over time</p>
             </div>
             <div className="flex gap-2">
               {['Week', 'Month', 'Year'].map((range) => (
-                <button
+                <Button
                   key={range}
                   onClick={() => setTimeRange(range as TimeRange)}
-                  className={`px-3 py-1 text-xs font-medium rounded-lg transition-colors ${timeRange === range
-                    ? "bg-teal-50 text-teal-600"
-                    : "text-slate-400 hover:bg-slate-50"
-                    }`}
-                >
-                  {range}
-                </button>
+                  className="px-3 py-1 flex-1 !text-xs !font-medium !rounded-2xl"
+                  color={timeRange === range ? "primary" : "primary"}
+                  variant={timeRange === range ? "contained" : "outlined"}
+                  label={range}
+                />
               ))}
             </div>
           </div>
@@ -182,8 +181,8 @@ const Dashboard: React.FC = () => {
           <div className="">
             <div className="flex justify-between items-center mb-2 ">
               <div>
-                <h3 className="text-2xl font-bold p-1 text-slate-800">Compliance Overview</h3>
-                <p className="text-sm p-1 font-semibold text-slate-500">Document verification and user compliance status</p>
+                <h3 className={`${header1} p-1`}>Compliance Overview</h3>
+                <p className={`${subHeader} p-1`}>Document verification and user compliance status</p>
               </div>
               <div className="px-6">
                 <Button
@@ -191,6 +190,7 @@ const Dashboard: React.FC = () => {
                   onClick={() => navigate('/compliance')}
                   label="Review All"
                   color="primary"
+                  variant="contained"
                 />
               </div>
             </div>
@@ -205,8 +205,8 @@ const Dashboard: React.FC = () => {
           <div className="bg-white p-4 rounded-2xl ">
             <div className="flex justify-between items-center ">
               <div className="mt-7 ml-7">
-                <h3 className="text-lg font-bold text-slate-800">Top Performing Tradies</h3>
-                <p className="text-sm text-slate-500">Top performing tradies based on revenue</p>
+                <h3 className={header}>Top Performing Tradies</h3>
+                <p className={subHeader}>Top performing tradies based on revenue</p>
               </div>
             </div>
             <div className="overflow-y-auto h-[720px]">
@@ -217,8 +217,8 @@ const Dashboard: React.FC = () => {
           <div className="bg-white p-4 rounded-2xl ">
             <div className="flex justify-between items-center ">
               <div className="mt-7 ml-7">
-                <h3 className="text-lg font-bold text-slate-800">Top Landlords by Revenue</h3>
-                <p className="text-sm text-slate-500">Top landlords based on revenue</p>
+                <h3 className={header}>Top Landlords by Revenue</h3>
+                <p className={subHeader}>Top landlords based on revenue</p>
               </div>
             </div>
             <div className="overflow-y-auto h-[720px]">
@@ -231,8 +231,8 @@ const Dashboard: React.FC = () => {
 
         <div className="bg-white p-4 rounded-2xl lg:min-h-[420px]">
           <div className="flex justify-between flex-col m-2 p-2 ">
-            <h3 className="text-lg font-bold text-slate-800">Payment Overview</h3>
-            <p className="text-sm text-slate-500">Transaction volume and platform fees</p>
+            <h3 className={header}>Payment Overview</h3>
+            <p className={subHeader}>Transaction volume and platform fees</p>
           </div>
           <div className="overflow-y-auto h-[720px]">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -243,16 +243,16 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
 
         {/* Last Div Component */}
         <div className="p-1 rounded-2xl lg:min-h-[420px] grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl ">
-              <DisputesProps data={disputesData} />
-            </div>
-            <div className="bg-white rounded-2xl">
-              <ReviewWidgets data={reviewsData} />
-            </div>
+          <div className="bg-white rounded-2xl ">
+            <DisputesProps data={disputesData} />
+          </div>
+          <div className="bg-white rounded-2xl">
+            <ReviewWidgets data={reviewsData} />
+          </div>
         </div>
       </div>
     </>
