@@ -10,7 +10,8 @@ import type {
   failedPayoutsDataProps,
   PaymentWidgetsDataProps,
   TransactionDataProps,
-  RefundDataProps
+  RefundDataProps,
+  PaymentAdjustmentsDataProps
 } from "../appShell/payments/PaymentWidgets";
 
 export const paymentData: CardProps[] = [
@@ -300,10 +301,118 @@ export const RefundData:RefundDataProps[] = [
       },
       amount:{
         refundAmount:100,
+        proccessingTime:"3-5",
+      },
+      reason:"Invalid Bank Accoun",
+      time:"2026-03-09",
+      status:"proccessing",
+    },
+    {
+      transactionId:406515,
+      user:{
+        avatar:"https://i.pravatar.cc/40",
+        name:"John Doe",
+        role:{
+          name:"Tradie",
+          type:"Electrician",
+        },
+      },
+      amount:{
+        refundAmount:100,
+        completionTime:"2026-03-10",
+      },
+      reason:"Invalid Bank Accoun",
+      time:"2026-03-10",
+      status:"completed",
+    },
+    {
+      transactionId:406515,
+      user:{
+        avatar:"https://i.pravatar.cc/40",
+        name:"John Doe",
+        role:{
+          name:"Tradie",
+          type:"Electrician",
+        },
+      },
+      amount:{
+        refundAmount:100,
         originalAmount:100,
       },
       reason:"Invalid Bank Accoun",
-      time:"2022-01-01",
-      status:"proccessing",
+      time:"2026-03-12",
+      status:"pending review",
     }
+]
+
+
+export const PaymentAdjustmentData:PaymentAdjustmentsDataProps[] = [
+    {
+      transactionId:406515,
+      orginalId:10398,
+      user:{
+        avatar:"https://i.pravatar.cc/40",
+        name:"John Doe",
+        role:{
+          name:"Tradie",
+          type:"Electrician",
+        },
+      },
+      type:"Debit",
+      amount:200,
+      reason:"Invalid Bank Accoun",
+      date:"2026-03-09",
+      admin:"John Doe",
+    },
+    {
+      transactionId:406515,
+      orginalId:10398,
+      user:{
+        avatar:"https://i.pravatar.cc/40",
+        name:"John Doe",
+        role:{
+          name:"Tradie",
+          type:"Electrician",
+        },
+      },
+      type:"Credit",
+      amount:100,
+      reason:"Invalid Bank Accoun",
+      date:"2026-03-09",
+      admin:"John Doe",
+    },
+    {
+      transactionId:406515,
+      orginalId:10398,
+      user:{
+        avatar:"https://i.pravatar.cc/40",
+        name:"John Doe",
+        role:{
+          name:"Tradie",
+          type:"Electrician",
+        },
+      },
+      type:"Credit",
+      amount:100,
+      reason:"Invalid Bank Accoun",
+      date:"2026-03-09",
+      admin:"John Doe",
+    },
+    {
+      transactionId:406515,
+      orginalId:10398,
+      user:{
+        avatar:"https://i.pravatar.cc/40",
+        name:"John Doe",
+        role:{
+          name:"Tradie",
+          type:"Electrician",
+        },
+      },
+      type:"Debit",
+      amount:100,
+      reason:"Invalid Bank Accoun",
+      date:"2026-03-09",
+      admin:"John Doe",
+    },
 ]
