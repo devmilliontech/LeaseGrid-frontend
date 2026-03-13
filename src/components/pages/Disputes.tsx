@@ -117,7 +117,7 @@ const Disputes: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="h-[calc(100vh-200px)] rounded-2xl">
                     {view === "Queue" ?
                         <QueueView data={disputeQueueData} />
                         : view === "List" ?
