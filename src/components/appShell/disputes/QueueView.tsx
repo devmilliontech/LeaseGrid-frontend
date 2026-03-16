@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { header, subject, subSubject, subSubSubject } from "../../common/style";
-import { AlertCircle, Calendar, CircleAlert, Folder, MessageSquare, Star, Mail, Phone, Flag, FileText, ImageIcon, Play } from "lucide-react";
+import { AlertCircle, Calendar, CircleAlert, Folder, MessageSquare, Star, Mail, Phone, Flag, FileText, ImageIcon, Play, Clock10, SendHorizonal, CircleCheck,} from "lucide-react";
 import { UserAvatar } from "../../common/UserAvtar";
 import { GetDays } from "../../common/GetDays";
+import Checkbox from "@mui/material/Checkbox";
+import { Input } from "../../common/fromComponent/Input";
+import { DropDown } from "../../common/fromComponent/DropDown";
+import { Button } from "../../common/fromComponent/button";
 
 
 
@@ -77,6 +81,8 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
     const [open, setOpen] = useState(false)
     const [selectedDispute, setSelectedDispute] = useState<QueueViewDataProps | null>(null)
     const [filteredMessages, setFilteredMessages] = useState<any[]>([]);
+    const [selectedDecision, setSelectedDecision] = useState<string | null>(null)
+    const [selectedActions, setSelectedActions] = useState<string[]>([]);
 
 
 
@@ -163,9 +169,9 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
     }
 
     const countFiles = (messages?: any[]) =>
-  messages?.reduce((total, msg) => total + (msg.file?.length || 0), 0) || 0;
+        messages?.reduce((total, msg) => total + (msg.file?.length || 0), 0) || 0;
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-4 w-full h-250">
+        <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-4 w-full h-200 pb-4">
             <div className=" px-4 py-2 rounded-2xl bg-white w-80 ">
                 <div className="flex flex-row my-4 justify-between">
                     <p className={`${header}`}>Dispute Queue</p>
@@ -407,8 +413,8 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
                                                                 {message.isComplainant ? (
                                                                     Array.isArray(message.issue) &&
                                                                     message.issue.map((reason: string, index: number) => (
-                                                                        <p key={index} 
-                                                                        className={`${subSubSubject} !text-blue-600 px-3 py-1 bg-blue-200 rounded-lg`}
+                                                                        <p key={index}
+                                                                            className={`${subSubSubject} !text-blue-600 px-3 py-1 bg-blue-200 rounded-lg`}
                                                                         >
                                                                             Issue: {reason}
                                                                         </p>
@@ -444,22 +450,198 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
                             </div>
                         </div>
                         {/* Admin Decision Panel */}
-                        <div className="bg-blue-50 py-4 p-4 rounded-2xl h-150">
-                            <p className={`${header}`}>Admin Decision</p>
-                            <div className="flex flex-row justify-between py-4">
-                                <div className="w-full">
+                        <div className="bg-blue-50 border-2 border-blue-200 py-5 p-4 rounded-2xl h-full flex flex-col">
+                            <p className={`${header}`}>Admin Decision Panel</p>
+                            <div className="flex flex-row justify-between py-4 gap-4">
+                                <div className="w-full flex flex-col gap-2">
                                     <p className={`${subSubject}`}>Resolution Outcome</p>
-                                    <div className="flex flex-col">
-                                        <div>Accept</div>
-                                        <div>Reject</div>
-                                        <div>Escalate</div>
-                                        <div>Close</div>
+                                    <div className="flex flex-col gap-4 ">
+                                        <div className="flex flex-row items-center gap-2 p-2 border-2 border-slate-300 rounded-2xl bg-white">
+                                            <Checkbox
+                                                checked={selectedDecision === "favor_complainant"}
+                                                onChange={() => setSelectedDecision(selectedDecision === "favor_complainant" ? null : "favor_complainant")}
+                                            />
+                                            <div className="flex flex-col">
+                                                <p className={`${subSubject}`}>Favor Complainant</p>
+                                                <p className={`${subSubSubject}`}>{selectedDispute?.complainant.name} wins the dispute</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-row items-center gap-2 p-2 border-2 border-slate-300 rounded-xl bg-white">
+                                            <Checkbox
+                                                checked={selectedDecision === "favor_respondent"}
+                                                onChange={() => setSelectedDecision(selectedDecision === "favor_respondent" ? null : "favor_respondent")}
+                                            />
+                                            <div className="flex flex-col">
+                                                <p className={`${subSubject}`}>Favor Respondent</p>
+                                                <p className={`${subSubSubject}`}>{selectedDispute?.respondent.name} wins the dispute</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-row items-center gap-2 p-2 border-2 border-slate-300 rounded-2xl bg-white">
+                                            <Checkbox
+                                                checked={selectedDecision === "split_decision"}
+                                                onChange={() => setSelectedDecision(selectedDecision === "split_decision" ? null : "split_decision")}
+                                            />
+                                            <div className="flex flex-col">
+                                                <p className={`${subSubject}`}>Split Decision</p>
+                                                <p className={`${subSubSubject}`}>Partial resolution for both parties</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-row items-center gap-2 p-2 border-2 border-slate-300 rounded-2xl bg-white">
+                                            <Checkbox
+                                                checked={selectedDecision === "mediation_required"}
+                                                onChange={() => setSelectedDecision(selectedDecision === "mediation_required" ? null : "mediation_required")}
+                                            />
+                                            <div className="flex flex-col">
+                                                <p className={`${subSubject}`}>Mediation Required</p>
+                                                <p className={`${subSubSubject}`}>Schedule mediation call</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="w-full">
                                     <p className={`${subSubject}`}>Financial Resolution</p>
-                                    
+                                    <div className="flex flex-col gap-4 ">
+                                        <div>
+                                            <Input
+                                                type="number"
+                                                label="Refund Amount"
+                                                placeholder="$ 0.00"
+                                                className="w-full border-2 border-slate-300 rounded-xl bg-white"
+                                            />
+                                        </div>
+                                        <div>
+                                            <Input
+                                                type="number"
+                                                label="Payment to Tradie"
+                                                placeholder="$ 0.00"
+                                                className="w-full border-2 border-slate-300 rounded-xl bg-white"
+                                            />
+                                        </div>
+                                        <div>
+                                            <DropDown
+                                                label="Platform Fee Adjustment"
+                                                options={["No Adjustment", "Waive Platform Fee", "50% Refund", "Custom Amount"]}
+                                                className="w-full border-2 border-slate-300 rounded-xl py-3 bg-white"
+                                                onChange={(value) => console.log(value)}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div className="pb-2">
+                                <Input
+                                    type="textarea"
+                                    label="Admin Resolution Notes"
+                                    placeholder="Enter detailed reasoning for your decision. this will shared with both parties...."
+                                    className="!h-30 border-2 border-slate-300 bg-white !py-2"
+                                />
+                            </div>
+                            <div className="pb-2">
+                                <p className={`${header}`}>Follow-up Actions</p>
+                                <div className="flex flex-col gap-4 py-4">
+                                    <div className="flex flex-row gap-4">
+                                        <div className="w-full bg-white rounded-xl border-2 border-slate-300 flex flex-row items-center p-2 h-10">
+                                            <Checkbox
+                                                sx={{
+                                                    color: "purple",
+                                                    '&.Mui-checked': {
+                                                        color: "purple",
+                                                    },
+                                                    '& .MuiSvgIcon-root': {
+                                                        width: 15,
+                                                        height: 15,
+                                                        borderRadius: "50%",
+                                                    },
+                                                }}
+                                                checked={selectedActions.includes("send_warning_tradie")}
+                                                onChange={() => setSelectedActions(selectedActions.includes("send_warning_tradie") ? selectedActions.filter((action) => action !== "send_warning_tradie") : [...selectedActions, "send_warning_tradie"])}
+                                            />
+                                            <p className={`${subSubject}`}>Send warning to tradie</p>
+                                        </div>
+                                        <div className="w-full bg-white rounded-xl p-2 border-2 border-slate-300 flex flex-row items-center h-10">
+                                            <Checkbox
+                                                checked={selectedActions.includes("flag_quality_review")}
+                                                onChange={() => setSelectedActions(selectedActions.includes("flag_quality_review") ? selectedActions.filter((action) => action !== "flag_quality_review") : [...selectedActions, "flag_quality_review"])}
+                                                sx={{
+                                                    color: "purple",
+                                                    '&.Mui-checked': {
+                                                        color: "purple",
+                                                    },
+                                                    '& .MuiSvgIcon-root': {
+                                                        width: 15,
+                                                        height: 15,
+                                                        borderRadius: "50%",
+                                                    },
+                                                }}
+                                            />
+                                            <p className={`${subSubject}`}>Flag for quality review</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-row gap-4">
+                                        <div className="w-full bg-white rounded-xl p-2 border-2 border-slate-300 flex flex-row items-center h-10">
+                                            <Checkbox
+                                                checked={selectedActions.includes("user-rating")}
+                                                onChange={() => setSelectedActions(selectedActions.includes("user-rating") ? selectedActions.filter((action) => action !== "user-rating") : [...selectedActions, "user-rating"])}
+                                                sx={{
+                                                    color: "purple",
+                                                    '&.Mui-checked': {
+                                                        color: "purple",
+                                                    },
+                                                    '& .MuiSvgIcon-root': {
+                                                        width: 15,
+                                                        height: 15,
+                                                        borderRadius: "50%",
+                                                    },
+                                                }}
+                                            />
+                                            <p className={`${subSubject}`}>Update user ratings</p>
+                                        </div>
+                                        <div className="w-full bg-white rounded-xl p-2 border-2 border-slate-300 flex flex-row items-center h-10">
+                                            <Checkbox
+                                                checked={selectedActions.includes("require_reinspection")}
+                                                onChange={() => setSelectedActions(selectedActions.includes("require_reinspection") ? selectedActions.filter((action) => action !== "require_reinspection") : [...selectedActions, "require_reinspection"])}
+                                                sx={{
+                                                    color: "purple",
+                                                    '&.Mui-checked': {
+                                                        color: "purple",
+                                                    },
+                                                    '& .MuiSvgIcon-root': {
+                                                        width: 15,
+                                                        height: 15,
+                                                        borderRadius: "50%",
+                                                    },
+                                                }}
+                                            />
+                                            <p className={`${subSubject}`}>Require re-inspection</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <Button
+                                    label="Save as Draft"
+                                    onClick={() => { }}
+                                    className="w-full rounded-full py-2"
+                                    icon={Clock10}
+                                    color="secondary"
+                                    variant="contained"
+                                />
+                                <Button
+                                    label="Request Mediation"
+                                    onClick={() => { }}
+                                    className="w-full rounded-full py-2"
+                                    icon={SendHorizonal}
+                                    color="info"
+                                    variant="contained"
+                                />
+                                <Button
+                                    label="Finalize Decision"
+                                    onClick={() => { }}
+                                    className="w-full rounded-full py-2"
+                                    icon={CircleCheck}
+                                    color="success"
+                                    variant="contained"
+                                />
                             </div>
                         </div>
                     </div>
@@ -468,4 +650,4 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
             </div>
         </div>
     )
-}
+}   

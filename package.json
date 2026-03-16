@@ -1,7 +1,7 @@
 {
   "name": "leasegrid-frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the central frontend administration dashboard for **LeaseGrid**. It provides a modern, responsive, and robust UI for administrators to manage the complete LeaseGrid prop-tech and services ecosystem.",
   "homepage": "https://github.com/devmilliontech/LeaseGrid-frontend#readme",
   "bugs": {
     "url": "https://github.com/devmilliontech/LeaseGrid-frontend/issues"
@@ -13,6 +13,7 @@
   "license": "ISC",
   "author": "",
   "type": "module",
+  "main": "app.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
