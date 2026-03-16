@@ -53,10 +53,7 @@ const Jobs: React.FC = () => {
                                         <ProgressBar value={5} height={10} />
                                    </div>
                               </div>
-
                          </div>
-
-
                          {/* Average Response Time */}
                          <div className="flex flex-col rounded-2xl h-[90vh] shadow-sm shadow-gray-300 bg-white">
                               <div className="flex flex-col px-6 pt-8">

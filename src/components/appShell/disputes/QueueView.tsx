@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { header, subject, subSubject, subSubSubject } from "../../common/style";
-import { AlertCircle, Calendar, CircleAlert, Folder, MessageSquare, Star, Mail, Phone, Flag, FileText, ImageIcon, Play, Clock10, SendHorizonal, CircleCheck,} from "lucide-react";
+import { AlertCircle, Calendar, CircleAlert, Folder, MessageSquare, Star, Mail, Phone, Flag, FileText, ImageIcon, Play, Clock10, SendHorizonal, CircleCheck, X, CircleX,} from "lucide-react";
 import { UserAvatar } from "../../common/UserAvtar";
 import { GetDays } from "../../common/GetDays";
 import Checkbox from "@mui/material/Checkbox";
@@ -171,13 +171,13 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
     const countFiles = (messages?: any[]) =>
         messages?.reduce((total, msg) => total + (msg.file?.length || 0), 0) || 0;
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-4 w-full h-200 pb-4">
-            <div className=" px-4 py-2 rounded-2xl bg-white w-80 ">
+        <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-4 w-full h-full pb-4 ">
+            <div className=" px-4 py-2 rounded-2xl bg-white w-80">
                 <div className="flex flex-row my-4 justify-between">
                     <p className={`${header}`}>Dispute Queue</p>
                     <p className="px-3 py-2 bg-red-50 text-red-600 rounded-full text-xs font-semibold">{totalOpen} open</p>
                 </div>
-                <div className="flex flex-col gap-4 overflow-y-auto scrollbar-hide " >
+                <div className="flex flex-col gap-4 overflow-y-auto scrollbar-hide h-260" >
                     {data.map((item, index) => {
                         return (
                             <div
@@ -234,8 +234,10 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
                                 </div>
                                 <p className={subSubSubject}>Plumbing Issue -{selectedDispute.issue}</p>
                             </div>
-                            <div className=" w-full flex justify-end pr-5">
-                                <CircleAlert className={`w-5.5 h-5.5 rounded-full !bg-white ${statusColor(selectedDispute.status)}`} />
+                            <div className=" w-full flex justify-end pr-5 ">
+                                <CircleX className={`w-5 h-5 rounded-full cursor-pointer bg-red-100 text-red-600`} 
+                                    onClick={() => {setSelectedDispute(null); setOpen(false);}}
+                                />
                             </div>
                         </div>
                         {/* Parties Involved */}

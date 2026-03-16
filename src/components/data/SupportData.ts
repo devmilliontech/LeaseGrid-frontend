@@ -1,159 +1,159 @@
 import { MessageSquare, Clock8, TicketCheck, TicketPlus, Tickets, Wallet, User, Cog, NotebookPen, Lightbulb } from "lucide-react";
-import type {CardProps} from "../appShell/Cards";
+import type { CardProps } from "../appShell/Cards";
 import type { TicketProps } from "../appShell/support/ListView";
 import type { agentData } from "../appShell/support/AgentCard";
-import type { categoryData } from "../appShell/support/CategoryCard";
+import type { categoryData } from "../appShell/CategoryCard";
 
 
-export const AgentData:agentData[] = [
+export const AgentData: agentData[] = [
      {
-          name:"John Doe",
-          avatar:"https://i.pravatar.cc/40",
-          role:"Senior Support",
-          totalResolved:12
+          name: "John Doe",
+          avatar: "https://i.pravatar.cc/40",
+          role: "Senior Support",
+          totalResolved: 12
      },
      {
-          name:"John Doe",
-          avatar:"https://i.pravatar.cc/40",
-          role:"Support",
-          totalResolved:12
+          name: "John Doe",
+          avatar: "https://i.pravatar.cc/40",
+          role: "Support",
+          totalResolved: 12
      },
      {
-          name:"John Doe",
-          avatar:"https://i.pravatar.cc/40",
-          role:"Support",
-          totalResolved:12
+          name: "John Doe",
+          avatar: "https://i.pravatar.cc/40",
+          role: "Support",
+          totalResolved: 12
      },
-    
+
 ]
 
 
-export const SupportData:CardProps[] = [
-     {  
+export const SupportData: CardProps[] = [
+     {
           value: 456,
           icon: Tickets,
           badgeText: "Total ",
-          subtitle:"All tickets"
+          subtitle: "All tickets"
      },
      {
           value: 100,
           icon: TicketPlus,
           badgeText: "New",
-          subtitle:"Unassigned"
+          subtitle: "Unassigned"
      },
      {
           value: 20,
           icon: TicketCheck,
           badgeText: "Active",
-          subtitle:"In progress"
+          subtitle: "In progress"
      },
      {
           value: 66,
           icon: Clock8,
           badgeText: "Waiting",
-          subtitle:"On user"
+          subtitle: "On user"
      },
      {
           value: 89,
           icon: MessageSquare,
           badgeText: "Resolved",
-          subtitle:"This week"
+          subtitle: "This week"
      },
 ];
 
 
 
-export const TicketData:TicketProps[] = [
+export const TicketData: TicketProps[] = [
      {
-          ticket:{
+          ticket: {
                id: 8945,
                subject: "Payment gateway integration error",
-               subSubject:"Users unable to complete rent payments.",
+               subSubject: "Users unable to complete rent payments.",
                status: "New",
                priority: "Critical",
-               CreatedOn:"5h ",
+               CreatedOn: "5h ",
                sla: 16
           },
-          ticketRequestor:{name:"Sarah Johnson",avatar:"https://i.pravatar.cc/40"},
+          ticketRequestor: { name: "Sarah Johnson", avatar: "https://i.pravatar.cc/40" },
      },
      {
-          ticket:{
+          ticket: {
                id: 8945,
                subject: "Payment gateway integration error",
-               subSubject:"Users unable to complete rent payments.",
+               subSubject: "Users unable to complete rent payments.",
                status: "New",
                priority: "High",
-               CreatedOn:"5h ",
+               CreatedOn: "5h ",
                sla: 10
           },
-          ticketRequestor:{name:"Sarah Johnson",avatar:"https://i.pravatar.cc/40"},
+          ticketRequestor: { name: "Sarah Johnson", avatar: "https://i.pravatar.cc/40" },
      },
      {
-          ticket:{
+          ticket: {
                id: 8945,
                subject: "Payment gateway integration error",
-               subSubject:"Users unable to complete rent payments.",
+               subSubject: "Users unable to complete rent payments.",
                status: "Resolved",
                priority: "Resolved",
-               CreatedOn:"5h ",
+               CreatedOn: "5h ",
                sla: 4
           },
-          ticketAssignee:{name:"John Doe",avatar:"https://i.pravatar.cc/40"},
-          ticketRequestor:{name:"Sarah Johnson",avatar:"https://i.pravatar.cc/40"},
+          ticketAssignee: { name: "John Doe", avatar: "https://i.pravatar.cc/40" },
+          ticketRequestor: { name: "Sarah Johnson", avatar: "https://i.pravatar.cc/40" },
      },
      {
-          ticket:{
+          ticket: {
                id: 8945,
                subject: "Payment gateway integration error",
-               subSubject:"Users unable to complete rent payments.",
+               subSubject: "Users unable to complete rent payments.",
                status: "In Progress",
                priority: "Medium",
-               CreatedOn:"5h ",
+               CreatedOn: "5h ",
                sla: 4
           },
-          ticketAssignee:{name:"John Doe",avatar:"https://i.pravatar.cc/40"},
-          ticketRequestor:{name:"Sarah Johnson",avatar:"https://i.pravatar.cc/40"},
+          ticketAssignee: { name: "John Doe", avatar: "https://i.pravatar.cc/40" },
+          ticketRequestor: { name: "Sarah Johnson", avatar: "https://i.pravatar.cc/40" },
      },
      {
-          ticket:{
+          ticket: {
                id: 8945,
                subject: "Payment gateway integration error",
-               subSubject:"Users unable to complete rent payments.",
+               subSubject: "Users unable to complete rent payments.",
                status: "Waiting",
                priority: "High",
-               CreatedOn:"5h ",
+               CreatedOn: "5h ",
                sla: 4
           },
-          ticketAssignee:{name:"John Doe",avatar:"https://i.pravatar.cc/40"},
-          ticketRequestor:{name:"Sarah Johnson",avatar:"https://i.pravatar.cc/40"},
+          ticketAssignee: { name: "John Doe", avatar: "https://i.pravatar.cc/40" },
+          ticketRequestor: { name: "Sarah Johnson", avatar: "https://i.pravatar.cc/40" },
      },
 ];
 
 
-export const CategoryData:categoryData[] = [
+export const CategoryData: categoryData[] = [
      {
-          title:"Payment Issues",
-          icon:Wallet,
-          total:12
+          title: "Payment Issues",
+          icon: Wallet,
+          total: 12
      },
      {
-          title:"Account Related",
-          icon:User,
-          total:12
+          title: "Account Related",
+          icon: User,
+          total: 12
      },
      {
-          title:"Technical",
-          icon:Cog,
-          total:12
+          title: "Technical",
+          icon: Cog,
+          total: 12
      },
      {
-          title:"General Inquiry",
-          icon:NotebookPen,
-          total:12
+          title: "General Inquiry",
+          icon: NotebookPen,
+          total: 12
      },
      {
-          title:"Feature Request",
-          icon:Lightbulb,
-          total:12
+          title: "Feature Request",
+          icon: Lightbulb,
+          total: 12
      },
 ]

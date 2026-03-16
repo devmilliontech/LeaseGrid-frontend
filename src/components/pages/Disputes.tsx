@@ -1,11 +1,14 @@
 import React from "react";
 import { StatusCard } from "../appShell/Cards";
-import { disputeData, disputeQueueData } from "../data/Disputes";
+import { disputeCategory, disputeData, disputeQueueData } from "../data/Disputes";
 import { Button } from "../common/fromComponent/button.tsx";
 import { RefreshCw, Columns4, List, LayoutGrid } from "lucide-react";
-import { header, subHeader } from "../common/style";
+import { header, subHeader, subject, subSubject, subSubSubject } from "../common/style";
 import { DropDown } from "../common/fromComponent/DropDown.tsx";
 import { QueueView } from "../appShell/disputes/QueueView";
+import ProgressBar from "../common/ProgressBar.tsx";
+import { CategoryCard } from "../appShell/CategoryCard.tsx";
+import { CategoryData } from "../data/SupportData.ts";
 
 
 const Disputes: React.FC = () => {
@@ -117,7 +120,8 @@ const Disputes: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="h-[calc(100vh-200px)] rounded-2xl">
+                {/* Disputes View */}
+                <div className="h-full rounded-2xl">
                     {view === "Queue" ?
                         <QueueView data={disputeQueueData} />
                         : view === "List" ?
@@ -127,6 +131,55 @@ const Disputes: React.FC = () => {
                             // <GridView />
                             <div>GridView</div>
                     }
+                </div>
+                {/* Dispute Analytics & Insights */}
+                <div className="">
+                    <div className="flex flex-col m-2">
+                        <p className={header}>Dispute Analytics & Insights</p>
+                        <p className={subHeader}>Performance metrics and resolution patterns</p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                        <StatusCard data={disputeData.slice(0, 4)} />
+                    </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                    {/* Disputes by Category */}
+                    <div className="flex flex-col bg-white rounded-2xl shadow-sm shadow-gray-300 px-6 py-8">
+                        <div className="flex flex-row justify-between mb-4 ">
+                            <p className={header}>Disputes by Category</p>
+                            <p className="text-sm font-semibold text-teal-600 cursor-pointer hover:text-teal-400">View Reports</p>
+                        </div>
+                        <div className="flex flex-col ">
+                            <div className="flex flex-col ">
+                                <h1 className={subSubject}>Payment Issues</h1>
+                                <ProgressBar value={85} height={10} />
+                            </div>
+                            <div className="flex flex-col ">
+                                <h1 className={subSubject}>Work Quality</h1>
+                                <ProgressBar value={65} height={10} />
+                            </div>
+                            <div className="flex flex-col ">
+                                <h1 className={subSubject}>Communication</h1>
+                                <ProgressBar value={45} height={10} />
+                            </div>
+                            <div className="flex flex-col ">
+                                <h1 className={subSubject}>Property Damage</h1>
+                                <ProgressBar value={30} height={10} />
+                            </div>
+                            <div className="flex flex-col ">
+                                <h1 className={subSubject}>Contract Breach</h1>
+                                <ProgressBar value={15} height={10} />
+                            </div>
+                        </div>
+                    </div>
+                    {/* Resolution Outcomes */}
+                    <div className="flex flex-col bg-white rounded-2xl shadow-sm shadow-gray-300 px-6 py-8">
+                        <div className="flex flex-row justify-between mb-4 ">
+                            <p className={header}>Resolution Outcomes</p>
+                            <p className="text-sm font-semibold text-teal-600 cursor-pointer hover:text-teal-400">View Reports</p>
+                        </div>
+                        <CategoryCard data={disputeCategory} />
+                    </div>
                 </div>
             </div>
         </>

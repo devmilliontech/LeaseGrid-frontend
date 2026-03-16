@@ -8,7 +8,7 @@ import { Columns4, LayoutGrid, List, } from "lucide-react";
 import { AgentCard } from "../appShell/support/AgentCard";
 import { header } from "../common/style";
 import ColorProgreebar from '../common/ColorProgreebar'
-import { CategoryCard } from "../appShell/support/CategoryCard";
+import { CategoryCard } from "../appShell/CategoryCard";
 
 
 
