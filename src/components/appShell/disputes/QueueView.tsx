@@ -3,6 +3,7 @@ import { header, subject, subSubject, subSubSubject } from "../../common/style";
 import { AlertCircle, Calendar, CircleAlert, Folder, MessageSquare, Star, Mail, Phone, Flag, FileText, ImageIcon, Play } from "lucide-react";
 import { UserAvatar } from "../../common/UserAvtar";
 import { GetDays } from "../../common/GetDays";
+import Checkbox from "@mui/material/Checkbox";
 
 
 
@@ -163,7 +164,7 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
     }
 
     const countFiles = (messages?: any[]) =>
-  messages?.reduce((total, msg) => total + (msg.file?.length || 0), 0) || 0;
+        messages?.reduce((total, msg) => total + (msg.file?.length || 0), 0) || 0;
     return (
         <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-4 w-full h-250">
             <div className=" px-4 py-2 rounded-2xl bg-white w-80 ">
@@ -407,8 +408,8 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
                                                                 {message.isComplainant ? (
                                                                     Array.isArray(message.issue) &&
                                                                     message.issue.map((reason: string, index: number) => (
-                                                                        <p key={index} 
-                                                                        className={`${subSubSubject} !text-blue-600 px-3 py-1 bg-blue-200 rounded-lg`}
+                                                                        <p key={index}
+                                                                            className={`${subSubSubject} !text-blue-600 px-3 py-1 bg-blue-200 rounded-lg`}
                                                                         >
                                                                             Issue: {reason}
                                                                         </p>
@@ -450,15 +451,43 @@ export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
                                 <div className="w-full">
                                     <p className={`${subSubject}`}>Resolution Outcome</p>
                                     <div className="flex flex-col">
-                                        <div>Accept</div>
-                                        <div>Reject</div>
-                                        <div>Escalate</div>
-                                        <div>Close</div>
+                                        <div>
+                                            <div className="flex flex-row items-center gap-2 bg-white p-2 rounded-lg">
+                                                <Checkbox
+
+                                                />
+                                                <p>Asif</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="flex flex-row items-center gap-2">
+                                                <Checkbox
+                                                    value="reject"
+                                                />
+                                                <p>Reject</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="flex flex-row items-center gap-2">
+                                                <Checkbox
+                                                    value="escalate"
+                                                />
+                                                <p>Escalate</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="flex flex-row items-center gap-2">
+                                                <Checkbox
+                                                    value="close"
+                                                />
+                                                <p>Close</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="w-full">
                                     <p className={`${subSubject}`}>Financial Resolution</p>
-                                    
+
                                 </div>
                             </div>
                         </div>
