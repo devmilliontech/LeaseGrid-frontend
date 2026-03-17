@@ -8,6 +8,7 @@ interface ButtonProps {
   variant?: "outlined" | "contained";
   icon?: LucideIcon | undefined;
   children?: React.ReactNode;
+  disabled?: boolean,
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -18,6 +19,7 @@ export const Button: React.FC<ButtonProps> = ({
   variant = "contained",
   icon: Icon,
   children,
+  disabled = false,
 }) => {
 
   const containedStyles = {
@@ -43,6 +45,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
+      disabled={disabled}
       className={`${styles} ${className} text-sm font-semibold rounded cursor-pointer flex items-center justify-center`}
     >
       {Icon ? <span className="px-2"><Icon className="h-4 w-4" /></span> : null}

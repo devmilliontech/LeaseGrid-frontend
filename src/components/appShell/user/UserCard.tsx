@@ -1,4 +1,4 @@
-import { CalendarDaysIcon, Clock, HousePlus, Mail, UserRoundX, RefreshCwOff, File, BriefcaseBusiness, CircleCheck, UserX, Save } from "lucide-react";
+import { CalendarDaysIcon, Clock, HousePlus, Mail, UserRoundX, RefreshCwOff, File, BriefcaseBusiness, CircleCheck, UserX, Save, Eye } from "lucide-react";
 import { Search, SlidersHorizontal, ArrowDownWideNarrow, LayoutGrid, X } from "lucide-react";
 import React, { useState } from "react";
 import { Input } from "../../common/fromComponent/Input";
@@ -216,7 +216,7 @@ export const UserTable: React.FC<UserTableProps> = ({
                               label="Total Properties"
                               value={selectedUser?.TotalProperties || ""}
                               className="border-slate-200"
-                              onChange={(e: React.ChangeEvent<HTMLInputElement>) => { e.target.value }}
+                              onChange={(e) => { e.target.value }}
                          />
                     );
 
@@ -225,14 +225,14 @@ export const UserTable: React.FC<UserTableProps> = ({
                          label="Documents Status"
                          value={selectedUser?.documentsStatus || ""}
                          className="border-slate-200"
-                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => { e.target.value }}
+                         onChange={(e) => { e.target.value }}
                     />;
                case "Tradie":
                     return <Input
                          label="Total Jobs Completed"
                          value={selectedUser?.totalJobsCompleted || ""}
                          className="border-slate-200"
-                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => { e.target.value }}
+                         onChange={(e) => { e.target.value }}
                     />;
           }
      };
@@ -242,7 +242,7 @@ export const UserTable: React.FC<UserTableProps> = ({
                {data.map((user, index) => {
                     return (
                          <div key={index} className="bg-white rounded-xl border border-slate-100 
-                               transition-all hover:shadow-md  h-74  shadow-slate-400"
+                               transition-all hover:shadow-md  shadow-slate-400 p-2 "
                          >
                               <div className="flex flex-row justify-between m-4">
                                    <div className={`w-15 h-15 rounded-full  
@@ -287,32 +287,25 @@ export const UserTable: React.FC<UserTableProps> = ({
                                         {getType(user.type, user.TotalProperties ?? 0, user.totalJobsCompleted ?? 0, user.documentsStatus ?? "N/A")}
                                    </div>
                               </div>
-                              <div className=" flex flex-row justify-between items-center ">
+                              <div className=" flex flex-row justify-between items-center px-2">
                                    <Tooltip title="View Profile">
-                                        <IconButton onClick={() => handleViewProfile(user)}>
-                                             <Button
-                                                  label="View Profile"
-                                                  onClick={() => { }}
-                                                  color="primary"
-                                                  className="px-3 py-2 rounded-xl"
-                                             />
-                                        </IconButton>
+                                        <Eye
+                                             onClick={() => handleViewProfile(user)}
+                                             className="w-12 h-9 font-medium text-slate-800 text-xs
+                                                  hover:bg-teal-500 hover:text-white transition-colors cursor-pointer 
+                                                  rounded-2xl px-2 py-2 bg-teal-100"
+                                        />
                                    </Tooltip>
                                    <Tooltip title="Send Email">
-                                        <IconButton>
-                                             <Mail className="w-12 h-9 font-medium text-slate-800  text-xs
-                                                  hover:bg-slate-400 transition-colors cursor-pointer 
+                                        <Mail className="w-12 h-9 font-medium text-slate-800  text-xs
+                                                  hover:bg-slate-400 transition-colors hover:text-white cursor-pointer 
                                                   rounded-2xl px-2 py-2 bg-slate-200" />
-                                        </IconButton>
                                    </Tooltip>
                                    <Tooltip title="Suspend" >
-                                        <IconButton>
-                                             <UserRoundX
-                                                  className="w-12 h-9 text-red-500 hover:text-white 
-                                                       hover:bg-red-600 transition-colors cursor-pointer 
-                                                       rounded-2xl px-2 py-2 bg-red-200"
-                                             />
-                                        </IconButton>
+                                        <UserRoundX className="w-12 h-9 text-red-500 hover:text-white 
+                                              hover:bg-red-600 transition-colors cursor-pointer 
+                                              rounded-2xl px-2 py-2 bg-red-200"
+                                        />
                                    </Tooltip >
                               </div>
                          </div>

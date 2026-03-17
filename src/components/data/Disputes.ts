@@ -1,6 +1,7 @@
 import type { CardProps } from "../appShell/Cards";
 import type { categoryData } from "../appShell/CategoryCard";
 import type { QueueViewDataProps } from "../appShell/disputes/QueueView";
+import type { DisputesTableDataProps } from "../appShell/disputes/DisputesTable";
 import { Clock, MessageSquarePlus, CircleCheck, MessageSquareHeart, MessageSquareDiff, Wallet, SquareSplitHorizontal, MessageSquareReply, Omega, } from "lucide-react";
 
 export const disputeData: CardProps[] = [
@@ -959,4 +960,98 @@ export const disputeCategory: categoryData[] = [
     subTitle: "Required intervention",
     percentage: 8,
   },
+]
+
+
+export const disputesTbalesData:DisputesTableDataProps[]=[
+  {
+    disputesId:4756,
+    userComplainant: {
+      name: "Mike Davis",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Landlord", type: "Property Owner" },
+    },
+    userRespondent: {
+      name: "Jane Smith",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Tradie", type: "Plumber" },
+    },
+    Category: "Plumbing Issue",
+    Outcome: "Complainant",
+    time: "10:30:00",
+    date: "2026-03-11",
+    admin: "John Doe",
+  },{
+    disputesId:4756,
+    userComplainant: {
+      name: "Mike Davis",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Landlord", type: "Property Owner" },
+    },
+    userRespondent: {
+      name: "Jane Smith",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Tradie", type: "Plumber" },
+    },
+    Category: "Work Quality",
+    Outcome: "Split",
+    time: "10:30:00",
+    date: "2026-03-11",
+    admin: "John Doe",
+  },
+  {
+    disputesId:4756,
+    userComplainant: {
+      name: "Mike Davis",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Landlord", type: "Property Owner" },
+    },
+    userRespondent: {
+      name: "Jane Smith",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Tradie", type: "Plumber" },
+    },
+    Category: "Communication",
+    Outcome: "Respondent",
+    time: "10:30:00",
+    date: "2026-03-11",
+    admin: "John Doe",
+  },
+  {
+    disputesId:4756,
+    userComplainant: {
+      name: "Mike Davis",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Landlord", type: "Property Owner" },
+    },
+    userRespondent: {
+      name: "Jane Smith",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Tradie", type: "Plumber" },
+    },
+    Category: "Property Damage",
+    Outcome: "Complainant",
+    time: "10:30:00",
+    date: "2026-03-11",
+    admin: "John Doe",
+  },
+  {
+    disputesId:4756,
+    userComplainant: {
+      name: "Mike Davis",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Landlord", type: "Property Owner" },
+    },
+    userRespondent: {
+      name: "Jane Smith",
+      avatar: "https://i.pravatar.cc/40",
+      role: { name: "Tradie", type: "Plumber" },
+    },
+    Category: "Contract Breach",
+    Outcome: "Mediation",
+    time: "10:30:00",
+    date: "2026-03-11",
+    admin: "John Doe",
+  },
+  
 ]

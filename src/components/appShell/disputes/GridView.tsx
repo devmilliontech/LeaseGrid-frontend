@@ -76,7 +76,7 @@ const getFileType = (file: string) => {
     return "file";
 };
 
-export const QueueView: React.FC<QueueViewProps> = ({ data }) => {
+export const GridView: React.FC<QueueViewProps> = ({ data }) => {
     const [totalOpen, setTotalOpen] = useState(0);
     const [open, setOpen] = useState(false)
     const [selectedDispute, setSelectedDispute] = useState<QueueViewDataProps | null>(null)

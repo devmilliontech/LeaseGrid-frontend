@@ -1,14 +1,17 @@
 import React from "react";
 import { StatusCard } from "../appShell/Cards";
-import { disputeCategory, disputeData, disputeQueueData } from "../data/Disputes";
+import { disputeCategory, disputeData, disputeQueueData, disputesTbalesData } from "../data/Disputes";
 import { Button } from "../common/fromComponent/button.tsx";
-import { RefreshCw, Columns4, List, LayoutGrid } from "lucide-react";
+import { RefreshCw, Columns4, List, LayoutGrid, Plus } from "lucide-react";
 import { header, subHeader, subject, subSubject, subSubSubject } from "../common/style";
 import { DropDown } from "../common/fromComponent/DropDown.tsx";
 import { QueueView } from "../appShell/disputes/QueueView";
 import ProgressBar from "../common/ProgressBar.tsx";
 import { CategoryCard } from "../appShell/CategoryCard.tsx";
-import { CategoryData } from "../data/SupportData.ts";
+
+import { DisputesTableWidgets } from "../appShell/disputes/DisputesTable.tsx";
+import { ListView } from "../appShell/disputes/ListView.tsx";
+import { GridView } from "../appShell/disputes/GridView.tsx";
 
 
 const Disputes: React.FC = () => {
@@ -33,7 +36,7 @@ const Disputes: React.FC = () => {
                                 color="primary"
                                 onClick={() => { }}
                                 label="Reset All Filters"
-                                className="px-5 py-2 rounded-2xl"
+                                className="pr-5 pl-3 py-2 rounded-2xl"
                                 icon={RefreshCw}
                             />
                         </div>
@@ -99,7 +102,7 @@ const Disputes: React.FC = () => {
                                 variant={view === "Queue" ? "contained" : "outlined"}
                                 onClick={() => setView("Queue")}
                                 label="Queue View"
-                                className="px-4 py-2 rounded-lg"
+                                className="pr-5 pl-3 py-2 rounded-lg"
                                 icon={Columns4}
                             />
 
@@ -107,14 +110,14 @@ const Disputes: React.FC = () => {
                                 variant={view === "List" ? "contained" : "outlined"}
                                 onClick={() => setView("List")}
                                 label="List View"
-                                className="px-4 py-2 rounded-lg"
+                                className="pr-5 pl-3 py-2 rounded-lg"
                                 icon={List}
                             />
                             <Button
                                 variant={view === "Grid" ? "contained" : "outlined"}
                                 onClick={() => setView("Grid")}
                                 label="Grid View"
-                                className="px-4 py-2 rounded-lg"
+                                className="pr-5 pl-3 py-2 rounded-lg"
                                 icon={LayoutGrid}
                             />
                         </div>
@@ -126,10 +129,10 @@ const Disputes: React.FC = () => {
                         <QueueView data={disputeQueueData} />
                         : view === "List" ?
                             // <ListView />
-                            <div>ListView</div>
+                            <ListView data={disputeQueueData} />
                             :
                             // <GridView />
-                            <div>GridView</div>
+                            <GridView data={disputeQueueData} />
                     }
                 </div>
                 {/* Dispute Analytics & Insights */}
@@ -142,8 +145,8 @@ const Disputes: React.FC = () => {
                         <StatusCard data={disputeData.slice(0, 4)} />
                     </div>
                 </div>
+                {/* Disputes by Category */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-                    {/* Disputes by Category */}
                     <div className="flex flex-col bg-white rounded-2xl shadow-sm shadow-gray-300 px-6 py-8">
                         <div className="flex flex-row justify-between mb-4 ">
                             <p className={header}>Disputes by Category</p>
@@ -179,6 +182,33 @@ const Disputes: React.FC = () => {
                             <p className="text-sm font-semibold text-teal-600 cursor-pointer hover:text-teal-400">View Reports</p>
                         </div>
                         <CategoryCard data={disputeCategory} />
+                    </div>
+                </div>
+                {/* Recently Resolved Disputes */}
+                <div className="flex flex-col bg-white rounded-2xl shadow-sm shadow-gray-300 px-6 py-8">
+                    <div className="flex flex-row justify-between mb-4">
+                        <p className={header}>Recently Resolved Disputes</p>
+                        <p className={`text-teal-700 hover:text-tea-400 cursor-pointer text-sm font-semibold`}>View All Resolutions</p>
+                    </div>
+                    <div>
+                        <DisputesTableWidgets data={disputesTbalesData} />
+                    </div>
+                </div>
+                <div className="flex flex-col bg-white rounded-2xl shadow-sm shadow-gray-300 px-6 py-8">
+                    <div className="flex flex-row justify-between mb-4">
+                        <p className={header}>Quick Admin Actions & Notes</p>
+                        <Button
+                            label="Add Note"
+                            icon={Plus}
+                            onClick={() => console.log("Add Note")}
+                            className="pr-4 pl-1 py-2 rounded-full"
+                            variant="contained"
+                            color="primary"
+                        />
+
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                        <StatusCard data={disputeData.slice(0, 3)} />
                     </div>
                 </div>
             </div>

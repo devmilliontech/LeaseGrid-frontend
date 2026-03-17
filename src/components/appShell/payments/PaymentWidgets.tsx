@@ -405,6 +405,7 @@ export interface RefundDataProps {
     }
     reason: string;
     time: string;
+    date: string;
 
 }
 
@@ -456,7 +457,7 @@ export const RefundCard: React.FC<RefundTableProps> = ({ data }) => {
                                     <p className={`${subject}`}>{item.user.name}</p>
                                     <div className="flex flex-row gap-2">
                                         <p className={`${subSubject}`}>Transaction #TXN-{item.transactionId}</p>
-                                        <p className={`${subSubject}`}>Approved {GetDays(item.time)} </p>
+                                        <p className={`${subSubject}`}>Approved {GetDays(item.date, item.time)} </p>
                                     </div>
                                     <p className={`${subSubject}`}>Reason: {item.reason}</p>
                                 </div>

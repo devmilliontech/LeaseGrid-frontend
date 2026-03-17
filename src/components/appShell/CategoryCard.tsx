@@ -1,4 +1,4 @@
-import { type LucideIcon, Wallet, User, Cog, NotebookPen, Lightbulb, CircleCheck, SquareSplitHorizontal, MessageSquareReply, Omega } from "lucide-react";
+import { type LucideIcon, Wallet, User, Cog, NotebookPen, Lightbulb, CircleCheck, SquareSplitHorizontal, MessageSquareReply, Omega, BriefcaseBusiness, Building } from "lucide-react";
 import { subject, subSubject, subSubSubject } from "../common/style";
 
 export interface categoryData {
@@ -23,6 +23,7 @@ export const CategoryCard = ({ data }: CategoryCardProps) => {
                 return "bg-blue-100 text-blue-600";
             case Cog:
             case MessageSquareReply:
+            case Building :
                 return "bg-purple-100 text-purple-600";
             case NotebookPen:
             case CircleCheck:
@@ -31,6 +32,8 @@ export const CategoryCard = ({ data }: CategoryCardProps) => {
                 return "bg-orange-100 text-orange-600";
             case Omega:
                 return "bg-red-100 text-red-600";
+            case BriefcaseBusiness :
+                return "bg-teal-100 text-teal-600"
             default:
                 return "bg-white";
         }
@@ -61,6 +64,7 @@ export const CategoryCard = ({ data }: CategoryCardProps) => {
                 return "bg-blue-50 border-2 border-blue-100";
             case Cog:
             case MessageSquareReply:
+            case Building:
                 return "bg-purple-50 border-2 border-purple-100";
             case NotebookPen:
             case CircleCheck:
@@ -69,6 +73,8 @@ export const CategoryCard = ({ data }: CategoryCardProps) => {
                 return "bg-orange-50 border-2 border-orange-100";
             case Omega:
                 return "bg-red-50 border-2 border-red-100";
+            case BriefcaseBusiness :
+                return "bg-teal-50 border-2 border-teal-100"
             default:
                 return "bg-white";
         }
