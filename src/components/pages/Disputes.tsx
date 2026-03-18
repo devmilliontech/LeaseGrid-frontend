@@ -19,7 +19,7 @@ const Disputes: React.FC = () => {
     const [view, setView] = React.useState("Queue");
     return (
         <>
-            <div className="p-2 space-y-6 max-w-[1600px] mx-auto">
+            <div className="p-2 space-y-3 max-w-[1600px] mx-auto">
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                     <StatusCard data={disputeData} />

@@ -9,7 +9,7 @@ import { header1, subHeader } from "../common/style";
 const Users: React.FC = () => {
   return (
     <>
-      <div className="px-2 py-2 space-y-6 max-w-[1600px] mx-auto">
+      <div className="px-2 py-2 space-y-3 max-w-[1600px] mx-auto">
         {/* Users Status Card */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           <StatusCard

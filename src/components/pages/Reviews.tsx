@@ -1,6 +1,6 @@
 import React from "react";
 import { StatusCard } from "../appShell/Cards";
-import { reviewCardData, reviewData, reviewType } from "../data/Reviews";
+import { ModerationData, reviewCardData, reviewData, reviewType } from "../data/Reviews";
 import { Button } from "../common/fromComponent/button";
 import { DropDown } from "../common/fromComponent/DropDown";
 import { header } from "../common/style";
@@ -10,19 +10,20 @@ import Checkbox from "@mui/material/Checkbox";
 import { ReviewsCard } from "../appShell/reviews/ReviewsCard";
 import ProgressBar from "../common/ProgressBar";
 import { CategoryCard } from "../appShell/CategoryCard";
+import { ModerationCard } from "../appShell/reviews/Reviewidgets";
 
 const Reviews: React.FC = () => {
     return (
         <>
-            <div className="p-2 space-y-6 max-w-[1600px] mx-auto">
+            <div className="p-2 space-y-3 max-w-[1600px] mx-auto">
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                     <StatusCard data={reviewData} />
                 </div>
                 {/* Filter & Sort Disputes */}
-                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col mb-4">
+                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
                     <div className="flex flex-row justify-between">
-                        <div className="flex flex-col m-2">
+                        <div className="flex flex-col">
                             <p className={header}>Filter & Sort Disputes</p>
                         </div>
                         <div className="flex flex-row items-center gap-4">
@@ -166,8 +167,9 @@ const Reviews: React.FC = () => {
                         />
                     </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-3">
-                    <div className="bg-white rounded-2xl p-6 shadow-sm flex gap-5 flex-col" >
+                {/* Rating Distribution */}
+                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-3 h-100">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg flex gap-5 flex-col" >
                         <div className="flex flex-col gap-2">
                             <p className={header}>Rating Distribution</p>
                             <p className={subSubject}>Breakdown of all reviews by star rating</p>
@@ -234,7 +236,7 @@ const Reviews: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm flex gap-5 flex-col" >
+                    <div className="bg-white rounded-2xl p-6 shadow-lg flex gap-5 flex-col " >
                         <div className="flex flex-col gap-2">
                             <p className={header}>Review Type Breakdown</p>
                             <p className={subSubject}>Distribution by review category</p>
@@ -243,6 +245,25 @@ const Reviews: React.FC = () => {
                             <CategoryCard data={reviewType} />
                         </div>
                     </div>
+                </div>
+                {/* Recent Moderation Activity */}
+                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg flex gap-5 flex-col" >
+                        <div className="flex flex-row gap-2 justify-between items-center px-2">
+                            <div>
+                                <p className={header}>Recent Moderation Activity</p>
+                                <p className={subSubject}>Latest actions taken by moderation team</p>
+                            </div>
+                            <div>
+                                <p className="text-sm font-semibold text-teal-700 cursor-pointer hover:text-teal-500">View All Activity</p>
+                            </div>
+                        </div>
+                        <ModerationCard data={ModerationData} />
+                    </div>
+                </div>
+                {/* Review Data */}
+                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4">
+                    <StatusCard data={reviewData.slice(0,4)} />
                 </div>
             </div>
         </>

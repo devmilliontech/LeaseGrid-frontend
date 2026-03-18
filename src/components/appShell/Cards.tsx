@@ -33,10 +33,16 @@ import {
     MessageSquareDiff,
     MessageSquareHeart,
     Star,
-    StarHalf
+    StarHalf,
+    Logs,
+    UserRoundCheck,
+    Download,
+    BadgeAlert,
+    Clock7,
+    UserRoundX,
+    Ban
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { millify } from "millify";
 import { Button } from "../common/fromComponent/button";
 
 
@@ -65,16 +71,21 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
                 return "bg-green-50";
             case CirclePlus:
             case TicketPlus:
+            case Clock7:
                 return "bg-orange-50";
             case OctagonAlert:
                 return "bg-amber-50";
             case Clock8:
+            case UserRoundX:
                 return "bg-yellow-50";
             case Timer:
             case TicketX:
+            case BadgeAlert:
                 return "bg-red-50";
             case TicketCheck:
                 return "bg-teal-50";
+            case Ban:
+                return "bg-purple-50"
             default:
                 return "bg-white";
         }
@@ -89,9 +100,11 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case Tickets:
             case MessageSquareDiff:
             case Star:
+            case Logs:
                 return "text-sky-600 bg-sky-100";
             case Clock:
             case Clock8:
+            case UserRoundX:
                 return "text-yellow-600 bg-yellow-100";
             case AlertTriangle:
             case UserX:
@@ -99,17 +112,21 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case CircleX:
             case TicketX:
             case MessageSquarePlus:
+            case BadgeAlert:
                 return "text-red-600 bg-red-100";
             case Flag:
             case TicketCheck:
                 return "text-teal-600 bg-teal-100";
             case Ticket:
             case Lock:
+            case UserRoundCheck:
+            case Ban:
                 return "text-purple-600 bg-purple-100";
             case Hammer:
             case CirclePlus:
             case MessageSquareWarning:
             case TicketPlus:
+            case Clock7:
                 return "text-orange-600 bg-orange-100";
             case UserPlus:
             case HousePlus:
@@ -117,6 +134,7 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case CircleCheck:
             case Receipt:
             case MessageSquare:
+            case Download:
                 return "text-green-600 bg-green-100";
             case Wallet:
                 return "text-cyan-600 bg-cyan-100";

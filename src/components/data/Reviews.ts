@@ -1,7 +1,8 @@
-import { BriefcaseBusiness, Building, CircleCheck, Clock, Flag, Star, StarHalf, User } from "lucide-react";
+import { BadgeCheck, BriefcaseBusiness, Building, CircleCheck, Clock, EyeOff, Flag, Star, StarHalf, User } from "lucide-react";
 import type { CardProps } from "../appShell/Cards";
 import type { ReviewCardDataProps } from "../appShell/reviews/ReviewsCard";
 import type { categoryData } from "../appShell/CategoryCard";
+import type { ModerationDataProps } from "../appShell/reviews/Reviewidgets";
 
 export const reviewData :CardProps[] = [
     {
@@ -171,5 +172,54 @@ export const reviewType:categoryData[]=[
         icon:User,
         subTitle:"9.7% of total reviews"
         
+    },
+]
+
+
+export const ModerationData:ModerationDataProps[]=[
+    {
+        Id:8947,
+        adminName:"Admin User",
+        status:"Approved",
+        reviewEr:{
+            name:"John Doe",
+            review:{
+                star:5,
+                type:"Tradie",
+            },
+            time:"12:00 PM",
+            date:"2022-01-01",
+        },
+        icon:CircleCheck,
+    },
+    {
+        Id:8947,
+        adminName:"Admin User",
+        status:"Flagged",
+        reviewEr:{
+            time:"12:00 PM",
+            date:"2022-01-01",
+        },
+        icon:Flag,
+    },
+    {
+        Id:8947,
+        adminName:"Admin User",
+        status:"Verified",
+        reviewEr:{
+            name:"John Doe",
+            time:"12:00 PM",
+            date:"2022-01-01",
+        },
+        icon:BadgeCheck,
+    },{
+        Id:8947,
+        adminName:"Moderator Sarah",
+        status:"Hidden",
+        reviewEr:{
+            time:"12:00 PM",
+            date:"2022-01-01",
+        },
+        icon:EyeOff,
     },
 ]

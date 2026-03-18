@@ -18,7 +18,7 @@ function SignupPage() {
     password: '',
   });
 
-  const SetUser = useAuthStore((state) => state.SetUser);
+  const SetUser = useAuthStore((state) => state.SetUser); 
 
   const handleSignup = () => {
     if (!formData.name || !formData.email || !formData.password) {

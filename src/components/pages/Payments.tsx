@@ -22,14 +22,14 @@ const Payments: React.FC = () => {
 
     return (
         <>
-            <div className="px-2 py-2space-y-6 max-w-[1600px] mx-auto">
+            <div className="px-2 py-2 space-y-3 max-w-[1600px] mx-auto">
                 {/* Payment First Row Card */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 m-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                     <StatusCard data={paymentData} />
                 </div>
 
                 {/* Payment Second Row Card */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full m-1 my-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
                     <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm h-full flex flex-col">
                         <div className="flex flex-col mb-6 m-2">
                             <p className={header}>Transaction Volume Trend</p>
