@@ -3,7 +3,7 @@ import { StatusCard } from "../appShell/Cards";
 import { LogsStatusData, LogTableCardData } from "../data/logs";
 import { DropDown } from "../common/fromComponent/DropDown";
 import { Button } from "../common/fromComponent/button";
-import { Download, Filter, NotepadText } from "lucide-react";
+import { Download, Filter, HardDriveDownload, NotepadText } from "lucide-react";
 import { header } from "../common/style";
 import { LogsTableCard } from "../appShell/logs/LogTbaleCard";
 
@@ -90,7 +90,7 @@ const Logs: React.FC = () => {
                             color="primary"
                             onClick={() => { }}
                             className="px-3 py-2 rounded-2xl mt-6"
-                            icon={Download}
+                            icon={HardDriveDownload}
                         />
                     </div>
                 </div>

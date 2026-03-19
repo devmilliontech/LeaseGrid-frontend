@@ -1,32 +1,35 @@
 import React, { useState } from "react";
 import { StatusCard } from "../appShell/Cards";
-import { ComplianceStatusData, ListViewData } from "../data/compilance";
+import { AutoCardsData, CardData, ComplianceStatusData, ListViewData } from "../data/compilance";
 import { Button } from "../common/fromComponent/button";
-import { Ban, CircleCheck, Columns4, Delete, List, Send, Trash } from "lucide-react";
-import { header } from "../common/style";
+import { Ban, CircleCheck, Columns4, FileDown, List, Send, Trash } from "lucide-react";
+import { header, subHeader } from "../common/style";
 import { DropDown } from "../common/fromComponent/DropDown";
 import Checkbox from "@mui/material/Checkbox";
 import { useAuthStore } from "../store/useAuthStore";
 import { ListView } from "../appShell/compilance/ListView";
 import { GridView } from "../appShell/compilance/GridView";
+import { AutoCards, Card } from "../appShell/compilance/Card";
 
 
 const Compliance: React.FC = () => {
     const [active, setActive] = useState(true);
     const [view, setView] = useState("kanban");
-    const {selectIteam} = useAuthStore();
+    const { selectIteam } = useAuthStore();
     const setSelectIteam = useAuthStore((state) => state.setSelectIteam);
-    
+
     React.useEffect(() => {
-        setSelectIteam({count:0,total:ListViewData.length,item:[],selectAll:false});
+        setSelectIteam({ count: 0, total: ListViewData.length, item: [], selectAll: false });
     }, [setSelectIteam]);
 
     return (
         <>
             <div className="p-2 space-y-3 max-w-[1600px] mx-auto">
+                {/* Status Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     <StatusCard data={ComplianceStatusData} />
                 </div>
+                {/* Compliance Records */}
                 <div className="flex flex-col gap-3 bg-white rounded-2xl shadow-md shadow-gray-100 p-5">
                     <div className="flex flex-row justify-between ">
                         <h1 className={`${header}`}> Compliance Records</h1>
@@ -63,26 +66,29 @@ const Compliance: React.FC = () => {
                     </div>
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 flex flex-row justify-between">
                         <div className="flex flex-row justify-between items-center gap-2">
-                           <Checkbox size="small" color="secondary" 
+                            <Checkbox size="small" color="secondary"
                                 checked={selectIteam.selectAll || (selectIteam.total > 0 && selectIteam.count === selectIteam.total)}
-                                onChange={(e) => { 
-                                    if(e.target.checked){
+                                onChange={(e) => {
+                                    if (e.target.checked) {
                                         setSelectIteam({
-                                            count:selectIteam.total,
-                                            total:selectIteam.total,
-                                            item:ListViewData,
-                                            selectAll:true})
-                                    }else{
+                                            count: selectIteam.total,
+                                            total: selectIteam.total,
+                                            item: ListViewData,
+                                            selectAll: true
+                                        })
+                                    } else {
                                         setSelectIteam({
-                                            count:0,
-                                            total:ListViewData.length,
-                                            item:[],
-                                            selectAll:false})
-                                    }  }} 
+                                            count: 0,
+                                            total: ListViewData.length,
+                                            item: [],
+                                            selectAll: false
+                                        })
+                                    }
+                                }}
                             />
                             <p>{selectIteam.count} items selected</p>
                         </div>
-                        <div  className="flex flex-row justify-between items-center gap-2">
+                        <div className="flex flex-row justify-between items-center gap-2">
                             <Button
                                 variant="contained"
                                 onClick={() => { }}
@@ -142,6 +148,63 @@ const Compliance: React.FC = () => {
                                 className="px-7 py-2 rounded-2xl"
                             />
                         </div>
+                    </div>
+                </div>
+                {/* Third row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3">
+                    {/* Recent Compliance Actions */}
+                    <div className="bg-white rounded-2xl p-6 shadow-lg flex gap-5 flex-col">
+                        <div>
+                            <p className={header}>Recent Compliance Actions</p>
+                        </div>
+                        <div>
+                            <Card data={CardData} />
+                        </div>
+                    </div>
+                    {/* Automated Alerts */}
+                    <div className="bg-white rounded-2xl p-6 shadow-lg flex gap-5 flex-col">
+                        <div>
+                            <p className={header}>Automated Alerts</p>
+                        </div>
+                        <div>
+                            <AutoCards data={AutoCardsData} />
+                        </div>
+                    </div>
+                </div>
+                {/* Fourth row */}
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex gap-5 flex-col">
+                    <div className="flex flex-col">
+                        <p className={header}>Compliance Trends & Analytics</p>
+                        <p className={subHeader}>Document expiry patterns and verification rates</p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <StatusCard data={ComplianceStatusData.slice(0,3)} />
+                    </div>
+                </div>
+                {/* Five row */}
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex gap-5 flex-col">
+                    <div className="flex flex-row justify-between ">
+                        <p className={header}>Document Categories Overview</p>
+                      <Button
+                        label="Export Details"
+                        onClick={()=>{}}
+                        variant="outlined"
+                        color="secondary"
+                        icon={FileDown}
+                        className="pl-2 pr-4 rounded-lg"
+                    />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                        <StatusCard data={ComplianceStatusData} />
+                    </div>
+                </div>
+                {/* six row */}
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex gap-5 flex-col">
+                    <div className="flex flex-row justify-between ">
+                        <p className={header}>Quick Compliance Actions</p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                        <StatusCard data={ComplianceStatusData} />
                     </div>
                 </div>
             </div>

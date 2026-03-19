@@ -1,6 +1,7 @@
-import { AlertOctagon, BadgeAlert, Ban, Clock7, User2, UserPlus, UserRoundX, UserX } from "lucide-react";
+import {BadgeAlert, Ban, Clock7,UserRoundX,File, Send, UserX, CircleCheck, FileInput, Clock4, CircleAlert  } from "lucide-react";
 import type { CardProps } from "../appShell/Cards";
 import type { ListViewDataProps } from "../appShell/compilance/ListView";
+import type { AutoCardsDataProps, cardsDataProps } from "../appShell/compilance/Card";
 
 
 export const ComplianceStatusData: CardProps[] = [
@@ -71,10 +72,10 @@ export const ListViewData: ListViewDataProps[] = [
             role: "Tradie",
         },
         documentsType: "Background Check",
-        expiryDate: "2026-03-20",
         status: "In Review",
         Piority: "Medium",
-        lastAction: "2 days ago",
+        Submitted: "5 hour ago",
+        Category:"Under Review"
     },
     {
         user: {
@@ -84,35 +85,102 @@ export const ListViewData: ListViewDataProps[] = [
             role: "Landlord",
         },
         documentsType: "Property Insurance",
-        expiryDate: "2026-03-19",
+        expiryDate: "3 days ago",
         status: "Auto-Suspend",
-        Piority: "Critical",
-        lastAction: "2 days ago",
+        Piority: "Urgent",
+        Scheduled:"Tomorrow 10 AM"
     },
     {
         user: {
             avatar: "https://i.pravatar.cc/40",
-            name: "Michael Garcia",
+            name: "James Brown",
             id: "45872",
-            role: "Landlord",
+            role: "Tenant",
         },
-        documentsType: "Property Insurance",
-        expiryDate: "2026-03-20",
-        status: "Expiring Soon",
-        Piority: "Critical",
-        lastAction: "2 days ago",
+        documentsType: "ID Verification",
+        status: "Pending Upload",
+        Piority: "Medium",
+        Category:"Unverified",
+        Registered: "2 days ago",
     },
     {
         user: {
             avatar: "https://i.pravatar.cc/40",
-            name: "Michael Garcia",
+            name: "Robert Anderson",
             id: "4572",
             role: "Landlord",
         },
         documentsType: "Property Insurance",
-        expiryDate: "2026-03-20",
-        status: "Compliant",
-        Piority: "Critical",
-        lastAction: "1 week ago",
+        expiryDate: "1 day ago",
+        status: "Auto-Suspend",
+        Piority: "Urgent",
+        Scheduled:"Tomorrow 9 AM",
+    },
+]
+
+
+export const CardData:cardsDataProps[]=[
+    {
+        title:"Expiring in 7 Days",
+        subTitle:"Sarah Johnson's Safety Certificate verified and approved",
+        icon:CircleCheck,
+        action:"Admin User",
+        timeStamp:"5 minutes ago",
+    },
+    {
+        title:"Reminder Sent",
+        subTitle:"Expiry reminder sent to Michael Garcia for Property Insurance",
+        icon:Send,
+        action:"System Automated",
+        timeStamp:"15 minutes ago",
+    },
+    {
+        title:"User Suspended",
+        subTitle:"Robert Anderson suspended due to expired insurance policy",
+        icon:UserX,
+        action:"Admin User",
+        timeStamp:"30 minutes ago",
+    },
+    {
+        title:"Document Uploaded",
+        subTitle:"Lisa Martinez submitted Background Check for review",
+        icon:FileInput,
+        action:"User Action",
+        timeStamp:"1 hour ago",
+    },
+    {
+        title:"Extension Granted",
+        subTitle:"David Thompson granted 30-day extension for Insurance renewal",
+        icon:Clock7,
+        action:"Admin User",
+        timeStamp:"2 hours ago",
+    },
+]
+
+
+
+export const AutoCardsData:AutoCardsDataProps[]=[
+    {
+        status:"Critical",
+        title:" Mass Expiry Warning",
+        icon:CircleAlert,
+        subTitle:"12 documents expiring within 7 days - immediate action required"
+    },
+    {
+        status:"Warning",
+        title:" Pending Verifications",
+        icon:Clock4,
+        subTitle:"45 unverified users pending document submission"
+    },
+    {
+        title:"Auto-Suspension Scheduled",
+        icon:Clock7,
+        subTitle:"8 accounts scheduled for automatic suspension within 24 hours"
+    },
+    {
+        status:"Success",
+        title:"Daily Compliance Scan",
+        icon:CircleCheck,
+        subTitle:"Automated compliance scan completed - 2,762 accounts verified"
     },
 ]

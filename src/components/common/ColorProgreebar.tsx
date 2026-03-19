@@ -1,5 +1,4 @@
 import LinearProgress from '@mui/material/LinearProgress';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 export default function ColorProgreebar({value,height,color}: {value: number,height?:number,color?:string}) {
@@ -17,7 +16,6 @@ export default function ColorProgreebar({value,height,color}: {value: number,hei
                     borderRadius: 10,
                 },
             }} 
-            color='warning'
         />
       </Box>
     </Box>

@@ -4,6 +4,7 @@ export interface Notification {
     description: string;
     time: string;
     read: boolean;
+    url: string;
 }
 
 
@@ -14,26 +15,30 @@ export const notificationData: Notification[] = [
         description: "You have a new job request from a client.",
         time: "6 hours ago",
         read: false,
+        url: "jobs"
     },
     {
         id: 2,
-        title: "Job Request Approved",
-        description: "Your job request has been approved by the client.",
+        title: "New User Added",
+        description: "You have a new application user added.",
         time: "2 hours ago",
         read: false,
+        url: "users"
     },
     {
         id: 3,
-        title: "Job Request Rejected",
-        description: "Your job request has been rejected by the client.",
+        title: "Resolved Disputes",
+        description: "Disputes between Tenant and Landlord resolved .",
         time: "10 hours ago",
         read: false,
+        url: "disputes"
     },
     {
         id: 4,
-        title: "Lanloard Create a Property",
-        description: "Lanloard Create a Property",
+        title: "Payment Failed",
+        description: "User Jhon doe try to make payment but failed.",
         time: "5 hours ago",
         read: true,
+        url: "payments"
     }
 ];

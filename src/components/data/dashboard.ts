@@ -1,16 +1,17 @@
+
 import type { CardProps } from "../appShell/Cards";
-import { 
+import {
      Home,
-     Clock, 
-     AlertTriangle, 
-     Flag, 
-     Ticket, 
-     OctagonAlert, 
+     Clock,
+     AlertTriangle,
+     Flag,
+     Ticket,
+     OctagonAlert,
      Clock8,
      NotebookPen,
      UserX,
      Receipt,
-     Timer,  
+     Timer,
 } from "lucide-react";
 
 
@@ -60,6 +61,7 @@ export const DashboardCardData: CardProps[] = [
 
 // Compliance Overview Data
 export const ComplianceOverviewCard: CardProps[] = [
+     
      {
           value: 12,
           icon: Timer,
@@ -82,9 +84,9 @@ export const ComplianceOverviewCard: CardProps[] = [
           value: 30,
           icon: NotebookPen,
           badgeText: "Compliant",
-          describstion:"Expiring in 7 days"
+          describstion: "Expiring in 7 days"
      },
-];  
+];
 
 
 // Quick Actions Data
@@ -93,24 +95,43 @@ export const QuickActionsCard: CardProps[] = [
           title: "Review Flagged Disputes",
           subtitle: "3 disputes require immediate attention",
           icon: AlertTriangle,
-          buttonText: "Review",
-          path: "/disputes",
-          value: 3,
+          value:50,
+          path:"/disputes",
+          button:{
+            label:"Review",
+            variant:"contained",
+            onClick:()=>{
+                console.log("Review");
+            }
+        }
      },
      {
-       title: "Suspend User Account",
+          title: "Suspend User Account",
           subtitle: "Manage user suspensions and restrictions",
           icon: UserX,
-          buttonText: "Manage Users",
-          path: "/users",
-          value: 30,
+          value:50,
+          path:"/users",
+          button:{
+            label:"Review",
+            variant:"contained",
+            onClick:()=>{
+                console.log("Review");
+            }
+        }
+          
      },
      {
-        title: "Issue Refund",
+          title: "Issue Refund",
           subtitle: "Process refunds and payment adjustments",
           icon: Receipt,
-          buttonText: "Process Refund",
-          path: "/payments",
           value: 20000,
+          path:"/payments",
+          button:{
+            label:"Review",
+            variant:"contained",
+            onClick:()=>{
+                console.log("Review");
+            }
+        }
      },
 ];   

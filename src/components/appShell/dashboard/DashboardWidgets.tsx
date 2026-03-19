@@ -369,7 +369,9 @@ export const TopLandlords: React.FC<TopLandlordsProps> = ({ data, }) => {
           <div className="bg-white p-6 rounded-2xl h-full flex flex-col">
                <div className="flex-1 overflow-y-auto pr-2 space-y-3 scrollbar-hide">
                     {topLandlords.map((landlord, index) => (
-                         <div className={`p-4 rounded-xl border
+                         <div
+                              key={index}
+                              className={`p-4 rounded-xl border
                               shadow-sm ${getTopLandlordsColor(index)}`}
                          >
                               <div className="flex justify-between">

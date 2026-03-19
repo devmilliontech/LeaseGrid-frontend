@@ -14,10 +14,14 @@ export interface ListViewDataProps {
         role: string;
     }
     documentsType: string;
-    expiryDate: string;
+    expiryDate?: string;
     status: string;
     Piority: string;
-    lastAction: string;
+    lastAction?: string;
+    Category?: string;
+    Registered?: string;
+    Submitted?: string;
+    Scheduled?: string;
 }
 
 interface ListViewProps {

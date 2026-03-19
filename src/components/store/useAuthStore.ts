@@ -1,18 +1,12 @@
 import { create } from "zustand";
 import type { ListViewDataProps } from "../appShell/compilance/ListView";
+import type { Notification } from "../data/notifiacation";
 
 interface user{
     name: string;
     email: string;
     password: string;
     role: string;
-}
-interface notification{
-    id: number;
-    title: string;
-    description: string;
-    time: string;
-    read: boolean;
 }
 interface selectIteam{
     count:number;
@@ -21,22 +15,26 @@ interface selectIteam{
     selectAll: boolean;
     
 }
+interface selectNotification{
+    notification:Notification[]|null;
+}
+
 interface AuthState {
     isAuthenticated: boolean;
     user:user|null;
-    notification:notification[];
+    notification:selectNotification
     selectIteam:selectIteam;
     login: () => void;  
     logout: () => void;
     SetUser:(user:user)=> void;  
-    setNotification:(notification:notification[])=> void;
+    setNotification:(notification:Notification[])=> void;
     setSelectIteam:(selectIteam:selectIteam)=> void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
     isAuthenticated: false,
     user:null,
-    notification:[],
+    notification:{notification:null},
     selectIteam:{
         count:0,
         total:0,
@@ -46,6 +44,6 @@ export const useAuthStore = create<AuthState>((set) => ({
     login: () => set({ isAuthenticated: true }),
     logout: () => set({ isAuthenticated: false,user:null }),
     SetUser:(user:user)=> set({ user }),
-    setNotification:(notification:notification[])=> set({ notification }),
+    setNotification:(notification:Notification[])=> set({ notification: { notification } }),
     setSelectIteam:(selectIteam:selectIteam)=> set({ selectIteam }),
 }));    

@@ -14,10 +14,11 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
      const [open, setOpen] = useState(false);
      const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
      const [notificationCount, setNotificationCount] = useState<number>(0);
-     const [notifiacation, setNotifiacation] = useState<Notification[]>();
      const user = localStorage.getItem('user') as string;
      const userObj = JSON.parse(user);
-     const { setNotification } = useAuthStore();
+     const setNotification = useAuthStore((state)=>state.setNotification);
+     const{notification}=useAuthStore()
+     
      const navigate = useNavigate();
 
      useEffect(() => {
@@ -25,12 +26,16 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
                setUserName(userObj.name.toUpperCase());
           }
           if (notificationData) {
-               setNotifiacation(notificationData);
-               setNotificationCount(notificationData.filter((notification) => !notification.read).length);
                setNotification(notificationData);
           }
-          console.log("notifiacation", notifiacation);
-     }, [notificationData])
+     }, [notificationData]);
+
+     useEffect(() => {
+          if (notification?.notification) {
+               setNotificationCount(notification.notification.filter((n) => !n.read).length);
+          }
+          console.log("notification:", notification);
+     }, [notification]);
 
      const handleNotificationClick = (event: React.MouseEvent<HTMLButtonElement>) => {
           setOpen(true);
@@ -42,10 +47,17 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
           setAnchorEl(null);
      }
 
-     const handelClickNotification = () => {
+     const handelClickNotification = (item:Notification) => {
           setOpen(false);
           setAnchorEl(null);
-          navigate("/jobs");
+          if (notification?.notification) {
+               setNotification(
+                    notification.notification.map((n) =>
+                         n.id === item.id ? { ...n, read: true } : n
+                    )
+               );
+          }
+          navigate(`/${item.url}`);
      }
 
      const getNotificationColor = (notification: Notification) => {
@@ -100,6 +112,7 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
                     <Button
                          className="!bg-transparent !p-0 !border-0 relative !text-slate-600 hover:!text-slate-900"
                          onClick={handleNotificationClick as any}
+                         key={null}
                     >
                          <Bell className="w-6 h-6" />
                          {/* Notification dot */}
@@ -141,29 +154,28 @@ export default function HeaderNavigation({ title, subtitle }: { title: string, s
                               <div className="w-85 max-h-150 overflow-y-auto scrollbar-hide ">
                                    <h2 className="text-lg font-semibold mb-3 border-b border-slate-100 p-4 w-full">Notifications</h2>
 
-                                   {notifiacation && notifiacation.length > 0 ? (
-                                        notifiacation.map((notification, key) => (
-                                             <div className="px-4">
+                                   {notification?.notification && notification?.notification.length > 0 ? (
+                                        notification?.notification.map((item, key) => (
+                                             <div className="px-4" key={item.id || key}>
                                                   <div
-                                                       onClick={() => handelClickNotification()}
-                                                       key={key}
-                                                       className={`${getNotificationColor(notification)} flex 
+                                                       onClick={() => handelClickNotification(item)}
+                                                       className={`${getNotificationColor(item)} flex 
                                                    flex-col rounded-2xl p-3 mb-2 cursor-pointer w-full h-20`}
                                                   >
                                                        <p className="text-xs font-semibold text-slate-700">
-                                                            {notification.title}
+                                                            {item.title}
                                                        </p>
                                                        <p className="text-xs text-slate-500">
-                                                            {notification.description}
+                                                            {item.description}
                                                        </p>
                                                        <p className="text-xs text-slate-400 ml-auto mt-2">
-                                                            {notification.time}
+                                                            {item.time}
                                                        </p>
                                                   </div>
                                              </div>
                                         ))
                                    ) : (
-                                        <p className="text-sm text-slate-500">No new notifications</p>
+                                        <p className="text-sm text-slate-500 text-center">No new notifications</p>
                                    )}
                               </div>
                          </Popover>

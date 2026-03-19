@@ -1,3 +1,4 @@
+import { Eye } from "lucide-react";
 import { subject, subSubject, subSubSubject } from "../../common/style";
 import { UserAvatar } from "../../common/UserAvtar";
 
@@ -41,7 +42,8 @@ export const LogsTableCard: React.FC<LogsTableCardProps> = ({ data }) => {
         "Entity",
         "Details",
         "IP Address",
-        "Status"
+        "Status",
+        "Actions"
     ]
 
 
@@ -89,6 +91,9 @@ export const LogsTableCard: React.FC<LogsTableCardProps> = ({ data }) => {
                             </div>
                             <div className={`${rowlist}`}>
                                 <p className={`px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(item.status)}`}>{item.status}</p>
+                            </div>
+                            <div className={`${rowlist} gap-2`}>
+                                <Eye className="text-teal-500 cursor-pointer hover:text-teal-700" /><span className="text-teal-500">View</span>
                             </div>
                         </div>
                     );

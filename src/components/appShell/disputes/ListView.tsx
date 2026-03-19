@@ -489,6 +489,8 @@ export const ListView: React.FC<QueueViewProps> = ({ data }) => {
                                                     <Checkbox
                                                         checked={selectedDecision === "favor_complainant"}
                                                         onChange={() => setSelectedDecision(selectedDecision === "favor_complainant" ? null : "favor_complainant")}
+                                                        size="small"
+                                                        color="secondary"
                                                     />
                                                     <div className="flex flex-col">
                                                         <p className={`${subSubject}`}>Favor Complainant</p>
@@ -499,6 +501,8 @@ export const ListView: React.FC<QueueViewProps> = ({ data }) => {
                                                     <Checkbox
                                                         checked={selectedDecision === "favor_respondent"}
                                                         onChange={() => setSelectedDecision(selectedDecision === "favor_respondent" ? null : "favor_respondent")}
+                                                        size="small"
+                                                        color="secondary"
                                                     />
                                                     <div className="flex flex-col">
                                                         <p className={`${subSubject}`}>Favor Respondent</p>
@@ -509,6 +513,8 @@ export const ListView: React.FC<QueueViewProps> = ({ data }) => {
                                                     <Checkbox
                                                         checked={selectedDecision === "split_decision"}
                                                         onChange={() => setSelectedDecision(selectedDecision === "split_decision" ? null : "split_decision")}
+                                                        size="small"
+                                                        color="secondary"
                                                     />
                                                     <div className="flex flex-col">
                                                         <p className={`${subSubject}`}>Split Decision</p>
@@ -519,6 +525,8 @@ export const ListView: React.FC<QueueViewProps> = ({ data }) => {
                                                     <Checkbox
                                                         checked={selectedDecision === "mediation_required"}
                                                         onChange={() => setSelectedDecision(selectedDecision === "mediation_required" ? null : "mediation_required")}
+                                                        size="small"
+                                                        color="secondary"
                                                     />
                                                     <div className="flex flex-col">
                                                         <p className={`${subSubject}`}>Mediation Required</p>

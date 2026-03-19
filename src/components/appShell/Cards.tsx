@@ -40,10 +40,14 @@ import {
     BadgeAlert,
     Clock7,
     UserRoundX,
-    Ban
+    Ban,
+    HardDriveDownload,
+    NotebookText,
+    FileText
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../common/fromComponent/button";
+import type { ButtonProps } from "../common/fromComponent/button";
 
 
 export interface CardProps {
@@ -54,7 +58,7 @@ export interface CardProps {
     icon: LucideIcon;
     path?: string;
     describstion?: string;
-    buttonText?: string
+    button?: ButtonProps
 }
 
 export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
@@ -113,9 +117,11 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case TicketX:
             case MessageSquarePlus:
             case BadgeAlert:
+            case FileText:  
                 return "text-red-600 bg-red-100";
             case Flag:
             case TicketCheck:
+            case HardDriveDownload:
                 return "text-teal-600 bg-teal-100";
             case Ticket:
             case Lock:
@@ -135,6 +141,7 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case Receipt:
             case MessageSquare:
             case Download:
+            case NotebookText:
                 return "text-green-600 bg-green-100";
             case Wallet:
                 return "text-cyan-600 bg-cyan-100";
@@ -145,7 +152,7 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
             case OctagonAlert:
                 return "text-amber-600 bg-amber-100";
             default:
-                return "text-black bg-white";
+                return "text-slate-600 bg-slate-100";
         }
     }
 
@@ -195,12 +202,13 @@ export const StatusCard: React.FC<{ data: CardProps[] }> = ({ data }) => {
                             </p>
                         </div>
                         <div>
-                            {item.buttonText &&
-                                <Button className={`w-full py-2 rounded-xl`}
+                            {item.button &&
+                                <Button className={`w-full py-2 rounded-xl ${item.button.className}`}
                                     onClick={() => item.path && navigate(item.path)}
-                                    label={item.buttonText}
-                                    color="primary"
-
+                                    label={item.button.label}
+                                    color={item.button?.color}
+                                    variant={item.button?.variant}
+                                    icon={item.button.icon}
                                 />
                             }
                         </div>

@@ -1,10 +1,10 @@
 import type { LucideIcon } from "lucide-react";
 
-interface ButtonProps {
+export interface ButtonProps {
   label?: string;
   onClick: () => void;
   className?: string;
-  color?: "primary" | "secondary" | "success" | "danger" | "warning" | "info";
+  color?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "purple";
   variant?: "outlined" | "contained";
   icon?: LucideIcon | undefined;
   children?: React.ReactNode;
@@ -29,6 +29,7 @@ export const Button: React.FC<ButtonProps> = ({
     danger: "bg-red-500 text-white hover:bg-red-600 border-red-500 border-2",
     warning: "bg-yellow-500 text-white hover:bg-yellow-600 border-yellow-500 border-2",
     info: "bg-orange-500 text-white hover:bg-orange-600 border-orange-500 border-2",
+    purple:"bg-purple-500 text-white hover:bg-purple-600 border-purple-500 border-2",
   };
 
   const outlinedStyles = {
@@ -38,6 +39,7 @@ export const Button: React.FC<ButtonProps> = ({
     danger: "border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white",
     warning: "border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white",
     info: "border-2 border-orange-500 text-orange-600 hover:bg-orange-500 hover:text-white",
+    purple:"border-2 border-purple-500 text-purple-600 hover:bg-purple-500 hover:text-white",
   };
 
   const styles = variant === "contained" ? containedStyles[color] : outlinedStyles[color];
