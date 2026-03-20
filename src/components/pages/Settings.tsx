@@ -3,14 +3,15 @@ import { StatusCard } from "../appShell/Cards";
 import { DashboardCardData } from "../data/dashboard";
 import { DropDown } from "../common/fromComponent/DropDown";
 import { Button } from "../common/fromComponent/button";
-import { Circle, Dot, Filter, HardDriveDownload, NotepadText, Star, X, } from "lucide-react";
-import { header, subSubject } from "../common/style";
+import { Circle, Cog, Dot, Filter, HardDriveDownload, NotepadText, SlidersHorizontal, Star, Trash, X, } from "lucide-react";
+import { header, subject, subSubject } from "../common/style";
 import { LogsTableCard } from "../appShell/logs/LogTbaleCard";
 import { LogTableCardData } from "../data/logs";
 import ColorProgreebar from "../common/ColorProgreebar";
 import { AgentCard } from "../appShell/support/AgentCard";
 import { AgentData } from "../data/SupportData";
-import { SettingCardData } from "../data/Setting";
+import { IpAddressData, SettingCardData } from "../data/Setting";
+import { CategoryCard } from "../appShell/CategoryCard";
 
 const Settings: React.FC = () => {
 
@@ -194,6 +195,7 @@ const Settings: React.FC = () => {
                             <AgentCard data={AgentData} />
                         </div>
                     </div>
+                    {/* Rating Distribution */}
                     <div className="bg-white rounded-2xl p-6 shadow-md flex gap-5 flex-col" >
                         <div className="flex flex-col gap-2">
                             <p className={header}>Rating Distribution</p>
@@ -311,7 +313,7 @@ const Settings: React.FC = () => {
                         </div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                        <StatusCard data={DashboardCardData.slice(0,3)} />
+                        <StatusCard data={DashboardCardData.slice(0, 3)} />
                     </div>
                 </div>
 
@@ -326,6 +328,157 @@ const Settings: React.FC = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                         <StatusCard data={SettingCardData} />
                     </div>
+                </div>
+                {/* Top IP Addresses  || Geographic Distribution*/}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 " >
+                    <div className="bg-white rounded-2xl p-6 shadow-md  flex gap-5 flex-col " >
+                        <div className="flex flex-row justify-between">
+                            <div className="flex flex-col gap-2">
+                                <p className={header}>Top IP Addresses</p>
+                                <p className={subSubject}>Most active IP addresses today</p>
+                            </div>
+                            <div>
+                                <p className="text-teal-500 cursor-pointer hover:text-teal-800 text-xs font-semibold">Monitor IPs</p>
+                            </div>
+                        </div>
+                        <div className="">
+                            <CategoryCard data={IpAddressData} />
+                        </div>
+                    </div>
+                    {/*Geographic Distribution  */}
+                    <div className="bg-white rounded-2xl p-6 shadow-md flex gap-5 flex-col" >
+                        <div className="flex flex-row justify-between">
+                            <div className="flex flex-col gap-2">
+                                <p className={header}>Geographic Distribution</p>
+                                <p className={subSubject}>Activity by location</p>
+                            </div>
+                            <div>
+                                <p className="text-teal-500 cursor-pointer hover:text-teal-800 text-xs font-semibold">View Map</p>
+                            </div>
+                        </div>
+                        <div className="flex flex-col gap-5 pt-4">
+                            <div className="flex flex-col gap-1">
+                                <div className={`${subSubject} flex flex-row items-center justify-between gap-1`}>
+                                    <div className="flex flex-row gap-2 items-center">
+                                        <Circle className="text-blue-500 bg-blue-500 rounded-full w-3 h-3" />
+                                        <p>Australia</p>
+                                    </div>
+                                    <div className="flex flex-row gap-1">
+                                        <p>3,847</p>
+                                        <p>(50%)</p>
+                                    </div>
+                                </div>
+                                <div className="w-full">
+                                    <ColorProgreebar value={50} />
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <div className={`${subSubject} flex flex-row items-center justify-between gap-1`}>
+                                    <div className="flex flex-row gap-2 items-center">
+                                        <Circle className="text-green-500 bg-green-500 rounded-full w-3 h-3" />
+                                        <p>United States</p>
+                                    </div>
+                                    <div className="flex flex-row gap-1">
+                                        <p>3,500</p>
+                                        <p>(30%)</p>
+                                    </div>
+                                </div>
+                                <div className="w-full">
+                                    <ColorProgreebar value={30} color="#22c55e" />
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <div className={`${subSubject} flex flex-row items-center justify-between gap-1`}>
+                                    <div className="flex flex-row gap-2 items-center">
+                                        <Circle className="text-purple-500 bg-purple-500 rounded-full w-3 h-3" />
+                                        <p>United Kingdom</p>
+                                    </div>
+                                    <div className="flex flex-row gap-1">
+                                        <p>3,647</p>
+                                        <p>(25%)</p>
+                                    </div>
+                                </div>
+                                <div className="w-full">
+                                    <ColorProgreebar value={25} color="#a855f7" />
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <div className={`${subSubject} flex flex-row items-center justify-between gap-1`}>
+                                    <div className="flex flex-row gap-2 items-center">
+                                        <Circle className="text-yellow-500 bg-yellow-500 rounded-full w-3 h-3" />
+                                        <p>Singapore</p>
+                                    </div>
+                                    <div className="flex flex-row gap-1">
+                                        <p>3,847</p>
+                                        <p>(20%)</p>
+                                    </div>
+                                </div>
+                                <div className="w-full">
+                                    <ColorProgreebar value={20} color="#eab308" />
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <div className={`${subSubject} flex flex-row items-center justify-between gap-1`}>
+                                    <div className="flex flex-row gap-2 items-center">
+                                        <Circle className="text-orange-500 bg-orange-500 rounded-full w-3 h-3" />
+                                        <p>Canada</p>
+                                    </div>
+                                    <div className="flex flex-row gap-1">
+                                        <p>3,847</p>
+                                        <p>(15%)</p>
+                                    </div>
+                                </div>
+                                <div className="w-full">
+                                    <ColorProgreebar value={15} color="#f97316" />
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <div className={`${subSubject} flex flex-row items-center justify-between gap-1`}>
+                                    <div className="flex flex-row gap-2 items-center">
+                                        <Circle className="text-red-500 bg-red-500 rounded-full w-3 h-3" />
+                                        <p>Others</p>
+                                    </div>
+                                    <div className="flex flex-row gap-1">
+                                        <p>3,847</p>
+                                        <p>(5%)</p>
+                                    </div>
+                                </div>
+                                <div className="w-full">
+                                    <ColorProgreebar value={5} color="#ef4444" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* Log Retention Policy */}
+                <div className="bg-white rounded-2xl p-6 shadow-md  items-center flex gap-5 flex-row justify-between">
+                    <div className="flex justify-center items-center px-4 py-4 rounded-xl bg-teal-500">
+                        <SlidersHorizontal className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex justify-center flex-col items-start w-full">
+                        <p className={`${subject}`}>Log Retention Policy</p>
+                        <p className={`${subSubject}`}>Current retention period: <span className="text-teal-500">90 days</span> • Storage used: <span className="text-teal-500">2.4 GB</span> of 10 GB</p>
+                    </div>
+                    <div className="flex justify-center items-center w-full gap-4">
+                        <Button
+                            label="Configure Retention"
+                            variant="outlined"
+                            color="blue"
+                            onClick={() => { }}
+                            className="pr-6 pl-3 py-1 rounded-full"
+                            icon={Cog}
+                        />
+                        <Button
+                            label="Clean Old Logs"
+                            variant="contained"
+                            onClick={() => { }}
+                            className="pr-6 pl-3 py-1 rounded-full"
+                            icon={Trash}
+                        />
+                    </div>
+                </div>
+                <div>
+                    <h1>Asif</h1>
                 </div>
             </div>
         </>

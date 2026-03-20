@@ -4,7 +4,7 @@ export interface ButtonProps {
   label?: string;
   onClick: () => void;
   className?: string;
-  color?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "purple";
+  color?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "purple" | "disabled" | "blue";
   variant?: "outlined" | "contained";
   icon?: LucideIcon | undefined;
   children?: React.ReactNode;
@@ -30,6 +30,8 @@ export const Button: React.FC<ButtonProps> = ({
     warning: "bg-yellow-500 text-white hover:bg-yellow-600 border-yellow-500 border-2",
     info: "bg-orange-500 text-white hover:bg-orange-600 border-orange-500 border-2",
     purple:"bg-purple-500 text-white hover:bg-purple-600 border-purple-500 border-2",
+    disabled:"bg-gray-300 text-white hover:bg-gray-300 border-gray-300 border-2",
+    blue:"bg-blue-500 text-white hover:bg-blue-600 border-blue-500 border-2",
   };
 
   const outlinedStyles = {
@@ -40,6 +42,8 @@ export const Button: React.FC<ButtonProps> = ({
     warning: "border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white",
     info: "border-2 border-orange-500 text-orange-600 hover:bg-orange-500 hover:text-white",
     purple:"border-2 border-purple-500 text-purple-600 hover:bg-purple-500 hover:text-white",
+    disabled:"border-2 border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-300",
+    blue:"border-2 border-blue-500 text-blue-600 hover:bg-blue-500 hover:text-white",
   };
 
   const styles = variant === "contained" ? containedStyles[color] : outlinedStyles[color];

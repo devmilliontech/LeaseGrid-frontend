@@ -1,5 +1,6 @@
-import { Download, FileJson, FileText, HardDriveDownload, NotebookText } from "lucide-react";
+import { Download, FileJson, FileText, HardDriveDownload, Network, NotebookText } from "lucide-react";
 import type { CardProps } from "../appShell/Cards";
+import type { categoryData } from "../appShell/CategoryCard";
 
 
 export const SettingCardData: CardProps[] = [
@@ -59,4 +60,40 @@ export const SettingCardData: CardProps[] = [
             }
         }
     },
+]
+
+
+export const IpAddressData :categoryData[] = [
+    {
+        title:"192.168.1.1",
+        subTitle:"Internal Network",
+        total:123,
+        status:"requests",
+
+    },
+    {
+        title:"203.45.128.92",
+        subTitle:"India",
+        total:123,
+        status:"blocked",
+    },
+    {
+        title:"45.128.203.17",
+        subTitle:"United States",
+        total:123,
+        status:"blocked",
+    },
+    {
+        title:"185.220.101.43",
+        subTitle:"Blocked - Suspicious",
+        total:123,
+        status:"requests",
+    },
+    {
+        title:"118.92.203.45",
+        subTitle:"Singapore",
+        total:123,
+        status:"requests",
+    },
+    
 ]

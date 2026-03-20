@@ -127,7 +127,7 @@ export const ReviewsCard: React.FC<ReviewsCardProps> = ({ data }) => {
                                 <div className={`bg-yellow-50 p-4 rounded-2xl border flex flex-row border-yellow-200 items-center gap-5`}>
                                     <Clock1 className="text-yellow-600 w-4 h-4"/>
                                     <div className={`${rowlist} gap-4`}>
-                                        <p className={`${subSubject} !text-slate-800 !bg-slate-100 px-3 py-1 rounded-full`}>Verifed Tanet</p>
+                                        <p className={`${subSubject} !text-blue-800 !bg-blue-100 px-3 py-1 rounded-full`}>Verifed Tanet</p>
                                         <p className={`${subSubject} !text-blue-800 !bg-blue-100 px-3 py-1 rounded-full`}>First Review</p>
                                     </div>
                                 </div>
@@ -211,7 +211,7 @@ export const ReviewsCard: React.FC<ReviewsCardProps> = ({ data }) => {
                                             label="Approved"
                                             onClick={() => console.log("Approved")}
                                             variant="contained"
-                                            color="secondary"
+                                            color="disabled"
                                             className="pr-7 pl-4 py-2 rounded-2xl !border-dotted !bg-slate-200 !text-slate-600 !cursor-default"
                                             icon={CircleCheck}
                                             disabled
