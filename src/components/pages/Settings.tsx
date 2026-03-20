@@ -379,7 +379,7 @@ const Settings: React.FC = () => {
                                         <p>United States</p>
                                     </div>
                                     <div className="flex flex-row gap-1">
-                                        <p>3,847</p>
+                                        <p>3,500</p>
                                         <p>(30%)</p>
                                     </div>
                                 </div>
@@ -394,7 +394,7 @@ const Settings: React.FC = () => {
                                         <p>United Kingdom</p>
                                     </div>
                                     <div className="flex flex-row gap-1">
-                                        <p>3,847</p>
+                                        <p>3,647</p>
                                         <p>(25%)</p>
                                     </div>
                                 </div>
